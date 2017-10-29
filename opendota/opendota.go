@@ -8,7 +8,7 @@ import (
 
 const openDotaAPI = "https://api.opendota.com/api/"
 
-// Client for making Steam API requests
+// Client for making Open Dota API requests
 type Client struct {
 	sling       *sling.Sling
 	TeamService *TeamService
