@@ -77,8 +77,8 @@ func TestTeamService_Matches(t *testing.T) {
 		fmt.Fprintf(w, `[{"match_id":3528450522,"radiant_win":true,"radiant":true,"duration":2024,"start_time":1509224338,"leagueid":5609,"league_name":"ESL One Hamburg 2017","cluster":132}]`)
 	})
 
-	expected := []Match{
-		Match{
+	expected := []TeamMatch{
+		TeamMatch{
 			MatchID:    3528450522,
 			RadiantWin: true,
 			Radiant:    true,
