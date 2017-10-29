@@ -1,1 +1,1 @@
-# go-opendota
+# Go Twitch
