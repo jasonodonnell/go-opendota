@@ -109,8 +109,8 @@ func TestTeamService_Players(t *testing.T) {
 		fmt.Fprintf(w, `[{"account_id":30237211,"name":"BuLba","games_played":545,"wins":312,"is_current_team_member":false}]`)
 	})
 
-	expected := []Players{
-		Players{
+	expected := []TeamPlayers{
+		TeamPlayers{
 			AccountID:           30237211,
 			Name:                "BuLba",
 			GamesPlayed:         545,

@@ -13,7 +13,7 @@ func main() {
 	// 	TeamID: 39,
 	// }
 
-	// // Get Teams
+	// // // Get Teams
 	// teams, _, err := client.TeamService.Teams()
 	// if err != nil {
 	// 	fmt.Println("Error:", err)
@@ -51,13 +51,22 @@ func main() {
 	// }
 	// fmt.Println(heroes)
 
-	matchParam := &opendota.MatchParam{
-		MatchID: 204276127,
+	// matchParam := &opendota.MatchParam{
+	// 	MatchID: 204276127,
+	// }
+
+	// match, _, err := client.MatchService.Match(matchParam)
+	// if err != nil {
+	// 	fmt.Println("Error:", err)
+	// }
+	// fmt.Println(match)
+	playerParam := &opendota.PlayersParam{
+		AccountID: 34505203,
 	}
 
-	match, _, err := client.MatchService.Match(matchParam)
+	player, _, err := client.PlayersService.Player(playerParam)
 	if err != nil {
 		fmt.Println("Error:", err)
 	}
-	fmt.Println(match)
+	fmt.Println(player)
 }

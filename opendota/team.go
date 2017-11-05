@@ -48,7 +48,7 @@ type TeamMatch struct {
 
 // Players is a collection of people who have
 // played on a team.
-type Players struct {
+type TeamPlayers struct {
 	AccountID           int    `json:"account_id"`
 	Name                string `json:"name"`
 	GamesPlayed         int    `json:"games_played"`
@@ -96,8 +96,8 @@ func (s *TeamService) Matches(params *TeamParam) ([]TeamMatch, *http.Response, e
 
 // Players returns a collection of people that played
 // on a specific team.
-func (s *TeamService) Players(params *TeamParam) ([]Players, *http.Response, error) {
-	players := new([]Players)
+func (s *TeamService) Players(params *TeamParam) ([]TeamPlayers, *http.Response, error) {
+	players := new([]TeamPlayers)
 	apiError := new(APIError)
 	path := strconv.Itoa(int(params.TeamID)) + "/players"
 	resp, err := s.sling.New().Get(path).Receive(players, apiError)
