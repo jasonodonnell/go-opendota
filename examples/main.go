@@ -63,10 +63,23 @@ func main() {
 	playerParam := &opendota.PlayersParam{
 		AccountID: 34505203,
 	}
+	// winlossParam := &opendota.PlayersWinLossParam{
+	// 	AccountID: 34505203,
+	// }
 
-	player, _, err := client.PlayersService.Player(playerParam)
+	// player, _, err := client.PlayersService.Player(playerParam)
+	// if err != nil {
+	// 	fmt.Println("Error:", err)
+	// }
+
+	// winloss, res, err := client.PlayersService.WinLoss(winlossParam)
+	// if err != nil {
+	// 	fmt.Println("Error:", err)
+	// }
+	// fmt.Println(winloss, res)
+	matches, _, err := client.PlayersService.Matches(playerParam)
 	if err != nil {
 		fmt.Println("Error:", err)
 	}
-	fmt.Println(player)
+	fmt.Println(matches[0])
 }
