@@ -15,39 +15,42 @@ type PlayersService struct {
 
 // PlayersParam is the parameter for specifying a player.
 type PlayersParam struct {
-	AccountID int64 `url:"account_id"`
+	AccountID int64 `url:"account_id,omitempty"`
 }
 
 func newPlayersService(sling *sling.Sling) *PlayersService {
 	return &PlayersService{
-		sling: sling.Path("Players/"),
+		sling: sling.Path("players/"),
 	}
 }
 
+// Player is a collection of stats about a specific player.
 type Player struct {
-	TrackedUntil        interface{} `json:"tracked_until"`
-	SoloCompetitiveRank interface{} `json:"solo_competitive_rank"`
+	TrackedUntil        string      `json:"tracked_until,omitempty"`
+	SoloCompetitiveRank string      `json:"solo_competitive_rank,omitempty"`
 	MmrEstimate         MmrEstimate `json:"mmr_estimate"`
 	Profile             Profile     `json:"profile"`
-	CompetitiveRank     interface{} `json:"competitive_rank"`
+	CompetitiveRank     string      `json:"competitive_rank,omitempty"`
 }
 
+// MmrEstimate is an estimate MMR score for a player.
 type MmrEstimate struct {
 	Estimate int `json:"estimate"`
 }
 
+// Profile is a collection of account information about a player.
 type Profile struct {
-	AccountID      int         `json:"account_id"`
-	Personaname    string      `json:"personaname"`
-	Name           string      `json:"name"`
-	Cheese         int         `json:"cheese"`
-	Steamid        string      `json:"steamid"`
-	Avatar         string      `json:"avatar"`
-	Avatarmedium   string      `json:"avatarmedium"`
-	Avatarfull     string      `json:"avatarfull"`
-	Profileurl     string      `json:"profileurl"`
-	LastLogin      interface{} `json:"last_login"`
-	Loccountrycode string      `json:"loccountrycode"`
+	AccountID      int    `json:"account_id"`
+	Personaname    string `json:"personaname"`
+	Name           string `json:"name"`
+	Cheese         int    `json:"cheese"`
+	Steamid        string `json:"steamid"`
+	Avatar         string `json:"avatar"`
+	Avatarmedium   string `json:"avatarmedium"`
+	Avatarfull     string `json:"avatarfull"`
+	Profileurl     string `json:"profileurl"`
+	LastLogin      string `json:"last_login,omitempty"`
+	Loccountrycode string `json:"loccountrycode"`
 }
 
 // Player returns a specific player info.
