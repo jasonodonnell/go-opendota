@@ -136,6 +136,45 @@ type PlayerPeers struct {
 	Avatarfull   string `json:"avatarfull"`
 }
 
+type PlayerPros struct {
+	AccountID       int    `json:"account_id"`
+	Name            string `json:"name"`
+	CountryCode     string `json:"country_code"`
+	FantasyRole     int    `json:"fantasy_role"`
+	TeamID          int    `json:"team_id"`
+	TeamName        string `json:"team_name"`
+	TeamTag         string `json:"team_tag"`
+	IsLocked        bool   `json:"is_locked"`
+	IsPro           bool   `json:"is_pro"`
+	LockedUntil     int    `json:"locked_until"`
+	Steamid         string `json:"steamid"`
+	Avatar          string `json:"avatar"`
+	Avatarmedium    string `json:"avatarmedium"`
+	Avatarfull      string `json:"avatarfull"`
+	Profileurl      string `json:"profileurl"`
+	Personaname     string `json:"personaname"`
+	Cheese          int    `json:"cheese"`
+	FhUnavailable   bool   `json:"fh_unavailable"`
+	Loccountrycode  string `json:"loccountrycode"`
+	LastPlayed      int    `json:"last_played"`
+	FullHistoryTime string `json:"full_history_time"`
+	LastMatchTime   string `json:"last_match_time"`
+	Win             int    `json:"win"`
+	Games           int    `json:"games"`
+	WithWin         int    `json:"with_win"`
+	WithGames       int    `json:"with_games"`
+	AgainstWin      int    `json:"against_win"`
+	AgainstGames    int    `json:"against_games"`
+	WithGpmSum      int    `json:"with_gpm_sum"`
+	WithXpmSum      int    `json:"with_xpm_sum"`
+}
+
+type PlayerTotals struct {
+	Field string `json:"field"`
+	N     int    `json:"n"`
+	Sum   int    `json:"sum"`
+}
+
 // Player returns information about a specific player.
 func (s *PlayersService) Player(params *PlayersParam) (Player, *http.Response, error) {
 	player := new(Player)
@@ -189,4 +228,22 @@ func (s *PlayersService) Peers(params *PlayersParam) ([]PlayerPeers, *http.Respo
 	path := fmt.Sprintf("%s/peers", strconv.Itoa(int(params.AccountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(peers, apiError)
 	return *peers, resp, relevantError(err, *apiError)
+}
+
+// Pros returns information about games played with other pro players.
+func (s *PlayersService) Pros(params *PlayersParam) ([]PlayerPros, *http.Response, error) {
+	pros := new([]PlayerPros)
+	apiError := new(APIError)
+	path := fmt.Sprintf("%s/pros", strconv.Itoa(int(params.AccountID)))
+	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(pros, apiError)
+	return *pros, resp, relevantError(err, *apiError)
+}
+
+// Totals returns the total in stats for a specific player.
+func (s *PlayersService) Totals(params *PlayersParam) ([]PlayerTotals, *http.Response, error) {
+	totals := new([]PlayerTotals)
+	apiError := new(APIError)
+	path := fmt.Sprintf("%s/totals", strconv.Itoa(int(params.AccountID)))
+	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(totals, apiError)
+	return *totals, resp, relevantError(err, *apiError)
 }
