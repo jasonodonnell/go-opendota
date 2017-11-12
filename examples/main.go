@@ -77,9 +77,14 @@ func main() {
 	// 	fmt.Println("Error:", err)
 	// }
 	// fmt.Println(winloss, res)
-	matches, _, err := client.PlayersService.Matches(playerParam)
+	// matches, _, err := client.PlayersService.Matches(playerParam)
+	// if err != nil {
+	// 	fmt.Println("Error:", err)
+	// }
+	// fmt.Println(matches[0])
+	counts, res, err := client.PlayersService.Counts(playerParam)
 	if err != nil {
 		fmt.Println("Error:", err)
 	}
-	fmt.Println(matches[0])
+	fmt.Println(counts, res)
 }

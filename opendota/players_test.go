@@ -331,3 +331,130 @@ func TestPlayersService_Totals(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, expected, totals)
 }
+
+func TestPlayersService_Counts(t *testing.T) {
+	httpClient, mux, server := testServer()
+	defer server.Close()
+
+	mux.HandleFunc("/api/players/34505203/counts", func(w http.ResponseWriter, r *http.Request) {
+		assertMethod(t, "GET", r)
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, `{"leaver_status":{"0":{"games":3441,"win":2025}},"game_mode":{"1":{"games":865,"win":469}},"lobby_type":{"0":{"games":416,"win":243}},"lane_role":{"0":{"games":2322,"win":1312}},"region":{"0":{"games":1,"win":1}},"patch":{"7":{"games":100,"win":58}},"is_radiant":{"0":{"games":1746,"win":995}}}`)
+	})
+
+	expected := PlayerCounts{
+		LeaverStatus: map[string]GameWins{
+			"0": {
+				Games: 3441,
+				Win:   2025,
+			},
+		},
+		GameMode: map[string]GameWins{
+			"1": {
+				Games: 865,
+				Win:   469,
+			},
+		},
+		LobbyType: map[string]GameWins{
+			"0": {
+				Games: 416,
+				Win:   243,
+			},
+		},
+		LaneRole: map[string]GameWins{
+			"0": {
+				Games: 2322,
+				Win:   1312,
+			},
+		},
+		Region: map[string]GameWins{
+			"0": {
+				Games: 1,
+				Win:   1,
+			},
+		},
+		Patch: map[string]GameWins{
+			"7": {
+				Games: 100,
+				Win:   58,
+			},
+		},
+		IsRadiant: map[string]GameWins{
+			"0": {
+				Games: 1746,
+				Win:   995,
+			},
+		},
+	}
+
+	accountID := &PlayersParam{
+		AccountID: 34505203,
+	}
+
+	client := NewClient(httpClient)
+	counts, _, err := client.PlayersService.Counts(accountID)
+	assert.Nil(t, err)
+	assert.Equal(t, expected, counts)
+}
+
+func TestPlayersService_Histograms(t *testing.T) {
+	httpClient, mux, server := testServer()
+	defer server.Close()
+
+	mux.HandleFunc("/api/players/34505203/histograms/kills", func(w http.ResponseWriter, r *http.Request) {
+		assertMethod(t, "GET", r)
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, `[{"x":0,"games":389,"win":143}]`)
+	})
+
+	expected := []PlayerHistogram{
+		PlayerHistogram{
+			X:     0,
+			Games: 389,
+			Win:   143,
+		},
+	}
+
+	params := &PlayersParam{
+		AccountID: 34505203,
+		Field:     "kills",
+	}
+
+	client := NewClient(httpClient)
+	histograms, _, err := client.PlayersService.Histograms(params)
+	assert.Nil(t, err)
+	assert.Equal(t, expected, histograms)
+}
+
+func TestPlayersService_WardMap(t *testing.T) {
+	httpClient, mux, server := testServer()
+	defer server.Close()
+
+	mux.HandleFunc("/api/players/34505203/wardmap", func(w http.ResponseWriter, r *http.Request) {
+		assertMethod(t, "GET", r)
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, `{"obs":{"66":{"132":1}}, "sen":{"72":{"156":1}}}`)
+	})
+
+	expected := PlayerWardMap{
+		Obs: map[string]map[string]int{
+			"66": {
+				"132": 1,
+			},
+		},
+		Sen: map[string]map[string]int{
+			"72": {
+				"156": 1,
+			},
+		},
+	}
+
+	params := &PlayersParam{
+		AccountID: 34505203,
+	}
+
+	client := NewClient(httpClient)
+	histograms, _, err := client.PlayersService.WardMap(params)
+	assert.Nil(t, err)
+	assert.Equal(t, expected, histograms)
+}

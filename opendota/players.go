@@ -23,6 +23,7 @@ type PlayersService struct {
 // PlayersParam is the parameter for specifying a player.
 type PlayersParam struct {
 	AccountID     int64    `url:"account_id"`
+	Field         string   `url:"field,omitempty"`
 	Limit         int      `url:"limit,omitempty"`
 	Offset        int      `url:"offset,omitempty"`
 	Win           int      `url:"win,omitempty"`
@@ -175,6 +176,32 @@ type PlayerTotals struct {
 	Sum   int    `json:"sum"`
 }
 
+type PlayerCounts struct {
+	LeaverStatus map[string]GameWins `json:"leaver_status"`
+	GameMode     map[string]GameWins `json:"game_mode"`
+	LobbyType    map[string]GameWins `json:"lobby_type"`
+	LaneRole     map[string]GameWins `json:"lane_role"`
+	Region       map[string]GameWins `json:"region"`
+	Patch        map[string]GameWins `json:"patch"`
+	IsRadiant    map[string]GameWins `json:"is_radiant"`
+}
+
+type GameWins struct {
+	Games int `json:"games"`
+	Win   int `json:"win"`
+}
+
+type PlayerHistogram struct {
+	X     int `json:"x"`
+	Games int `json:"games"`
+	Win   int `json:"win"`
+}
+
+type PlayerWardMap struct {
+	Obs map[string]map[string]int `json:"obs"`
+	Sen map[string]map[string]int `json:"sen"`
+}
+
 // Player returns information about a specific player.
 func (s *PlayersService) Player(params *PlayersParam) (Player, *http.Response, error) {
 	player := new(Player)
@@ -246,4 +273,32 @@ func (s *PlayersService) Totals(params *PlayersParam) ([]PlayerTotals, *http.Res
 	path := fmt.Sprintf("%s/totals", strconv.Itoa(int(params.AccountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(totals, apiError)
 	return *totals, resp, relevantError(err, *apiError)
+}
+
+// Counts returns the count of categories for a specific player.
+func (s *PlayersService) Counts(params *PlayersParam) (PlayerCounts, *http.Response, error) {
+	counts := new(PlayerCounts)
+	apiError := new(APIError)
+	path := fmt.Sprintf("%s/counts", strconv.Itoa(int(params.AccountID)))
+	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(counts, apiError)
+	return *counts, resp, relevantError(err, *apiError)
+}
+
+// Histograms returns a distribution of matches in a single field for a specific
+// player.
+func (s *PlayersService) Histograms(params *PlayersParam) ([]PlayerHistogram, *http.Response, error) {
+	histograms := new([]PlayerHistogram)
+	apiError := new(APIError)
+	path := fmt.Sprintf("%s/histograms/%s", strconv.Itoa(int(params.AccountID)), params.Field)
+	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(histograms, apiError)
+	return *histograms, resp, relevantError(err, *apiError)
+}
+
+// WardMap returns wards placed in matches by a specific player.
+func (s *PlayersService) WardMap(params *PlayersParam) (PlayerWardMap, *http.Response, error) {
+	wardmap := new(PlayerWardMap)
+	apiError := new(APIError)
+	path := fmt.Sprintf("%s/wardmap", strconv.Itoa(int(params.AccountID)))
+	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(wardmap, apiError)
+	return *wardmap, resp, relevantError(err, *apiError)
 }
