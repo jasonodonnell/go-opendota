@@ -202,6 +202,26 @@ type PlayerWardMap struct {
 	Sen map[string]map[string]int `json:"sen"`
 }
 
+type PlayerWordCloud struct {
+	MyWordCounts  map[string]int `json:"my_word_counts"`
+	AllWordCounts map[string]int `json:"all_word_counts"`
+}
+
+type PlayerRatings struct {
+	AccountID           int    `json:"account_id"`
+	MatchID             int64  `json:"match_id"`
+	SoloCompetitiveRank int    `json:"solo_competitive_rank"`
+	CompetitiveRank     int    `json:"competitive_rank"`
+	Time                string `json:"time"`
+}
+
+type PlayerRankings struct {
+	HeroID      int     `json:"hero_id"`
+	Score       float64 `json:"score"`
+	PercentRank int     `json:"percent_rank"`
+	Card        int     `json:"card"`
+}
+
 // Player returns information about a specific player.
 func (s *PlayersService) Player(params *PlayersParam) (Player, *http.Response, error) {
 	player := new(Player)
@@ -301,4 +321,31 @@ func (s *PlayersService) WardMap(params *PlayersParam) (PlayerWardMap, *http.Res
 	path := fmt.Sprintf("%s/wardmap", strconv.Itoa(int(params.AccountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(wardmap, apiError)
 	return *wardmap, resp, relevantError(err, *apiError)
+}
+
+// WordCloud returns words said/read in matches by a player.
+func (s *PlayersService) WordCloud(params *PlayersParam) (PlayerWordCloud, *http.Response, error) {
+	wordcloud := new(PlayerWordCloud)
+	apiError := new(APIError)
+	path := fmt.Sprintf("%s/wordcloud", strconv.Itoa(int(params.AccountID)))
+	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(wordcloud, apiError)
+	return *wordcloud, resp, relevantError(err, *apiError)
+}
+
+// Ratings returns rating history for a specific player.
+func (s *PlayersService) Ratings(params *PlayersParam) ([]PlayerRatings, *http.Response, error) {
+	ratings := new([]PlayerRatings)
+	apiError := new(APIError)
+	path := fmt.Sprintf("%s/ratings", strconv.Itoa(int(params.AccountID)))
+	resp, err := s.sling.New().Get(path).Receive(ratings, apiError)
+	return *ratings, resp, relevantError(err, *apiError)
+}
+
+// Rankings returns ranking history for a specific player.
+func (s *PlayersService) Rankings(params *PlayersParam) ([]PlayerRankings, *http.Response, error) {
+	rankings := new([]PlayerRankings)
+	apiError := new(APIError)
+	path := fmt.Sprintf("%s/rankings", strconv.Itoa(int(params.AccountID)))
+	resp, err := s.sling.New().Get(path).Receive(rankings, apiError)
+	return *rankings, resp, relevantError(err, *apiError)
 }

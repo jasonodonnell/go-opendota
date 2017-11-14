@@ -426,26 +426,22 @@ func TestPlayersService_Histograms(t *testing.T) {
 	assert.Equal(t, expected, histograms)
 }
 
-func TestPlayersService_WardMap(t *testing.T) {
+func TestPlayersService_WordCloud(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
-	mux.HandleFunc("/api/players/34505203/wardmap", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/players/34505203/wordcloud", func(w http.ResponseWriter, r *http.Request) {
 		assertMethod(t, "GET", r)
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintf(w, `{"obs":{"66":{"132":1}}, "sen":{"72":{"156":1}}}`)
+		fmt.Fprintf(w, `{"my_word_counts":{"gg":800},"all_word_counts":{"gg":5289}}`)
 	})
 
-	expected := PlayerWardMap{
-		Obs: map[string]map[string]int{
-			"66": {
-				"132": 1,
-			},
+	expected := PlayerWordCloud{
+		MyWordCounts: map[string]int{
+			"gg": 800,
 		},
-		Sen: map[string]map[string]int{
-			"72": {
-				"156": 1,
-			},
+		AllWordCounts: map[string]int{
+			"gg": 5289,
 		},
 	}
 
@@ -454,7 +450,66 @@ func TestPlayersService_WardMap(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	histograms, _, err := client.PlayersService.WardMap(params)
+	wordcloud, _, err := client.PlayersService.WordCloud(params)
 	assert.Nil(t, err)
-	assert.Equal(t, expected, histograms)
+	assert.Equal(t, expected, wordcloud)
+}
+
+func TestPlayersService_Ratings(t *testing.T) {
+	httpClient, mux, server := testServer()
+	defer server.Close()
+
+	mux.HandleFunc("/api/players/111620041/ratings", func(w http.ResponseWriter, r *http.Request) {
+		assertMethod(t, "GET", r)
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, `[{"account_id":111620041,"match_id":2067247580,"solo_competitive_rank":7812,"competitive_rank":5656,"time":"2016-01-09T20:48:25.028Z"}]`)
+	})
+
+	expected := []PlayerRatings{
+		PlayerRatings{
+			AccountID:           111620041,
+			MatchID:             2067247580,
+			SoloCompetitiveRank: 7812,
+			CompetitiveRank:     5656,
+			Time:                "2016-01-09T20:48:25.028Z",
+		},
+	}
+
+	params := &PlayersParam{
+		AccountID: 111620041,
+	}
+
+	client := NewClient(httpClient)
+	ratings, _, err := client.PlayersService.Ratings(params)
+	assert.Nil(t, err)
+	assert.Equal(t, expected, ratings)
+}
+
+func TestPlayersService_Rankings(t *testing.T) {
+	httpClient, mux, server := testServer()
+	defer server.Close()
+
+	mux.HandleFunc("/api/players/34505203/rankings", func(w http.ResponseWriter, r *http.Request) {
+		assertMethod(t, "GET", r)
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, `[{"hero_id":53,"score":439.08488536972,"percent_rank":1,"card":543680}]`)
+	})
+
+	expected := []PlayerRankings{
+		PlayerRankings{
+			HeroID:      53,
+			Score:       439.08488536972,
+			PercentRank: 1,
+			Card:        543680,
+		},
+	}
+
+	params := &PlayersParam{
+		AccountID: 34505203,
+	}
+
+	client := NewClient(httpClient)
+	rankings, _, err := client.PlayersService.Rankings(params)
+	assert.Nil(t, err)
+	assert.Equal(t, expected, rankings)
 }
