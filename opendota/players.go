@@ -93,13 +93,13 @@ type Profile struct {
 	Personaname    string `json:"personaname"`
 	Name           string `json:"name"`
 	Cheese         int    `json:"cheese"`
-	Steamid        string `json:"steamid"`
+	SteamID        string `json:"steamid"`
 	Avatar         string `json:"avatar"`
-	Avatarmedium   string `json:"avatarmedium"`
-	Avatarfull     string `json:"avatarfull"`
-	Profileurl     string `json:"profileurl"`
+	AvatarMedium   string `json:"avatarmedium"`
+	AvatarFull     string `json:"avatarfull"`
+	ProfileURL     string `json:"profileurl"`
 	LastLogin      string `json:"last_login,omitempty"`
-	Loccountrycode string `json:"loccountrycode"`
+	LocCountryCode string `json:"loccountrycode"`
 }
 
 // WinLoss is a collection of wins and loses for a player.
@@ -135,7 +135,7 @@ type PlayerPeers struct {
 	Personaname  string `json:"personaname"`
 	LastLogin    string `json:"last_login"`
 	Avatar       string `json:"avatar"`
-	Avatarfull   string `json:"avatarfull"`
+	AvatarFull   string `json:"avatarfull"`
 }
 
 // PlayerPros is a collection about pros that have played
@@ -151,15 +151,15 @@ type PlayerPros struct {
 	IsLocked        bool   `json:"is_locked"`
 	IsPro           bool   `json:"is_pro"`
 	LockedUntil     int    `json:"locked_until"`
-	Steamid         string `json:"steamid"`
+	SteamID         string `json:"steamid"`
 	Avatar          string `json:"avatar"`
-	Avatarmedium    string `json:"avatarmedium"`
-	Avatarfull      string `json:"avatarfull"`
-	Profileurl      string `json:"profileurl"`
+	AvatarMedium    string `json:"avatarmedium"`
+	AvatarFull      string `json:"avatarfull"`
+	ProfileURL      string `json:"profileurl"`
 	Personaname     string `json:"personaname"`
 	Cheese          int    `json:"cheese"`
 	FhUnavailable   bool   `json:"fh_unavailable"`
-	Loccountrycode  string `json:"loccountrycode"`
+	LocCountryCode  string `json:"loccountrycode"`
 	LastPlayed      int    `json:"last_played"`
 	FullHistoryTime string `json:"full_history_time"`
 	LastMatchTime   string `json:"last_match_time"`
