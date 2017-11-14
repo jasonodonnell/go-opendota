@@ -1,1 +1,1 @@
-# Go Twitch
+# Go OpenDota
