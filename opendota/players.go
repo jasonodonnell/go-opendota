@@ -120,6 +120,7 @@ type PlayerHero struct {
 	AgainstWin   int    `json:"against_win"`
 }
 
+// PlayerPeers is a collection about peers that have played with specific player.
 type PlayerPeers struct {
 	AccountID    int    `json:"account_id"`
 	LastPlayed   int    `json:"last_played"`
@@ -137,6 +138,8 @@ type PlayerPeers struct {
 	Avatarfull   string `json:"avatarfull"`
 }
 
+// PlayerPros is a collection about pros that have played
+// with a specific player.
 type PlayerPros struct {
 	AccountID       int    `json:"account_id"`
 	Name            string `json:"name"`
@@ -170,12 +173,16 @@ type PlayerPros struct {
 	WithXpmSum      int    `json:"with_xpm_sum"`
 }
 
+// PlayerTotals is a collection of stats about a specific player
+// for different fields.
 type PlayerTotals struct {
 	Field string `json:"field"`
 	N     int    `json:"n"`
 	Sum   int    `json:"sum"`
 }
 
+// PlayerCounts is a collection of counts of a specific player
+// for various stats.
 type PlayerCounts struct {
 	LeaverStatus map[string]GameWins `json:"leaver_status"`
 	GameMode     map[string]GameWins `json:"game_mode"`
@@ -186,27 +193,35 @@ type PlayerCounts struct {
 	IsRadiant    map[string]GameWins `json:"is_radiant"`
 }
 
+// GameWins is a collection of how many games are won for
+// various stats.
 type GameWins struct {
 	Games int `json:"games"`
 	Win   int `json:"win"`
 }
 
+// PlayerHistogram is a collection that represents a distribution of
+// data for a specifc player.
 type PlayerHistogram struct {
 	X     int `json:"x"`
 	Games int `json:"games"`
 	Win   int `json:"win"`
 }
 
+// PlayerWardMap is a collection of observer and sentry wards placed
+// by a specific player.
 type PlayerWardMap struct {
 	Obs map[string]map[string]int `json:"obs"`
 	Sen map[string]map[string]int `json:"sen"`
 }
 
+// PlayerWordCloud is a collection of words said by a specific player.
 type PlayerWordCloud struct {
 	MyWordCounts  map[string]int `json:"my_word_counts"`
 	AllWordCounts map[string]int `json:"all_word_counts"`
 }
 
+// PlayerRatings is a collection of ratings over time for a specific player.
 type PlayerRatings struct {
 	AccountID           int    `json:"account_id"`
 	MatchID             int64  `json:"match_id"`
@@ -215,6 +230,7 @@ type PlayerRatings struct {
 	Time                string `json:"time"`
 }
 
+// PlayerRankings is a collection of rankings for a specific player.
 type PlayerRankings struct {
 	HeroID      int     `json:"hero_id"`
 	Score       float64 `json:"score"`
