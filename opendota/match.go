@@ -160,12 +160,8 @@ type Match struct {
 		LeaverStatus int                       `json:"leaver_status"`
 		Level        int                       `json:"level"`
 		LhT          []int                     `json:"lh_t"`
-		LifeState    struct {
-			Num0 int `json:"0"`
-			Num1 int `json:"1"`
-			Num2 int `json:"2"`
-		} `json:"life_state"`
-		MaxHeroHit struct {
+		LifeState    map[string]int            `json:"life_state"`
+		MaxHeroHit   struct {
 			Type       string `json:"type"`
 			Time       int    `json:"time"`
 			Max        bool   `json:"max"`
