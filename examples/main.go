@@ -51,18 +51,18 @@ func main() {
 	// }
 	// fmt.Println(heroes)
 
-	// matchParam := &opendota.MatchParam{
-	// 	MatchID: 204276127,
-	// }
-
-	// match, _, err := client.MatchService.Match(matchParam)
-	// if err != nil {
-	// 	fmt.Println("Error:", err)
-	// }
-	// fmt.Println(match)
-	playerParam := &opendota.PlayersParam{
-		AccountID: 34505203,
+	matchParam := &opendota.MatchParam{
+		MatchID: 3559037317,
 	}
+
+	match, _, err := client.MatchService.Match(matchParam)
+	if err != nil {
+		fmt.Println("Error:", err)
+	}
+	fmt.Println(match)
+	// playerParam := &opendota.PlayersParam{
+	// 	AccountID: 34505203,
+	// }
 	// winlossParam := &opendota.PlayersWinLossParam{
 	// 	AccountID: 34505203,
 	// }
@@ -82,9 +82,9 @@ func main() {
 	// 	fmt.Println("Error:", err)
 	// }
 	// fmt.Println(matches[0])
-	counts, res, err := client.PlayersService.Counts(playerParam)
-	if err != nil {
-		fmt.Println("Error:", err)
-	}
-	fmt.Println(counts, res)
+	// counts, res, err := client.PlayersService.Counts(playerParam)
+	// if err != nil {
+	// 	fmt.Println("Error:", err)
+	// }
+	// fmt.Println(counts, res)
 }
