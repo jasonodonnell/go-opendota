@@ -13,6 +13,7 @@ type Client struct {
 	sling             *sling.Sling
 	MatchService      *MatchService
 	PlayersService    *PlayersService
+	ProMatchesService *ProMatchesService
 	ProPlayersService *ProPlayersService
 	TeamService       *TeamService
 }
@@ -25,6 +26,7 @@ func NewClient(httpClient *http.Client) *Client {
 		sling:             base,
 		MatchService:      newMatchService(base.New()),
 		PlayersService:    newPlayersService(base.New()),
+		ProMatchesService: newProMatchesService(base.New()),
 		ProPlayersService: newProPlayersService(base.New()),
 		TeamService:       newTeamService(base.New()),
 	}
