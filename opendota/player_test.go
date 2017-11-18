@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestPlayersService_Player(t *testing.T) {
+func TestPlayerService_Player(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -49,12 +49,12 @@ func TestPlayersService_Player(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	player, _, err := client.PlayersService.Player(accountID)
+	player, _, err := client.PlayerService.Player(accountID)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, player)
 }
 
-func TestPlayersService_WinLoss(t *testing.T) {
+func TestPlayerService_WinLoss(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -74,12 +74,12 @@ func TestPlayersService_WinLoss(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	winloss, _, err := client.PlayersService.WinLoss(accountID)
+	winloss, _, err := client.PlayerService.WinLoss(accountID)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, winloss)
 }
 
-func TestPlayersService_RecentMatches(t *testing.T) {
+func TestPlayerService_RecentMatches(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -124,12 +124,12 @@ func TestPlayersService_RecentMatches(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	recentMatches, _, err := client.PlayersService.RecentMatches(accountID)
+	recentMatches, _, err := client.PlayerService.RecentMatches(accountID)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, recentMatches)
 }
 
-func TestPlayersService_Matches(t *testing.T) {
+func TestPlayerService_Matches(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -174,12 +174,12 @@ func TestPlayersService_Matches(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	matches, _, err := client.PlayersService.Matches(accountID)
+	matches, _, err := client.PlayerService.Matches(accountID)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, matches)
 }
 
-func TestPlayersService_Heroes(t *testing.T) {
+func TestPlayerService_Heroes(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -207,12 +207,12 @@ func TestPlayersService_Heroes(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	heroes, _, err := client.PlayersService.Heroes(accountID)
+	heroes, _, err := client.PlayerService.Heroes(accountID)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, heroes)
 }
 
-func TestPlayersService_Peers(t *testing.T) {
+func TestPlayerService_Peers(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -246,12 +246,12 @@ func TestPlayersService_Peers(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	peers, _, err := client.PlayersService.Peers(accountID)
+	peers, _, err := client.PlayerService.Peers(accountID)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, peers)
 }
 
-func TestPlayersService_Pros(t *testing.T) {
+func TestPlayerService_Pros(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -299,12 +299,12 @@ func TestPlayersService_Pros(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	pros, _, err := client.PlayersService.Pros(accountID)
+	pros, _, err := client.PlayerService.Pros(accountID)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, pros)
 }
 
-func TestPlayersService_Totals(t *testing.T) {
+func TestPlayerService_Totals(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -327,12 +327,12 @@ func TestPlayersService_Totals(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	totals, _, err := client.PlayersService.Totals(accountID)
+	totals, _, err := client.PlayerService.Totals(accountID)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, totals)
 }
 
-func TestPlayersService_Counts(t *testing.T) {
+func TestPlayerService_Counts(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -392,12 +392,12 @@ func TestPlayersService_Counts(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	counts, _, err := client.PlayersService.Counts(accountID)
+	counts, _, err := client.PlayerService.Counts(accountID)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, counts)
 }
 
-func TestPlayersService_Histograms(t *testing.T) {
+func TestPlayerService_Histograms(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -421,12 +421,12 @@ func TestPlayersService_Histograms(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	histograms, _, err := client.PlayersService.Histograms(params)
+	histograms, _, err := client.PlayerService.Histograms(params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, histograms)
 }
 
-func TestPlayersService_WordCloud(t *testing.T) {
+func TestPlayerService_WordCloud(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -450,12 +450,12 @@ func TestPlayersService_WordCloud(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	wordcloud, _, err := client.PlayersService.WordCloud(params)
+	wordcloud, _, err := client.PlayerService.WordCloud(params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, wordcloud)
 }
 
-func TestPlayersService_Ratings(t *testing.T) {
+func TestPlayerService_Ratings(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -480,12 +480,12 @@ func TestPlayersService_Ratings(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	ratings, _, err := client.PlayersService.Ratings(params)
+	ratings, _, err := client.PlayerService.Ratings(params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, ratings)
 }
 
-func TestPlayersService_Rankings(t *testing.T) {
+func TestPlayerService_Rankings(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -509,7 +509,7 @@ func TestPlayersService_Rankings(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	rankings, _, err := client.PlayersService.Rankings(params)
+	rankings, _, err := client.PlayerService.Rankings(params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, rankings)
 }

@@ -6,15 +6,15 @@ import (
 	"github.com/dghubble/sling"
 )
 
-func newProPlayersService(sling *sling.Sling) *ProPlayersService {
-	return &ProPlayersService{
+func newProPlayerService(sling *sling.Sling) *ProPlayerService {
+	return &ProPlayerService{
 		sling: sling.Path("proPlayers"),
 	}
 }
 
-// ProPlayersService provides methods for accessing pro
+// ProPlayerService provides methods for accessing pro
 // endpoints.
-type ProPlayersService struct {
+type ProPlayerService struct {
 	sling *sling.Sling
 }
 
@@ -46,7 +46,7 @@ type ProPlayer struct {
 }
 
 // Players returns information about pro players.
-func (s *ProPlayersService) Players() ([]ProPlayer, *http.Response, error) {
+func (s *ProPlayerService) Players() ([]ProPlayer, *http.Response, error) {
 	proplayers := new([]ProPlayer)
 	apiError := new(APIError)
 	resp, err := s.sling.New().Receive(proplayers, apiError)

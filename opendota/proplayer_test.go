@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestProPlayersService_Players(t *testing.T) {
+func TestProPlayerService_Players(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -45,7 +45,7 @@ func TestProPlayersService_Players(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	proplayers, _, err := client.ProPlayersService.Players()
+	proplayers, _, err := client.ProPlayerService.Players()
 	assert.Nil(t, err)
 	assert.Equal(t, expected, proplayers)
 }

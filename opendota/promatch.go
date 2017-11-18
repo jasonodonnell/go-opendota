@@ -6,15 +6,15 @@ import (
 	"github.com/dghubble/sling"
 )
 
-func newProMatchesService(sling *sling.Sling) *ProMatchesService {
-	return &ProMatchesService{
+func newProMatchService(sling *sling.Sling) *ProMatchService {
+	return &ProMatchService{
 		sling: sling.Path("proMatches"),
 	}
 }
 
-// ProMatchesService provides methods for accessing pro
+// ProMatchService provides methods for accessing pro
 // matches.
-type ProMatchesService struct {
+type ProMatchService struct {
 	sling *sling.Sling
 }
 
@@ -37,7 +37,7 @@ type ProMatch struct {
 }
 
 // Matches returns information about pro matches.
-func (s *ProMatchesService) Matches() ([]ProMatch, *http.Response, error) {
+func (s *ProMatchService) Matches() ([]ProMatch, *http.Response, error) {
 	promatches := new([]ProMatch)
 	apiError := new(APIError)
 	resp, err := s.sling.New().Receive(promatches, apiError)

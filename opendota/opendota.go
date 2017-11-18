@@ -10,12 +10,14 @@ const openDotaAPI = "https://api.opendota.com/api/"
 
 // Client for making Open Dota API requests
 type Client struct {
-	sling             *sling.Sling
-	MatchService      *MatchService
-	PlayersService    *PlayersService
-	ProMatchesService *ProMatchesService
-	ProPlayersService *ProPlayersService
-	TeamService       *TeamService
+	sling              *sling.Sling
+	ExplorerService    *ExplorerService
+	MatchService       *MatchService
+	PlayerService      *PlayerService
+	ProMatchService    *ProMatchService
+	ProPlayerService   *ProPlayerService
+	PublicMatchService *PublicMatchService
+	TeamService        *TeamService
 }
 
 // NewClient returns a new Client.
@@ -23,11 +25,13 @@ func NewClient(httpClient *http.Client) *Client {
 	base := sling.New().Client(httpClient).Base(openDotaAPI)
 
 	return &Client{
-		sling:             base,
-		MatchService:      newMatchService(base.New()),
-		PlayersService:    newPlayersService(base.New()),
-		ProMatchesService: newProMatchesService(base.New()),
-		ProPlayersService: newProPlayersService(base.New()),
-		TeamService:       newTeamService(base.New()),
+		sling:              base,
+		ExplorerService:    newExplorerService(base.New()),
+		MatchService:       newMatchService(base.New()),
+		PlayerService:      newPlayerService(base.New()),
+		ProMatchService:    newProMatchService(base.New()),
+		ProPlayerService:   newProPlayerService(base.New()),
+		PublicMatchService: newPublicMatchService(base.New()),
+		TeamService:        newTeamService(base.New()),
 	}
 }

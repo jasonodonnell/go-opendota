@@ -8,15 +8,15 @@ import (
 	"github.com/dghubble/sling"
 )
 
-func newPlayersService(sling *sling.Sling) *PlayersService {
-	return &PlayersService{
+func newPlayerService(sling *sling.Sling) *PlayerService {
+	return &PlayerService{
 		sling: sling.Path("players/"),
 	}
 }
 
-// PlayersService provides methods for accessing player
+// PlayerService provides methods for accessing player
 // endpoints.
-type PlayersService struct {
+type PlayerService struct {
 	sling *sling.Sling
 }
 
@@ -239,7 +239,7 @@ type PlayerRankings struct {
 }
 
 // Player returns information about a specific player.
-func (s *PlayersService) Player(params *PlayersParam) (Player, *http.Response, error) {
+func (s *PlayerService) Player(params *PlayersParam) (Player, *http.Response, error) {
 	player := new(Player)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s", strconv.Itoa(int(params.AccountID)))
@@ -248,7 +248,7 @@ func (s *PlayersService) Player(params *PlayersParam) (Player, *http.Response, e
 }
 
 // WinLoss returns the win/loss count for a specific player.
-func (s *PlayersService) WinLoss(params *PlayersParam) (WinLoss, *http.Response, error) {
+func (s *PlayerService) WinLoss(params *PlayersParam) (WinLoss, *http.Response, error) {
 	winloss := new(WinLoss)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/wl", strconv.Itoa(int(params.AccountID)))
@@ -257,7 +257,7 @@ func (s *PlayersService) WinLoss(params *PlayersParam) (WinLoss, *http.Response,
 }
 
 // RecentMatches returns recent matches played by a specific player.
-func (s *PlayersService) RecentMatches(params *PlayersParam) ([]PlayerMatch, *http.Response, error) {
+func (s *PlayerService) RecentMatches(params *PlayersParam) ([]PlayerMatch, *http.Response, error) {
 	playermatches := new([]PlayerMatch)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/recentMatches", strconv.Itoa(int(params.AccountID)))
@@ -267,7 +267,7 @@ func (s *PlayersService) RecentMatches(params *PlayersParam) ([]PlayerMatch, *ht
 
 // Matches returns recent matches played by a specific player, can be
 // queried to tune results.
-func (s *PlayersService) Matches(params *PlayersParam) ([]PlayerMatch, *http.Response, error) {
+func (s *PlayerService) Matches(params *PlayersParam) ([]PlayerMatch, *http.Response, error) {
 	playermatches := new([]PlayerMatch)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/matches", strconv.Itoa(int(params.AccountID)))
@@ -276,7 +276,7 @@ func (s *PlayersService) Matches(params *PlayersParam) ([]PlayerMatch, *http.Res
 }
 
 // Heroes returns information about heroes played for a specific player.
-func (s *PlayersService) Heroes(params *PlayersParam) ([]PlayerHero, *http.Response, error) {
+func (s *PlayerService) Heroes(params *PlayersParam) ([]PlayerHero, *http.Response, error) {
 	playerheroes := new([]PlayerHero)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/heroes", strconv.Itoa(int(params.AccountID)))
@@ -285,7 +285,7 @@ func (s *PlayersService) Heroes(params *PlayersParam) ([]PlayerHero, *http.Respo
 }
 
 // Peers returns information about games played with other players.
-func (s *PlayersService) Peers(params *PlayersParam) ([]PlayerPeers, *http.Response, error) {
+func (s *PlayerService) Peers(params *PlayersParam) ([]PlayerPeers, *http.Response, error) {
 	peers := new([]PlayerPeers)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/peers", strconv.Itoa(int(params.AccountID)))
@@ -294,7 +294,7 @@ func (s *PlayersService) Peers(params *PlayersParam) ([]PlayerPeers, *http.Respo
 }
 
 // Pros returns information about games played with other pro players.
-func (s *PlayersService) Pros(params *PlayersParam) ([]PlayerPros, *http.Response, error) {
+func (s *PlayerService) Pros(params *PlayersParam) ([]PlayerPros, *http.Response, error) {
 	pros := new([]PlayerPros)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/pros", strconv.Itoa(int(params.AccountID)))
@@ -303,7 +303,7 @@ func (s *PlayersService) Pros(params *PlayersParam) ([]PlayerPros, *http.Respons
 }
 
 // Totals returns the total in stats for a specific player.
-func (s *PlayersService) Totals(params *PlayersParam) ([]PlayerTotals, *http.Response, error) {
+func (s *PlayerService) Totals(params *PlayersParam) ([]PlayerTotals, *http.Response, error) {
 	totals := new([]PlayerTotals)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/totals", strconv.Itoa(int(params.AccountID)))
@@ -312,7 +312,7 @@ func (s *PlayersService) Totals(params *PlayersParam) ([]PlayerTotals, *http.Res
 }
 
 // Counts returns the count of categories for a specific player.
-func (s *PlayersService) Counts(params *PlayersParam) (PlayerCounts, *http.Response, error) {
+func (s *PlayerService) Counts(params *PlayersParam) (PlayerCounts, *http.Response, error) {
 	counts := new(PlayerCounts)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/counts", strconv.Itoa(int(params.AccountID)))
@@ -322,7 +322,7 @@ func (s *PlayersService) Counts(params *PlayersParam) (PlayerCounts, *http.Respo
 
 // Histograms returns a distribution of matches in a single field for a specific
 // player.
-func (s *PlayersService) Histograms(params *PlayersParam) ([]PlayerHistogram, *http.Response, error) {
+func (s *PlayerService) Histograms(params *PlayersParam) ([]PlayerHistogram, *http.Response, error) {
 	histograms := new([]PlayerHistogram)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/histograms/%s", strconv.Itoa(int(params.AccountID)), params.Field)
@@ -331,7 +331,7 @@ func (s *PlayersService) Histograms(params *PlayersParam) ([]PlayerHistogram, *h
 }
 
 // WardMap returns wards placed in matches by a specific player.
-func (s *PlayersService) WardMap(params *PlayersParam) (PlayerWardMap, *http.Response, error) {
+func (s *PlayerService) WardMap(params *PlayersParam) (PlayerWardMap, *http.Response, error) {
 	wardmap := new(PlayerWardMap)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/wardmap", strconv.Itoa(int(params.AccountID)))
@@ -340,7 +340,7 @@ func (s *PlayersService) WardMap(params *PlayersParam) (PlayerWardMap, *http.Res
 }
 
 // WordCloud returns words said/read in matches by a player.
-func (s *PlayersService) WordCloud(params *PlayersParam) (PlayerWordCloud, *http.Response, error) {
+func (s *PlayerService) WordCloud(params *PlayersParam) (PlayerWordCloud, *http.Response, error) {
 	wordcloud := new(PlayerWordCloud)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/wordcloud", strconv.Itoa(int(params.AccountID)))
@@ -349,7 +349,7 @@ func (s *PlayersService) WordCloud(params *PlayersParam) (PlayerWordCloud, *http
 }
 
 // Ratings returns rating history for a specific player.
-func (s *PlayersService) Ratings(params *PlayersParam) ([]PlayerRatings, *http.Response, error) {
+func (s *PlayerService) Ratings(params *PlayersParam) ([]PlayerRatings, *http.Response, error) {
 	ratings := new([]PlayerRatings)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/ratings", strconv.Itoa(int(params.AccountID)))
@@ -358,7 +358,7 @@ func (s *PlayersService) Ratings(params *PlayersParam) ([]PlayerRatings, *http.R
 }
 
 // Rankings returns ranking history for a specific player.
-func (s *PlayersService) Rankings(params *PlayersParam) ([]PlayerRankings, *http.Response, error) {
+func (s *PlayerService) Rankings(params *PlayersParam) ([]PlayerRankings, *http.Response, error) {
 	rankings := new([]PlayerRankings)
 	apiError := new(APIError)
 	path := fmt.Sprintf("%s/rankings", strconv.Itoa(int(params.AccountID)))

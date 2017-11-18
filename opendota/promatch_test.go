@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestProMatchesService_Matches(t *testing.T) {
+func TestProMatchService_Matches(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
@@ -38,7 +38,7 @@ func TestProMatchesService_Matches(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	promatches, _, err := client.ProMatchesService.Matches()
+	promatches, _, err := client.ProMatchService.Matches()
 	assert.Nil(t, err)
 	assert.Equal(t, expected, promatches)
 }
