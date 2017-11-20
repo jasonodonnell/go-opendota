@@ -16,6 +16,7 @@ type Client struct {
 	ExplorerService     *ExplorerService
 	HealthService       *HealthService
 	HeroService         *HeroService
+	HeroStatService     *HeroStatService
 	MatchService        *MatchService
 	MetadataService     *MetadataService
 	PlayerService       *PlayerService
@@ -39,6 +40,7 @@ func NewClient(httpClient *http.Client) *Client {
 		ExplorerService:     newExplorerService(base.New()),
 		HealthService:       newHealthService(base.New()),
 		HeroService:         newHeroService(base.New()),
+		HeroStatService:     newHeroStatService(base.New()),
 		MatchService:        newMatchService(base.New()),
 		MetadataService:     newMetadataService(base.New()),
 		PlayerService:       newPlayerService(base.New()),
