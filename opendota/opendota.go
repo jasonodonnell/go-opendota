@@ -11,6 +11,7 @@ const openDotaAPI = "https://api.opendota.com/api/"
 // Client for making Open Dota API requests
 type Client struct {
 	sling               *sling.Sling
+	BenchmarkService    *BenchmarkService
 	DistributionService *DistributionService
 	ExplorerService     *ExplorerService
 	MatchService        *MatchService
@@ -30,6 +31,7 @@ func NewClient(httpClient *http.Client) *Client {
 
 	return &Client{
 		sling:               base,
+		BenchmarkService:    newBenchmarkService(base.New()),
 		DistributionService: newDistributionService(base.New()),
 		ExplorerService:     newExplorerService(base.New()),
 		MatchService:        newMatchService(base.New()),
