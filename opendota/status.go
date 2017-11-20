@@ -40,15 +40,6 @@ type Status struct {
 	Health                  health           `json:"health"`
 }
 
-type health struct {
-	PostgresUsage  usage      `json:"postgresUsage"`
-	RedisUsage     redisUsage `json:"redisUsage"`
-	ParseDelay     usage      `json:"parseDelay"`
-	CassandraUsage usage      `json:"cassandraUsage"`
-	SeqNumDelay    usage      `json:"seqNumDelay"`
-	SteamAPI       usage      `json:"steamApi"`
-}
-
 type hostnameCounts struct {
 	Hostname string `json:"hostname"`
 	Count    string `json:"count"`
@@ -58,19 +49,6 @@ type matchStatus struct {
 	MatchID   int64 `json:"match_id"`
 	Duration  int   `json:"duration"`
 	StartTime int   `json:"start_time"`
-}
-
-type usage struct {
-	Metric    int64 `json:"metric"`
-	Threshold int64 `json:"threshold"`
-	Timestamp int   `json:"timestamp"`
-}
-
-// Requires special struct due to a bug in OpenDota.
-type redisUsage struct {
-	Metric    string `json:"metric"`
-	Threshold int64  `json:"threshold"`
-	Timestamp int    `json:"timestamp"`
 }
 
 // Status returns information about the current status of
