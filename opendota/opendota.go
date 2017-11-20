@@ -22,6 +22,7 @@ type Client struct {
 	PublicMatchService  *PublicMatchService
 	RankingService      *RankingService
 	SearchService       *SearchService
+	StatusService       *StatusService
 	TeamService         *TeamService
 }
 
@@ -42,6 +43,7 @@ func NewClient(httpClient *http.Client) *Client {
 		PublicMatchService:  newPublicMatchService(base.New()),
 		RankingService:      newRankingService(base.New()),
 		SearchService:       newSearchService(base.New()),
+		StatusService:       newStatusService(base.New()),
 		TeamService:         newTeamService(base.New()),
 	}
 }
