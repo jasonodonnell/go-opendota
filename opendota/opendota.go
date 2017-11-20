@@ -19,6 +19,7 @@ type Client struct {
 	ProMatchService     *ProMatchService
 	ProPlayerService    *ProPlayerService
 	PublicMatchService  *PublicMatchService
+	RankingService      *RankingService
 	SearchService       *SearchService
 	TeamService         *TeamService
 }
@@ -37,6 +38,7 @@ func NewClient(httpClient *http.Client) *Client {
 		ProMatchService:     newProMatchService(base.New()),
 		ProPlayerService:    newProPlayerService(base.New()),
 		PublicMatchService:  newPublicMatchService(base.New()),
+		RankingService:      newRankingService(base.New()),
 		SearchService:       newSearchService(base.New()),
 		TeamService:         newTeamService(base.New()),
 	}
