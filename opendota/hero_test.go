@@ -8,6 +8,34 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestHeroService_Durations(t *testing.T) {
+	httpClient, mux, server := testServer()
+	defer server.Close()
+
+	mux.HandleFunc("/api/heroes/1/durations", func(w http.ResponseWriter, r *http.Request) {
+		assertMethod(t, "GET", r)
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, `[{"duration_bin":5700,"games_played":1,"wins":0}]`)
+	})
+
+	expected := []HeroDuration{
+		HeroDuration{
+			DurationBin: 5700,
+			GamesPlayed: 1,
+			Wins:        0,
+		},
+	}
+
+	param := &HeroParam{
+		HeroID: 1,
+	}
+
+	client := NewClient(httpClient)
+	durations, _, err := client.HeroService.Durations(param)
+	assert.Nil(t, err)
+	assert.Equal(t, expected, durations)
+}
+
 func TestHeroService_Heroes(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
@@ -98,34 +126,6 @@ func TestHeroService_Matchups(t *testing.T) {
 	matchups, _, err := client.HeroService.Matchups(param)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, matchups)
-}
-
-func TestHeroService_Durations(t *testing.T) {
-	httpClient, mux, server := testServer()
-	defer server.Close()
-
-	mux.HandleFunc("/api/heroes/1/durations", func(w http.ResponseWriter, r *http.Request) {
-		assertMethod(t, "GET", r)
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintf(w, `[{"duration_bin":5700,"games_played":1,"wins":0}]`)
-	})
-
-	expected := []HeroDuration{
-		HeroDuration{
-			DurationBin: 5700,
-			GamesPlayed: 1,
-			Wins:        0,
-		},
-	}
-
-	param := &HeroParam{
-		HeroID: 1,
-	}
-
-	client := NewClient(httpClient)
-	durations, _, err := client.HeroService.Durations(param)
-	assert.Nil(t, err)
-	assert.Equal(t, expected, durations)
 }
 
 func TestHeroService_Players(t *testing.T) {

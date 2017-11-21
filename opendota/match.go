@@ -19,68 +19,67 @@ type MatchService struct {
 	sling *sling.Sling
 }
 
-type chat struct {
-	Time       int    `json:"time"`
-	Type       string `json:"type"`
-	Unit       string `json:"unit,omitempty"`
-	Key        string `json:"key"`
-	Slot       int    `json:"slot"`
-	PlayerSlot int    `json:"player_slot"`
+// MatchParam is the parameter for specifying a match by ID.
+type MatchParam struct {
+	MatchID int64 `url:"match_id"`
 }
 
-type objective struct {
-	Time       int    `json:"time"`
-	Type       string `json:"type"`
-	Team       int    `json:"team,omitempty"`
-	Slot       int    `json:"slot,omitempty"`
-	PlayerSlot int    `json:"player_slot,omitempty"`
-	Unit       string `json:"unit,omitempty"`
+// Match is a collection of information about a specific Dota 2
+// match.
+type Match struct {
+	MatchID               int64          `json:"match_id"`
+	BarracksStatusDire    int            `json:"barracks_status_dire"`
+	BarracksStatusRadiant int            `json:"barracks_status_radiant"`
+	Chat                  []chat         `json:"chat"`
+	Cluster               int            `json:"cluster"`
+	Cosmetics             map[string]int `json:"cosmetics"`
+	DireScore             int            `json:"dire_score"`
+	Duration              int            `json:"duration"`
+	Engine                int            `json:"engine"`
+	FirstBloodTime        int            `json:"first_blood_time"`
+	GameMode              int            `json:"game_mode"`
+	HumanPlayers          int            `json:"human_players"`
+	LeagueID              int            `json:"leagueid"`
+	LobbyType             int            `json:"lobby_type"`
+	MatchSeqNum           int64          `json:"match_seq_num"`
+	NegativeVotes         int            `json:"negative_votes"`
+	Objectives            []objective    `json:"objectives"`
+	PicksBans             []pickbans     `json:"picks_bans"`
+	PositiveVotes         int            `json:"positive_votes"`
+	RadiantGoldAdv        []int          `json:"radiant_gold_adv"`
+	RadiantScore          int            `json:"radiant_score"`
+	RadiantWin            bool           `json:"radiant_win"`
+	RadiantXpAdv          []int          `json:"radiant_xp_adv"`
+	Skill                 int            `json:"skill"`
+	StartTime             int            `json:"start_time"`
+	Teamfights            []teamfights   `json:"teamfights"`
+	TowerStatusDire       int            `json:"tower_status_dire"`
+	TowerStatusRadiant    int            `json:"tower_status_radiant"`
+	Version               int            `json:"version"`
+	ReplaySalt            int            `json:"replay_salt"`
+	SeriesID              int            `json:"series_id"`
+	SeriesType            int            `json:"series_type"`
+	League                league         `json:"league"`
+	RadiantTeam           matchteam      `json:"radiant_team"`
+	DireTeam              matchteam      `json:"dire_team"`
+	Players               []matchplayer  `json:"players"`
+	Patch                 int            `json:"patch"`
+	Region                int            `json:"region"`
+	AllWordCounts         map[string]int `json:"all_word_counts"`
+	MyWordCounts          map[string]int `json:"my_word_counts"`
+	Throw                 int            `json:"throw"`
+	Loss                  int            `json:"loss"`
+	ReplayURL             string         `json:"replay_url"`
 }
 
-type pickbans struct {
-	IsPick  bool  `json:"is_pick"`
-	HeroID  int   `json:"hero_id"`
-	Team    int   `json:"team"`
-	Order   int   `json:"order"`
-	Ord     int   `json:"ord"`
-	MatchID int64 `json:"match_id"`
-}
-
-type teamfightplayers struct {
-	AbilityUses map[string]int `json:"ability_uses"`
-	ItemUses    map[string]int `json:"item_uses"`
-	Killed      map[string]int `json:"killed"`
-	Deaths      int            `json:"deaths"`
-	Buybacks    int            `json:"buybacks"`
-	Damage      int            `json:"damage"`
-	Healing     int            `json:"healing"`
-	GoldDelta   int            `json:"gold_delta"`
-	XpDelta     int            `json:"xp_delta"`
-	XpStart     int            `json:"xp_start"`
-	XpEnd       int            `json:"xp_end"`
-}
-
-type teamfights struct {
-	Start     int                `json:"start"`
-	End       int                `json:"end"`
-	LastDeath int                `json:"last_death"`
-	Deaths    int                `json:"deaths"`
-	Players   []teamfightplayers `json:"players"`
-}
-
-type league struct {
-	LeagueID int    `json:"leagueid"`
-	Ticket   string `json:"ticket"`
-	Banner   string `json:"banner"`
-	Tier     string `json:"tier"`
-	Name     string `json:"name"`
-}
-
-type matchteam struct {
-	TeamID  int    `json:"team_id"`
-	Name    string `json:"name"`
-	Tag     string `json:"tag"`
-	LogoURL string `json:"logo_url"`
+type benchmarks struct {
+	GoldPerMin        rawpct `json:"gold_per_min"`
+	XpPerMin          rawpct `json:"xp_per_min"`
+	KillsPerMin       rawpct `json:"kills_per_min"`
+	LastHitsPerMin    rawpct `json:"last_hits_per_min"`
+	HeroDamagePerMin  rawpct `json:"hero_damage_per_min"`
+	HeroHealingPerMin rawpct `json:"hero_healing_per_min"`
+	TowerDamage       rawpct `json:"tower_damage"`
 }
 
 type buybacklog struct {
@@ -90,39 +89,13 @@ type buybacklog struct {
 	PlayerSlot int    `json:"player_slot"`
 }
 
-type log struct {
-	Time int    `json:"time"`
-	Key  string `json:"key"`
-}
-
-type maxherohit struct {
-	Type       string `json:"type"`
-	Time       int    `json:"time"`
-	Max        bool   `json:"max"`
-	Inflictor  string `json:"inflictor"`
-	Unit       string `json:"unit"`
-	Key        string `json:"key"`
-	Value      int    `json:"value"`
-	Slot       int    `json:"slot"`
-	PlayerSlot int    `json:"player_slot"`
-}
-
-type obslog struct {
+type chat struct {
 	Time       int    `json:"time"`
 	Type       string `json:"type"`
+	Unit       string `json:"unit,omitempty"`
 	Key        string `json:"key"`
 	Slot       int    `json:"slot"`
-	X          int    `json:"x"`
-	Y          int    `json:"y"`
-	Z          int    `json:"z"`
-	Entityleft bool   `json:"entityleft"`
-	Ehandle    int    `json:"ehandle"`
 	PlayerSlot int    `json:"player_slot"`
-}
-
-type runeslog struct {
-	Time int `json:"time"`
-	Key  int `json:"key"`
 }
 
 type cosmetics struct {
@@ -139,19 +112,17 @@ type cosmetics struct {
 	UsedByHeroes    string `json:"used_by_heroes"`
 }
 
-type rawpct struct {
-	Raw float64 `json:"raw"`
-	Pct float64 `json:"pct"`
+type league struct {
+	LeagueID int    `json:"leagueid"`
+	Ticket   string `json:"ticket"`
+	Banner   string `json:"banner"`
+	Tier     string `json:"tier"`
+	Name     string `json:"name"`
 }
 
-type benchmarks struct {
-	GoldPerMin        rawpct `json:"gold_per_min"`
-	XpPerMin          rawpct `json:"xp_per_min"`
-	KillsPerMin       rawpct `json:"kills_per_min"`
-	LastHitsPerMin    rawpct `json:"last_hits_per_min"`
-	HeroDamagePerMin  rawpct `json:"hero_damage_per_min"`
-	HeroHealingPerMin rawpct `json:"hero_healing_per_min"`
-	TowerDamage       rawpct `json:"tower_damage"`
+type log struct {
+	Time int    `json:"time"`
+	Key  string `json:"key"`
 }
 
 type matchplayer struct {
@@ -284,55 +255,86 @@ type matchplayer struct {
 	PurchaseGem             int                       `json:"purchase_gem,omitempty"`
 }
 
-type Match struct {
-	MatchID               int64          `json:"match_id"`
-	BarracksStatusDire    int            `json:"barracks_status_dire"`
-	BarracksStatusRadiant int            `json:"barracks_status_radiant"`
-	Chat                  []chat         `json:"chat"`
-	Cluster               int            `json:"cluster"`
-	Cosmetics             map[string]int `json:"cosmetics"`
-	DireScore             int            `json:"dire_score"`
-	Duration              int            `json:"duration"`
-	Engine                int            `json:"engine"`
-	FirstBloodTime        int            `json:"first_blood_time"`
-	GameMode              int            `json:"game_mode"`
-	HumanPlayers          int            `json:"human_players"`
-	LeagueID              int            `json:"leagueid"`
-	LobbyType             int            `json:"lobby_type"`
-	MatchSeqNum           int64          `json:"match_seq_num"`
-	NegativeVotes         int            `json:"negative_votes"`
-	Objectives            []objective    `json:"objectives"`
-	PicksBans             []pickbans     `json:"picks_bans"`
-	PositiveVotes         int            `json:"positive_votes"`
-	RadiantGoldAdv        []int          `json:"radiant_gold_adv"`
-	RadiantScore          int            `json:"radiant_score"`
-	RadiantWin            bool           `json:"radiant_win"`
-	RadiantXpAdv          []int          `json:"radiant_xp_adv"`
-	Skill                 int            `json:"skill"`
-	StartTime             int            `json:"start_time"`
-	Teamfights            []teamfights   `json:"teamfights"`
-	TowerStatusDire       int            `json:"tower_status_dire"`
-	TowerStatusRadiant    int            `json:"tower_status_radiant"`
-	Version               int            `json:"version"`
-	ReplaySalt            int            `json:"replay_salt"`
-	SeriesID              int            `json:"series_id"`
-	SeriesType            int            `json:"series_type"`
-	League                league         `json:"league"`
-	RadiantTeam           matchteam      `json:"radiant_team"`
-	DireTeam              matchteam      `json:"dire_team"`
-	Players               []matchplayer  `json:"players"`
-	Patch                 int            `json:"patch"`
-	Region                int            `json:"region"`
-	AllWordCounts         map[string]int `json:"all_word_counts"`
-	MyWordCounts          map[string]int `json:"my_word_counts"`
-	Throw                 int            `json:"throw"`
-	Loss                  int            `json:"loss"`
-	ReplayURL             string         `json:"replay_url"`
+type matchteam struct {
+	TeamID  int    `json:"team_id"`
+	Name    string `json:"name"`
+	Tag     string `json:"tag"`
+	LogoURL string `json:"logo_url"`
 }
 
-// MatchParam is the parameter for specifying a match by ID.
-type MatchParam struct {
-	MatchID int64 `url:"match_id"`
+type maxherohit struct {
+	Type       string `json:"type"`
+	Time       int    `json:"time"`
+	Max        bool   `json:"max"`
+	Inflictor  string `json:"inflictor"`
+	Unit       string `json:"unit"`
+	Key        string `json:"key"`
+	Value      int    `json:"value"`
+	Slot       int    `json:"slot"`
+	PlayerSlot int    `json:"player_slot"`
+}
+
+type objective struct {
+	Time       int    `json:"time"`
+	Type       string `json:"type"`
+	Team       int    `json:"team,omitempty"`
+	Slot       int    `json:"slot,omitempty"`
+	PlayerSlot int    `json:"player_slot,omitempty"`
+	Unit       string `json:"unit,omitempty"`
+}
+
+type obslog struct {
+	Time       int    `json:"time"`
+	Type       string `json:"type"`
+	Key        string `json:"key"`
+	Slot       int    `json:"slot"`
+	X          int    `json:"x"`
+	Y          int    `json:"y"`
+	Z          int    `json:"z"`
+	Entityleft bool   `json:"entityleft"`
+	Ehandle    int    `json:"ehandle"`
+	PlayerSlot int    `json:"player_slot"`
+}
+
+type pickbans struct {
+	IsPick  bool  `json:"is_pick"`
+	HeroID  int   `json:"hero_id"`
+	Team    int   `json:"team"`
+	Order   int   `json:"order"`
+	Ord     int   `json:"ord"`
+	MatchID int64 `json:"match_id"`
+}
+
+type rawpct struct {
+	Raw float64 `json:"raw"`
+	Pct float64 `json:"pct"`
+}
+
+type runeslog struct {
+	Time int `json:"time"`
+	Key  int `json:"key"`
+}
+
+type teamfightplayers struct {
+	AbilityUses map[string]int `json:"ability_uses"`
+	ItemUses    map[string]int `json:"item_uses"`
+	Killed      map[string]int `json:"killed"`
+	Deaths      int            `json:"deaths"`
+	Buybacks    int            `json:"buybacks"`
+	Damage      int            `json:"damage"`
+	Healing     int            `json:"healing"`
+	GoldDelta   int            `json:"gold_delta"`
+	XpDelta     int            `json:"xp_delta"`
+	XpStart     int            `json:"xp_start"`
+	XpEnd       int            `json:"xp_end"`
+}
+
+type teamfights struct {
+	Start     int                `json:"start"`
+	End       int                `json:"end"`
+	LastDeath int                `json:"last_death"`
+	Deaths    int                `json:"deaths"`
+	Players   []teamfightplayers `json:"players"`
 }
 
 // Match returns a collection for a specific match.

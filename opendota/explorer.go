@@ -6,26 +6,23 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// ExplorerService provides methods for exploring OpenDota's
-// PostgreSQL database.
-type ExplorerService struct {
-	sling *sling.Sling
-}
-
 func newExplorerService(sling *sling.Sling) *ExplorerService {
 	return &ExplorerService{
 		sling: sling.Path("explorer"),
 	}
 }
 
-type field struct {
-	Name             string `json:"name"`
-	TableID          int    `json:"tableID"`
-	ColumnID         int    `json:"columnID"`
-	DataTypeID       int    `json:"dataTypeID"`
-	DataTypeSize     int    `json:"dataTypeSize"`
-	DataTypeModifier int    `json:"dataTypeModifier"`
-	Format           string `json:"format"`
+// ExplorerService provides methods for exploring OpenDota's
+// PostgreSQL database.
+type ExplorerService struct {
+	sling *sling.Sling
+}
+
+// ExplorerParam is the parameter for specifying the sql query
+// to run against the PostgreSQL database.  It should be encoded
+// for use in URLs
+type ExplorerParam struct {
+	SQL string `url:"sql"`
 }
 
 // QueryResult is a collection returned by a sql query
@@ -40,11 +37,14 @@ type QueryResult struct {
 	Err        interface{}              `json:"err"`
 }
 
-// ExplorerParam is the parameter for specifying the sql query
-// to run against the PostgreSQL database.  It should be encoded
-// for use in URLs
-type ExplorerParam struct {
-	SQL string `url:"sql"`
+type field struct {
+	Name             string `json:"name"`
+	TableID          int    `json:"tableID"`
+	ColumnID         int    `json:"columnID"`
+	DataTypeID       int    `json:"dataTypeID"`
+	DataTypeSize     int    `json:"dataTypeSize"`
+	DataTypeModifier int    `json:"dataTypeModifier"`
+	Format           string `json:"format"`
 }
 
 // Explore returns a collection for a specific sql query.

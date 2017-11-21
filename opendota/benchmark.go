@@ -6,22 +6,33 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// BenchmarkService provides methods for the retrieving
-// information about benchmarks of a hero.
-type BenchmarkService struct {
-	sling *sling.Sling
-}
-
 func newBenchmarkService(sling *sling.Sling) *BenchmarkService {
 	return &BenchmarkService{
 		sling: sling.Path("benchmarks"),
 	}
 }
 
+// BenchmarkService provides methods for the retrieving
+// information about benchmarks of a hero.
+type BenchmarkService struct {
+	sling *sling.Sling
+}
+
+// BenchmarkParam is used to specify the hero when retrieving
+// benchmarks.
+type BenchmarkParam struct {
+	HeroID string `url:"hero_id"`
+}
+
 // Benchmark is a collection of benchmarks about a hero.
 type Benchmark struct {
 	HeroID int             `json:"hero_id"`
 	Result benchmarkResult `json:"result"`
+}
+
+type benchmark struct {
+	Percentile float64 `json:"percentile"`
+	Value      float64 `json:"value"`
 }
 
 type benchmarkResult struct {
@@ -32,17 +43,6 @@ type benchmarkResult struct {
 	HeroDamagePerMin  []benchmark `json:"hero_damage_per_min"`
 	HeroHealingPerMin []benchmark `json:"hero_healing_per_min"`
 	TowerDamage       []benchmark `json:"tower_damage"`
-}
-
-type benchmark struct {
-	Percentile float64 `json:"percentile"`
-	Value      float64 `json:"value"`
-}
-
-// BenchmarkParam is used to specify the hero when retrieving
-// benchmarks.
-type BenchmarkParam struct {
-	HeroID string `url:"hero_id"`
 }
 
 // Benchmarks returns a collection of benchmarks about a hero.

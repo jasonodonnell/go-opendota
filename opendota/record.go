@@ -18,6 +18,12 @@ type RecordService struct {
 	sling *sling.Sling
 }
 
+// RecordParam provides the ability to query records by a
+// field.
+type RecordParam struct {
+	Field string `url:"field"`
+}
+
 // Record is a collection of information about the performance
 // for a stat.
 type Record struct {
@@ -25,12 +31,6 @@ type Record struct {
 	StartTime string `json:"start_time"`
 	HeroID    string `json:"hero_id"`
 	Score     string `json:"score"`
-}
-
-// RecordParam provides the ability to query records by a
-// field.
-type RecordParam struct {
-	Field string `url:"field"`
 }
 
 // Records returns a collection of top performance stats for a

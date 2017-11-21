@@ -6,16 +6,16 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// DistributionService provides methods for the distributions
-// of MMR data.
-type DistributionService struct {
-	sling *sling.Sling
-}
-
 func newDistributionService(sling *sling.Sling) *DistributionService {
 	return &DistributionService{
 		sling: sling.Path("distributions"),
 	}
+}
+
+// DistributionService provides methods for the distributions
+// of MMR data.
+type DistributionService struct {
+	sling *sling.Sling
 }
 
 // Distribution is a collection of information about MMR per
@@ -34,6 +34,13 @@ type countryMmr struct {
 	RowAsArray bool            `json:"rowAsArray"`
 }
 
+type countryMmrRow struct {
+	Loccountrycode string `json:"loccountrycode"`
+	Count          int    `json:"count"`
+	Avg            string `json:"avg"`
+	Common         string `json:"common"`
+}
+
 type mmr struct {
 	Command    string   `json:"command"`
 	RowCount   int      `json:"rowCount"`
@@ -44,10 +51,6 @@ type mmr struct {
 	Sum        sum      `json:"sum"`
 }
 
-type sum struct {
-	Count int `json:"count"`
-}
-
 type mmrRow struct {
 	Bin           int `json:"bin"`
 	BinName       int `json:"bin_name"`
@@ -55,11 +58,8 @@ type mmrRow struct {
 	CumulativeSum int `json:"cumulative_sum"`
 }
 
-type countryMmrRow struct {
-	Loccountrycode string `json:"loccountrycode"`
-	Count          int    `json:"count"`
-	Avg            string `json:"avg"`
-	Common         string `json:"common"`
+type sum struct {
+	Count int `json:"count"`
 }
 
 // Distributions returns a collection of distributions of MMR throughout

@@ -19,6 +19,11 @@ type HeroService struct {
 	sling *sling.Sling
 }
 
+// HeroParam is used to speficy a specific hero for queries.
+type HeroParam struct {
+	HeroID int64 `url:"hero_id"`
+}
+
 // Hero is a collection of information about a hero.
 type Hero struct {
 	ID            int      `json:"id"`
@@ -28,6 +33,14 @@ type Hero struct {
 	AttackType    string   `json:"attack_type"`
 	Roles         []string `json:"roles"`
 	Legs          int      `json:"legs"`
+}
+
+// HeroDuration is a collection about a heroes performance
+// over a range of match durations.
+type HeroDuration struct {
+	DurationBin int `json:"duration_bin"`
+	GamesPlayed int `json:"games_played"`
+	Wins        int `json:"wins"`
 }
 
 // HeroMatch is a collection of information about a hero
@@ -54,14 +67,6 @@ type HeroMatchup struct {
 	Wins        int `json:"wins"`
 }
 
-// HeroDuration is a collection about a heroes performance
-// over a range of match durations.
-type HeroDuration struct {
-	DurationBin int `json:"duration_bin"`
-	GamesPlayed int `json:"games_played"`
-	Wins        int `json:"wins"`
-}
-
 // HeroPlayer is a collection of information about players
 // playing a specific hero.
 type HeroPlayer struct {
@@ -70,9 +75,13 @@ type HeroPlayer struct {
 	Wins        int `json:"wins"`
 }
 
-// HeroParam is used to speficy a specific hero for queries.
-type HeroParam struct {
-	HeroID int64 `url:"hero_id"`
+// Durations returns stats about a specific hero for varying match lengths.
+func (s *HeroService) Durations(param *HeroParam) ([]HeroDuration, *http.Response, error) {
+	herodurations := new([]HeroDuration)
+	apiError := new(APIError)
+	path := strconv.Itoa(int(param.HeroID)) + "/durations"
+	resp, err := s.sling.New().Get(path).Receive(herodurations, apiError)
+	return *herodurations, resp, relevantError(err, *apiError)
 }
 
 // Heroes returns a collection of all heroes.
@@ -99,15 +108,6 @@ func (s *HeroService) Matchups(param *HeroParam) ([]HeroMatchup, *http.Response,
 	path := strconv.Itoa(int(param.HeroID)) + "/matchups"
 	resp, err := s.sling.New().Get(path).Receive(heromatchups, apiError)
 	return *heromatchups, resp, relevantError(err, *apiError)
-}
-
-// Durations returns stats about a specific hero for varying match lengths.
-func (s *HeroService) Durations(param *HeroParam) ([]HeroDuration, *http.Response, error) {
-	herodurations := new([]HeroDuration)
-	apiError := new(APIError)
-	path := strconv.Itoa(int(param.HeroID)) + "/durations"
-	resp, err := s.sling.New().Get(path).Receive(herodurations, apiError)
-	return *herodurations, resp, relevantError(err, *apiError)
 }
 
 // Players returns information about players who play a specific hero.

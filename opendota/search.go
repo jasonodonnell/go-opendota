@@ -18,6 +18,13 @@ type SearchService struct {
 	sling *sling.Sling
 }
 
+// SearchParams are the paramters for querying the
+// search service.
+type SearchParams struct {
+	Query      string  `url:"q"`
+	Similarity float64 `url:"similarity,omitempty"`
+}
+
 // Search is a collection about a player.
 type Search struct {
 	AccountID     int     `json:"account_id"`
@@ -25,13 +32,6 @@ type Search struct {
 	Personaname   string  `json:"personaname"`
 	LastMatchTime string  `json:"last_match_time"`
 	Similarity    float64 `json:"similarity"`
-}
-
-// SearchParams are the paramters for querying the
-// search service.
-type SearchParams struct {
-	Query      string  `url:"q"`
-	Similarity float64 `url:"similarity,omitempty"`
 }
 
 // Search returns an array of players who are similar to the query

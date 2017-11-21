@@ -18,6 +18,12 @@ type RankingService struct {
 	sling *sling.Sling
 }
 
+// RankingParam is the parameter to search the rankings of
+// a specific hero.
+type RankingParam struct {
+	HeroID string `url:"hero_id"`
+}
+
 // Ranking is a collection of information about the top
 // players of a specific hero.
 type Ranking struct {
@@ -33,12 +39,6 @@ type ranking struct {
 	Avatar              string  `json:"avatar"`
 	LastLogin           string  `json:"last_login"`
 	SoloCompetitiveRank int     `json:"solo_competitive_rank"`
-}
-
-// RankingParam is the parameter to search the rankings of
-// a specific hero.
-type RankingParam struct {
-	HeroID string `url:"hero_id"`
 }
 
 // Rankings returns the top ranking of a hero by players.

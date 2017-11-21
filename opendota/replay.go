@@ -18,6 +18,11 @@ type ReplayService struct {
 	sling *sling.Sling
 }
 
+// ReplayParam allows replays to be queried by MatchIDs.
+type ReplayParam struct {
+	MatchID []int `url:"match_id"`
+}
+
 // Replay is a collection of information about a specific replay.
 type Replay struct {
 	MatchID    int64 `json:"match_id"`
@@ -25,11 +30,6 @@ type Replay struct {
 	ReplaySalt int   `json:"replay_salt"`
 	SeriesID   int   `json:"series_id"`
 	SeriesType int   `json:"series_type"`
-}
-
-// ReplayParam allows replays to be queried by MatchIDs.
-type ReplayParam struct {
-	MatchID []int `url:"match_id"`
 }
 
 // Replays returns a collection of match replays.
