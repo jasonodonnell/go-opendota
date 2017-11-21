@@ -24,17 +24,27 @@ type TeamParam struct {
 	TeamID int64 `url:"team_id,omitempty"`
 }
 
-// Heroes is a collection of heroes played
-// by a team.
-type Heroes struct {
+// Team is a collection of stats about a team.
+type Team struct {
+	TeamID        int     `json:"team_id"`
+	Rating        float64 `json:"rating"`
+	Wins          int     `json:"wins"`
+	Losses        int     `json:"losses"`
+	LastMatchTime int     `json:"last_match_time"`
+	Name          string  `json:"name"`
+	Tag           string  `json:"tag"`
+	LogoURL       string  `json:"logo_url"`
+}
+
+// TeamHeroes is a collection of heroes played by a team.
+type TeamHeroes struct {
 	HeroID        int    `json:"hero_id"`
 	LocalizedName string `json:"localized_name"`
 	GamesPlayed   int    `json:"games_played"`
 	Wins          int    `json:"wins"`
 }
 
-// TeamMatch is a collection of matches played
-// by a team.
+// TeamMatch is a collection of matches played by a team.
 type TeamMatch struct {
 	MatchID    int64  `json:"match_id"`
 	RadiantWin bool   `json:"radiant_win"`
@@ -55,32 +65,14 @@ type TeamPlayers struct {
 	IsCurrentTeamMember bool   `json:"is_current_team_member"`
 }
 
-// Team is a collection of stats about a team.
-type Team struct {
-	TeamID        int     `json:"team_id"`
-	Rating        float64 `json:"rating"`
-	Wins          int     `json:"wins"`
-	Losses        int     `json:"losses"`
-	LastMatchTime int     `json:"last_match_time"`
-	Name          string  `json:"name"`
-	Tag           string  `json:"tag"`
-	LogoURL       string  `json:"logo_url"`
-}
-
-// Teams returns a collection of teams.
-func (s *TeamService) Teams() ([]Team, *http.Response, error) {
-	teams := new([]Team)
+// Heroes returns a collection of stats about the heroes
+// played by a specific team.
+func (s *TeamService) Heroes(params *TeamParam) ([]TeamHeroes, *http.Response, error) {
+	heroes := new([]TeamHeroes)
 	apiError := new(APIError)
-	resp, err := s.sling.New().Receive(teams, apiError)
-	return *teams, resp, relevantError(err, *apiError)
-}
-
-// Team returns a specific team.
-func (s *TeamService) Team(params *TeamParam) (Team, *http.Response, error) {
-	team := new(Team)
-	apiError := new(APIError)
-	resp, err := s.sling.New().Get(strconv.Itoa(int(params.TeamID))).Receive(team, apiError)
-	return *team, resp, relevantError(err, *apiError)
+	path := strconv.Itoa(int(params.TeamID)) + "/heroes"
+	resp, err := s.sling.New().Get(path).Receive(heroes, apiError)
+	return *heroes, resp, relevantError(err, *apiError)
 }
 
 // Matches returns a collection of matches for a specific
@@ -103,12 +95,18 @@ func (s *TeamService) Players(params *TeamParam) ([]TeamPlayers, *http.Response,
 	return *players, resp, relevantError(err, *apiError)
 }
 
-// Heroes returns a collection of stats about the heroes
-// played by a specific team.
-func (s *TeamService) Heroes(params *TeamParam) ([]Heroes, *http.Response, error) {
-	heroes := new([]Heroes)
+// Team returns a specific team.
+func (s *TeamService) Team(params *TeamParam) (Team, *http.Response, error) {
+	team := new(Team)
 	apiError := new(APIError)
-	path := strconv.Itoa(int(params.TeamID)) + "/heroes"
-	resp, err := s.sling.New().Get(path).Receive(heroes, apiError)
-	return *heroes, resp, relevantError(err, *apiError)
+	resp, err := s.sling.New().Get(strconv.Itoa(int(params.TeamID))).Receive(team, apiError)
+	return *team, resp, relevantError(err, *apiError)
+}
+
+// Teams returns a collection of teams.
+func (s *TeamService) Teams() ([]Team, *http.Response, error) {
+	teams := new([]Team)
+	apiError := new(APIError)
+	resp, err := s.sling.New().Receive(teams, apiError)
+	return *teams, resp, relevantError(err, *apiError)
 }

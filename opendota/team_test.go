@@ -8,63 +8,32 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestTeamService_Teams(t *testing.T) {
+func TestTeamService_Heroes(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
-	mux.HandleFunc("/api/teams/", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/teams/2163/heroes", func(w http.ResponseWriter, r *http.Request) {
 		assertMethod(t, "GET", r)
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintf(w, `[{"team_id":2163,"rating":1628.74,"wins":582,"losses":368,"last_match_time":1509224338,"name":"Team Liquid","tag":"Liquid","logo_url":"http://cloud-3.steamusercontent.com/ugc/858347654776522964/E70F0E063879154A1982B3C907D6A5DFDA183BF9/"}]`)
+		fmt.Fprintf(w, `[{"hero_id":86,"localized_name":"Rubick","games_played":169,"wins":104}]`)
 	})
 
-	expected := []Team{
-		Team{
-			TeamID:        2163,
-			Rating:        1628.74,
-			Wins:          582,
-			Losses:        368,
-			LastMatchTime: 1509224338,
-			Name:          "Team Liquid",
-			Tag:           "Liquid",
-			LogoURL:       "http://cloud-3.steamusercontent.com/ugc/858347654776522964/E70F0E063879154A1982B3C907D6A5DFDA183BF9/",
+	expected := []TeamHeroes{
+		TeamHeroes{
+			HeroID:        86,
+			LocalizedName: "Rubick",
+			GamesPlayed:   169,
+			Wins:          104,
 		},
-	}
-
-	client := NewClient(httpClient)
-	teams, _, err := client.TeamService.Teams()
-	assert.Nil(t, err)
-	assert.Equal(t, expected, teams)
-}
-
-func TestTeamService_Team(t *testing.T) {
-	httpClient, mux, server := testServer()
-	defer server.Close()
-
-	mux.HandleFunc("/api/teams/2163", func(w http.ResponseWriter, r *http.Request) {
-		assertMethod(t, "GET", r)
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintf(w, `{"team_id":2163,"rating":1628.74,"wins":582,"losses":368,"last_match_time":1509224338,"name":"Team Liquid","tag":"Liquid","logo_url":"http://cloud-3.steamusercontent.com/ugc/858347654776522964/E70F0E063879154A1982B3C907D6A5DFDA183BF9/"}`)
-	})
-
-	expected := Team{
-		TeamID:        2163,
-		Rating:        1628.74,
-		Wins:          582,
-		Losses:        368,
-		LastMatchTime: 1509224338,
-		Name:          "Team Liquid",
-		Tag:           "Liquid",
-		LogoURL:       "http://cloud-3.steamusercontent.com/ugc/858347654776522964/E70F0E063879154A1982B3C907D6A5DFDA183BF9/",
 	}
 
 	client := NewClient(httpClient)
 	teamID := &TeamParam{
 		TeamID: 2163,
 	}
-	team, _, err := client.TeamService.Team(teamID)
+	heroes, _, err := client.TeamService.Heroes(teamID)
 	assert.Nil(t, err)
-	assert.Equal(t, expected, team)
+	assert.Equal(t, expected, heroes)
 }
 
 func TestTeamService_Matches(t *testing.T) {
@@ -128,30 +97,61 @@ func TestTeamService_Players(t *testing.T) {
 	assert.Equal(t, expected, players)
 }
 
-func TestTeamService_Heroes(t *testing.T) {
+func TestTeamService_Team(t *testing.T) {
 	httpClient, mux, server := testServer()
 	defer server.Close()
 
-	mux.HandleFunc("/api/teams/2163/heroes", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/teams/2163", func(w http.ResponseWriter, r *http.Request) {
 		assertMethod(t, "GET", r)
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintf(w, `[{"hero_id":86,"localized_name":"Rubick","games_played":169,"wins":104}]`)
+		fmt.Fprintf(w, `{"team_id":2163,"rating":1628.74,"wins":582,"losses":368,"last_match_time":1509224338,"name":"Team Liquid","tag":"Liquid","logo_url":"http://cloud-3.steamusercontent.com/ugc/858347654776522964/E70F0E063879154A1982B3C907D6A5DFDA183BF9/"}`)
 	})
 
-	expected := []Heroes{
-		Heroes{
-			HeroID:        86,
-			LocalizedName: "Rubick",
-			GamesPlayed:   169,
-			Wins:          104,
-		},
+	expected := Team{
+		TeamID:        2163,
+		Rating:        1628.74,
+		Wins:          582,
+		Losses:        368,
+		LastMatchTime: 1509224338,
+		Name:          "Team Liquid",
+		Tag:           "Liquid",
+		LogoURL:       "http://cloud-3.steamusercontent.com/ugc/858347654776522964/E70F0E063879154A1982B3C907D6A5DFDA183BF9/",
 	}
 
 	client := NewClient(httpClient)
 	teamID := &TeamParam{
 		TeamID: 2163,
 	}
-	heroes, _, err := client.TeamService.Heroes(teamID)
+	team, _, err := client.TeamService.Team(teamID)
 	assert.Nil(t, err)
-	assert.Equal(t, expected, heroes)
+	assert.Equal(t, expected, team)
+}
+
+func TestTeamService_Teams(t *testing.T) {
+	httpClient, mux, server := testServer()
+	defer server.Close()
+
+	mux.HandleFunc("/api/teams/", func(w http.ResponseWriter, r *http.Request) {
+		assertMethod(t, "GET", r)
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, `[{"team_id":2163,"rating":1628.74,"wins":582,"losses":368,"last_match_time":1509224338,"name":"Team Liquid","tag":"Liquid","logo_url":"http://cloud-3.steamusercontent.com/ugc/858347654776522964/E70F0E063879154A1982B3C907D6A5DFDA183BF9/"}]`)
+	})
+
+	expected := []Team{
+		Team{
+			TeamID:        2163,
+			Rating:        1628.74,
+			Wins:          582,
+			Losses:        368,
+			LastMatchTime: 1509224338,
+			Name:          "Team Liquid",
+			Tag:           "Liquid",
+			LogoURL:       "http://cloud-3.steamusercontent.com/ugc/858347654776522964/E70F0E063879154A1982B3C907D6A5DFDA183BF9/",
+		},
+	}
+
+	client := NewClient(httpClient)
+	teams, _, err := client.TeamService.Teams()
+	assert.Nil(t, err)
+	assert.Equal(t, expected, teams)
 }
