@@ -6,16 +6,16 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// SchemaService provides methods for accessing information
-// about the database schema.
-type SchemaService struct {
-	sling *sling.Sling
-}
-
 func newSchemaService(sling *sling.Sling) *SchemaService {
 	return &SchemaService{
 		sling: sling.Path("schema"),
 	}
+}
+
+// SchemaService provides methods for accessing information
+// about the database schema.
+type SchemaService struct {
+	sling *sling.Sling
 }
 
 // Schema is a collection of information about the database schema.

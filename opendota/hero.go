@@ -7,16 +7,16 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// HeroService provides methods for accessing information
-// about heroes.
-type HeroService struct {
-	sling *sling.Sling
-}
-
 func newHeroService(sling *sling.Sling) *HeroService {
 	return &HeroService{
 		sling: sling.Path("heroes/"),
 	}
+}
+
+// HeroService provides methods for accessing information
+// about heroes.
+type HeroService struct {
+	sling *sling.Sling
 }
 
 // Hero is a collection of information about a hero.

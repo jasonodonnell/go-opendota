@@ -6,16 +6,16 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// RecordService provides methods for accessing information
-// about top performances in a stat.
-type RecordService struct {
-	sling *sling.Sling
-}
-
 func newRecordService(sling *sling.Sling) *RecordService {
 	return &RecordService{
 		sling: sling.Path("records/"),
 	}
+}
+
+// RecordService provides methods for accessing information
+// about top performances in a stat.
+type RecordService struct {
+	sling *sling.Sling
 }
 
 // Record is a collection of information about the performance

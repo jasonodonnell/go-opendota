@@ -6,16 +6,16 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// HeroStatService provides methods for accessing information
-// about hero stats.
-type HeroStatService struct {
-	sling *sling.Sling
-}
-
 func newHeroStatService(sling *sling.Sling) *HeroStatService {
 	return &HeroStatService{
 		sling: sling.Path("heroStats"),
 	}
+}
+
+// HeroStatService provides methods for accessing information
+// about hero stats.
+type HeroStatService struct {
+	sling *sling.Sling
 }
 
 // HeroStat is a collection of information about a hero.

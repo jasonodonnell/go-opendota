@@ -12,6 +12,12 @@ type ExplorerService struct {
 	sling *sling.Sling
 }
 
+func newExplorerService(sling *sling.Sling) *ExplorerService {
+	return &ExplorerService{
+		sling: sling.Path("explorer"),
+	}
+}
+
 type field struct {
 	Name             string `json:"name"`
 	TableID          int    `json:"tableID"`
@@ -39,12 +45,6 @@ type QueryResult struct {
 // for use in URLs
 type ExplorerParam struct {
 	SQL string `url:"sql"`
-}
-
-func newExplorerService(sling *sling.Sling) *ExplorerService {
-	return &ExplorerService{
-		sling: sling.Path("explorer"),
-	}
 }
 
 // Explore returns a collection for a specific sql query.

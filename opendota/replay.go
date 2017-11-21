@@ -6,16 +6,16 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// ReplayService provides methods for accesing information about
-// match replays.
-type ReplayService struct {
-	sling *sling.Sling
-}
-
 func newReplayService(sling *sling.Sling) *ReplayService {
 	return &ReplayService{
 		sling: sling.Path("replays"),
 	}
+}
+
+// ReplayService provides methods for accesing information about
+// match replays.
+type ReplayService struct {
+	sling *sling.Sling
 }
 
 // Replay is a collection of information about a specific replay.

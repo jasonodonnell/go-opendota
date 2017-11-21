@@ -6,16 +6,16 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// LiveService provides methods for accessing information
-// about live games.
-type LiveService struct {
-	sling *sling.Sling
-}
-
 func newLiveService(sling *sling.Sling) *LiveService {
 	return &LiveService{
 		sling: sling.Path("live"),
 	}
+}
+
+// LiveService provides methods for accessing information
+// about live games.
+type LiveService struct {
+	sling *sling.Sling
 }
 
 // LiveGame is a collection of information about current live games.

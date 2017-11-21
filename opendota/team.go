@@ -7,6 +7,12 @@ import (
 	"github.com/dghubble/sling"
 )
 
+func newTeamService(sling *sling.Sling) *TeamService {
+	return &TeamService{
+		sling: sling.Path("teams/"),
+	}
+}
+
 // TeamService provides methods for accessing teams
 // endpoints.
 type TeamService struct {
@@ -16,12 +22,6 @@ type TeamService struct {
 // TeamParam is the parameter for specifying a team.
 type TeamParam struct {
 	TeamID int64 `url:"team_id,omitempty"`
-}
-
-func newTeamService(sling *sling.Sling) *TeamService {
-	return &TeamService{
-		sling: sling.Path("teams/"),
-	}
 }
 
 // Heroes is a collection of heroes played
@@ -46,8 +46,7 @@ type TeamMatch struct {
 	Cluster    int    `json:"cluster"`
 }
 
-// Players is a collection of people who have
-// played on a team.
+// TeamPlayers is a collection of people who have played on a team.
 type TeamPlayers struct {
 	AccountID           int    `json:"account_id"`
 	Name                string `json:"name"`

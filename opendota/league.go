@@ -6,16 +6,16 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// LeagueService provides methods for accesing information
-// about leagues.
-type LeagueService struct {
-	sling *sling.Sling
-}
-
 func newLeagueService(sling *sling.Sling) *LeagueService {
 	return &LeagueService{
 		sling: sling.Path("leagues"),
 	}
+}
+
+// LeagueService provides methods for accesing information
+// about leagues.
+type LeagueService struct {
+	sling *sling.Sling
 }
 
 // League is a collection of information about a league.

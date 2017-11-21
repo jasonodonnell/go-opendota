@@ -6,16 +6,16 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// StatusService provides methods for getting stats
-// about the OpenDota API.
-type StatusService struct {
-	sling *sling.Sling
-}
-
 func newStatusService(sling *sling.Sling) *StatusService {
 	return &StatusService{
 		sling: sling.Path("status"),
 	}
+}
+
+// StatusService provides methods for getting stats
+// about the OpenDota API.
+type StatusService struct {
+	sling *sling.Sling
 }
 
 // Status is a collection of stats about the OpenDota API.

@@ -12,6 +12,12 @@ type DistributionService struct {
 	sling *sling.Sling
 }
 
+func newDistributionService(sling *sling.Sling) *DistributionService {
+	return &DistributionService{
+		sling: sling.Path("distributions"),
+	}
+}
+
 // Distribution is a collection of information about MMR per
 // region.
 type Distribution struct {
@@ -54,12 +60,6 @@ type countryMmrRow struct {
 	Count          int    `json:"count"`
 	Avg            string `json:"avg"`
 	Common         string `json:"common"`
-}
-
-func newDistributionService(sling *sling.Sling) *DistributionService {
-	return &DistributionService{
-		sling: sling.Path("distributions"),
-	}
 }
 
 // Distributions returns a collection of distributions of MMR throughout

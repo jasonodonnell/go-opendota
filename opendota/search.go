@@ -6,6 +6,12 @@ import (
 	"github.com/dghubble/sling"
 )
 
+func newSearchService(sling *sling.Sling) *SearchService {
+	return &SearchService{
+		sling: sling.Path("search"),
+	}
+}
+
 // SearchService provides methods for searching players by
 // personaname.  Default similarity is 0.51.
 type SearchService struct {
@@ -26,12 +32,6 @@ type Search struct {
 type SearchParams struct {
 	Query      string  `url:"q"`
 	Similarity float64 `url:"similarity,omitempty"`
-}
-
-func newSearchService(sling *sling.Sling) *SearchService {
-	return &SearchService{
-		sling: sling.Path("search"),
-	}
 }
 
 // Search returns an array of players who are similar to the query

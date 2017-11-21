@@ -12,6 +12,12 @@ type BenchmarkService struct {
 	sling *sling.Sling
 }
 
+func newBenchmarkService(sling *sling.Sling) *BenchmarkService {
+	return &BenchmarkService{
+		sling: sling.Path("benchmarks"),
+	}
+}
+
 // Benchmark is a collection of benchmarks about a hero.
 type Benchmark struct {
 	HeroID int             `json:"hero_id"`
@@ -37,12 +43,6 @@ type benchmark struct {
 // benchmarks.
 type BenchmarkParam struct {
 	HeroID string `url:"hero_id"`
-}
-
-func newBenchmarkService(sling *sling.Sling) *BenchmarkService {
-	return &BenchmarkService{
-		sling: sling.Path("benchmarks"),
-	}
 }
 
 // Benchmarks returns a collection of benchmarks about a hero.

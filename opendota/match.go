@@ -7,6 +7,12 @@ import (
 	"github.com/dghubble/sling"
 )
 
+func newMatchService(sling *sling.Sling) *MatchService {
+	return &MatchService{
+		sling: sling.Path("matches/"),
+	}
+}
+
 // MatchService provides methods for accessing teams
 // endpoints.
 type MatchService struct {
@@ -327,12 +333,6 @@ type Match struct {
 // MatchParam is the parameter for specifying a match by ID.
 type MatchParam struct {
 	MatchID int64 `url:"match_id"`
-}
-
-func newMatchService(sling *sling.Sling) *MatchService {
-	return &MatchService{
-		sling: sling.Path("matches/"),
-	}
 }
 
 // Match returns a collection for a specific match.

@@ -6,15 +6,15 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// MetadataService provides methods for the site metadata.
-type MetadataService struct {
-	sling *sling.Sling
-}
-
 func newMetadataService(sling *sling.Sling) *MetadataService {
 	return &MetadataService{
 		sling: sling.Path("metadata"),
 	}
+}
+
+// MetadataService provides methods for the site metadata.
+type MetadataService struct {
+	sling *sling.Sling
 }
 
 // Metadata describes information about the site

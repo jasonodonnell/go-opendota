@@ -6,6 +6,12 @@ import (
 	"github.com/dghubble/sling"
 )
 
+func newRankingService(sling *sling.Sling) *RankingService {
+	return &RankingService{
+		sling: sling.Path("rankings"),
+	}
+}
+
 // RankingService provides methods for accessing the ranking of
 // heroes by players.
 type RankingService struct {
@@ -33,12 +39,6 @@ type ranking struct {
 // a specific hero.
 type RankingParam struct {
 	HeroID string `url:"hero_id"`
-}
-
-func newRankingService(sling *sling.Sling) *RankingService {
-	return &RankingService{
-		sling: sling.Path("rankings"),
-	}
 }
 
 // Rankings returns the top ranking of a hero by players.

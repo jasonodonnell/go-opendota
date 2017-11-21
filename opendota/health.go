@@ -6,16 +6,16 @@ import (
 	"github.com/dghubble/sling"
 )
 
-// HealthService provides methods for getting health stats
-// about the OpenDota API.
-type HealthService struct {
-	sling *sling.Sling
-}
-
 func newHealthService(sling *sling.Sling) *HealthService {
 	return &HealthService{
 		sling: sling.Path("health"),
 	}
+}
+
+// HealthService provides methods for getting health stats
+// about the OpenDota API.
+type HealthService struct {
+	sling *sling.Sling
 }
 
 // Health is a collection of health stats about the OpenDota API
