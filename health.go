@@ -46,6 +46,7 @@ type usage struct {
 
 // Health returns information about the current health of
 // the OpenDota API stack.
+// https://docs.opendota.com/#tag/health%2Fpaths%2F~1health%2Fget
 func (s *HealthService) Health() (Health, *http.Response, error) {
 	health := new(Health)
 	apiError := new(APIError)

@@ -28,6 +28,7 @@ type League struct {
 }
 
 // Leagues returns a collection of information about all leagues.
+// https://docs.opendota.com/#tag/leagues%2Fpaths%2F~1leagues%2Fget
 func (s *LeagueService) Leagues() ([]League, *http.Response, error) {
 	leagues := new([]League)
 	apiError := new(APIError)

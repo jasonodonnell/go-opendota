@@ -46,6 +46,7 @@ type benchmarkResult struct {
 }
 
 // Benchmarks returns a collection of benchmarks about a hero.
+// https://docs.opendota.com/#tag/benchmarks%2Fpaths%2F~1benchmarks%2Fget
 func (s *BenchmarkService) Benchmarks(param *BenchmarkParam) (Benchmark, *http.Response, error) {
 	benchmarks := new(Benchmark)
 	apiError := new(APIError)

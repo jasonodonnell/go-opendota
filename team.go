@@ -65,8 +65,8 @@ type TeamPlayers struct {
 	IsCurrentTeamMember bool   `json:"is_current_team_member"`
 }
 
-// Heroes returns a collection of stats about the heroes
-// played by a specific team.
+// Heroes returns a collection of stats about the heroes played by a specific team.
+// https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D~1heroes%2Fget
 func (s *TeamService) Heroes(params *TeamParam) ([]TeamHeroes, *http.Response, error) {
 	heroes := new([]TeamHeroes)
 	apiError := new(APIError)
@@ -75,8 +75,8 @@ func (s *TeamService) Heroes(params *TeamParam) ([]TeamHeroes, *http.Response, e
 	return *heroes, resp, relevantError(err, *apiError)
 }
 
-// Matches returns a collection of matches for a specific
-// team.
+// Matches returns a collection of matches for a specific team.
+// https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D~1matches%2Fget
 func (s *TeamService) Matches(params *TeamParam) ([]TeamMatch, *http.Response, error) {
 	matches := new([]TeamMatch)
 	apiError := new(APIError)
@@ -85,8 +85,8 @@ func (s *TeamService) Matches(params *TeamParam) ([]TeamMatch, *http.Response, e
 	return *matches, resp, relevantError(err, *apiError)
 }
 
-// Players returns a collection of people that played
-// on a specific team.
+// Players returns a collection of people that played on a specific team.
+// https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D~1players%2Fget
 func (s *TeamService) Players(params *TeamParam) ([]TeamPlayers, *http.Response, error) {
 	players := new([]TeamPlayers)
 	apiError := new(APIError)
@@ -95,7 +95,8 @@ func (s *TeamService) Players(params *TeamParam) ([]TeamPlayers, *http.Response,
 	return *players, resp, relevantError(err, *apiError)
 }
 
-// Team returns a specific team.
+// Team returns a collection for a specific team.
+// https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D%2Fget
 func (s *TeamService) Team(params *TeamParam) (Team, *http.Response, error) {
 	team := new(Team)
 	apiError := new(APIError)
@@ -104,6 +105,7 @@ func (s *TeamService) Team(params *TeamParam) (Team, *http.Response, error) {
 }
 
 // Teams returns a collection of teams.
+// https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams%2Fget
 func (s *TeamService) Teams() ([]Team, *http.Response, error) {
 	teams := new([]Team)
 	apiError := new(APIError)

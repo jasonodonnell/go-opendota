@@ -66,6 +66,7 @@ type HeroStat struct {
 }
 
 // HeroStats returns a collection of stats about all heroes.
+// https://docs.opendota.com/#tag/hero-stats%2Fpaths%2F~1heroStats%2Fget
 func (s *HeroStatService) HeroStats() ([]HeroStat, *http.Response, error) {
 	herostats := new([]HeroStat)
 	apiError := new(APIError)

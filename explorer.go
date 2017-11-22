@@ -47,7 +47,8 @@ type field struct {
 	Format           string `json:"format"`
 }
 
-// Explore returns a collection for a specific sql query.
+// Explore returns a collection for a specific SQL query.
+// https://docs.opendota.com/#tag/explorer%2Fpaths%2F~1explorer%2Fget
 func (s *ExplorerService) Explore(param *ExplorerParam) (QueryResult, *http.Response, error) {
 	queryresult := new(QueryResult)
 	apiError := new(APIError)

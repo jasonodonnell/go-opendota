@@ -26,6 +26,7 @@ type Schema struct {
 }
 
 // Schema returns a collection about the database schema.
+// https://docs.opendota.com/#tag/schema%2Fpaths%2F~1schema%2Fget
 func (s *SchemaService) Schema() ([]Schema, *http.Response, error) {
 	schema := new([]Schema)
 	apiError := new(APIError)

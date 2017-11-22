@@ -33,6 +33,7 @@ type Replay struct {
 }
 
 // Replays returns a collection of match replays.
+// https://docs.opendota.com/#tag/replays%2Fpaths%2F~1replays%2Fget
 func (s *ReplayService) Replays(params *ReplayParam) ([]Replay, *http.Response, error) {
 	replays := new([]Replay)
 	apiError := new(APIError)

@@ -45,7 +45,8 @@ type ProPlayer struct {
 	LockedUntil     int    `json:"locked_until"`
 }
 
-// Players returns information about pro players.
+// Players returns a collection about pro players.
+// https://docs.opendota.com/#tag/pro-players%2Fpaths%2F~1proPlayers%2Fget
 func (s *ProPlayerService) Players() ([]ProPlayer, *http.Response, error) {
 	proplayers := new([]ProPlayer)
 	apiError := new(APIError)

@@ -29,6 +29,7 @@ type cheese struct {
 }
 
 // Metadata returns a collection of metadata about the site.
+// https://docs.opendota.com/#tag/metadata%2Fpaths%2F~1metadata%2Fget
 func (s *MetadataService) Metadata() (Metadata, *http.Response, error) {
 	metadata := new(Metadata)
 	apiError := new(APIError)

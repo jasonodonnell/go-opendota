@@ -36,7 +36,8 @@ type ProMatch struct {
 	RadiantWin    bool   `json:"radiant_win"`
 }
 
-// Matches returns information about pro matches.
+// Matches returns informaa collection tion about pro matches.
+// https://docs.opendota.com/#tag/pro-matches%2Fpaths%2F~1proMatches%2Fget
 func (s *ProMatchService) Matches() ([]ProMatch, *http.Response, error) {
 	promatches := new([]ProMatch)
 	apiError := new(APIError)

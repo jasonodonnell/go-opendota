@@ -75,7 +75,8 @@ type HeroPlayer struct {
 	Wins        int `json:"wins"`
 }
 
-// Durations returns stats about a specific hero for varying match lengths.
+// Durations returns a collection of stats about a specific hero for varying match lengths.
+// https://docs.opendota.com/#tag/heroes%2Fpaths%2F~1heroes~1%7Bhero_id%7D~1durations%2Fget
 func (s *HeroService) Durations(param *HeroParam) ([]HeroDuration, *http.Response, error) {
 	herodurations := new([]HeroDuration)
 	apiError := new(APIError)
@@ -85,6 +86,7 @@ func (s *HeroService) Durations(param *HeroParam) ([]HeroDuration, *http.Respons
 }
 
 // Heroes returns a collection of all heroes.
+// https://docs.opendota.com/#tag/heroes%2Fpaths%2F~1heroes%2Fget
 func (s *HeroService) Heroes() ([]Hero, *http.Response, error) {
 	heroes := new([]Hero)
 	apiError := new(APIError)
@@ -93,6 +95,7 @@ func (s *HeroService) Heroes() ([]Hero, *http.Response, error) {
 }
 
 // Matches returns a collection of matches played by a specific hero.
+// https://docs.opendota.com/#tag/heroes%2Fpaths%2F~1heroes~1%7Bhero_id%7D~1matches%2Fget
 func (s *HeroService) Matches(param *HeroParam) ([]HeroMatch, *http.Response, error) {
 	heromatches := new([]HeroMatch)
 	apiError := new(APIError)
@@ -102,6 +105,7 @@ func (s *HeroService) Matches(param *HeroParam) ([]HeroMatch, *http.Response, er
 }
 
 // Matchups returns a collection of how a hero compares against all other heroes.
+// https://docs.opendota.com/#tag/heroes%2Fpaths%2F~1heroes~1%7Bhero_id%7D~1matchups%2Fget
 func (s *HeroService) Matchups(param *HeroParam) ([]HeroMatchup, *http.Response, error) {
 	heromatchups := new([]HeroMatchup)
 	apiError := new(APIError)
@@ -110,7 +114,8 @@ func (s *HeroService) Matchups(param *HeroParam) ([]HeroMatchup, *http.Response,
 	return *heromatchups, resp, relevantError(err, *apiError)
 }
 
-// Players returns information about players who play a specific hero.
+// Players returns a collection about players for a specific hero.
+// https://docs.opendota.com/#tag/heroes%2Fpaths%2F~1heroes~1%7Bhero_id%7D~1players%2Fget
 func (s *HeroService) Players(param *HeroParam) ([]HeroPlayer, *http.Response, error) {
 	heroplayers := new([]HeroPlayer)
 	apiError := new(APIError)

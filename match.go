@@ -338,6 +338,7 @@ type teamfights struct {
 }
 
 // Match returns a collection for a specific match.
+// https://docs.opendota.com/#tag/matches
 func (s *MatchService) Match(params *MatchParam) (Match, *http.Response, error) {
 	match := new(Match)
 	apiError := new(APIError)

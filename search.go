@@ -36,6 +36,7 @@ type Search struct {
 
 // Search returns an array of players who are similar to the query
 // provided.
+// https://docs.opendota.com/#tag/search%2Fpaths%2F~1search%2Fget
 func (s *SearchService) Search(params *SearchParams) ([]Search, *http.Response, error) {
 	search := new([]Search)
 	apiError := new(APIError)

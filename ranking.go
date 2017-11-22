@@ -42,6 +42,7 @@ type ranking struct {
 }
 
 // Rankings returns the top ranking of a hero by players.
+// https://docs.opendota.com/#tag/rankings%2Fpaths%2F~1rankings%2Fget
 func (s *RankingService) Rankings(param *RankingParam) (Ranking, *http.Response, error) {
 	rankings := new(Ranking)
 	apiError := new(APIError)

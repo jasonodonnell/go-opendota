@@ -53,6 +53,7 @@ type matchStatus struct {
 
 // Status returns information about the current status of
 // the OpenDota API.
+// https://docs.opendota.com/#tag/status%2Fpaths%2F~1status%2Fget
 func (s *StatusService) Status() (Status, *http.Response, error) {
 	status := new(Status)
 	apiError := new(APIError)

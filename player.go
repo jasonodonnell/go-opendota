@@ -239,6 +239,7 @@ type WinLoss struct {
 }
 
 // Counts returns the count of categories for a specific player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1counts%2Fget
 func (s *PlayerService) Counts(params *PlayersParam) (PlayerCounts, *http.Response, error) {
 	counts := new(PlayerCounts)
 	apiError := new(APIError)
@@ -248,6 +249,7 @@ func (s *PlayerService) Counts(params *PlayersParam) (PlayerCounts, *http.Respon
 }
 
 // Heroes returns information about heroes played for a specific player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1heroes%2Fget
 func (s *PlayerService) Heroes(params *PlayersParam) ([]PlayerHero, *http.Response, error) {
 	playerheroes := new([]PlayerHero)
 	apiError := new(APIError)
@@ -258,6 +260,7 @@ func (s *PlayerService) Heroes(params *PlayersParam) ([]PlayerHero, *http.Respon
 
 // Histograms returns a distribution of matches in a single field for a specific
 // player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1histograms~1%7Bfield%7D%2Fget
 func (s *PlayerService) Histograms(params *PlayersParam) ([]PlayerHistogram, *http.Response, error) {
 	histograms := new([]PlayerHistogram)
 	apiError := new(APIError)
@@ -268,6 +271,7 @@ func (s *PlayerService) Histograms(params *PlayersParam) ([]PlayerHistogram, *ht
 
 // Matches returns recent matches played by a specific player, can be
 // queried to tune results.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1matches%2Fget
 func (s *PlayerService) Matches(params *PlayersParam) ([]PlayerMatch, *http.Response, error) {
 	playermatches := new([]PlayerMatch)
 	apiError := new(APIError)
@@ -277,6 +281,7 @@ func (s *PlayerService) Matches(params *PlayersParam) ([]PlayerMatch, *http.Resp
 }
 
 // Peers returns information about games played with other players.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1peers%2Fget
 func (s *PlayerService) Peers(params *PlayersParam) ([]PlayerPeers, *http.Response, error) {
 	peers := new([]PlayerPeers)
 	apiError := new(APIError)
@@ -286,6 +291,7 @@ func (s *PlayerService) Peers(params *PlayersParam) ([]PlayerPeers, *http.Respon
 }
 
 // Player returns information about a specific player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D%2Fget
 func (s *PlayerService) Player(params *PlayersParam) (Player, *http.Response, error) {
 	player := new(Player)
 	apiError := new(APIError)
@@ -295,6 +301,7 @@ func (s *PlayerService) Player(params *PlayersParam) (Player, *http.Response, er
 }
 
 // Pros returns information about games played with other pro players.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1pros%2Fget
 func (s *PlayerService) Pros(params *PlayersParam) ([]PlayerPros, *http.Response, error) {
 	pros := new([]PlayerPros)
 	apiError := new(APIError)
@@ -304,6 +311,7 @@ func (s *PlayerService) Pros(params *PlayersParam) ([]PlayerPros, *http.Response
 }
 
 // Rankings returns ranking history for a specific player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1rankings%2Fget
 func (s *PlayerService) Rankings(params *PlayersParam) ([]PlayerRankings, *http.Response, error) {
 	rankings := new([]PlayerRankings)
 	apiError := new(APIError)
@@ -313,6 +321,7 @@ func (s *PlayerService) Rankings(params *PlayersParam) ([]PlayerRankings, *http.
 }
 
 // Ratings returns rating history for a specific player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1ratings%2Fget
 func (s *PlayerService) Ratings(params *PlayersParam) ([]PlayerRatings, *http.Response, error) {
 	ratings := new([]PlayerRatings)
 	apiError := new(APIError)
@@ -322,6 +331,7 @@ func (s *PlayerService) Ratings(params *PlayersParam) ([]PlayerRatings, *http.Re
 }
 
 // RecentMatches returns recent matches played by a specific player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1recentMatches%2Fget
 func (s *PlayerService) RecentMatches(params *PlayersParam) ([]PlayerMatch, *http.Response, error) {
 	playermatches := new([]PlayerMatch)
 	apiError := new(APIError)
@@ -331,6 +341,7 @@ func (s *PlayerService) RecentMatches(params *PlayersParam) ([]PlayerMatch, *htt
 }
 
 // Totals returns the total in stats for a specific player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1totals%2Fget
 func (s *PlayerService) Totals(params *PlayersParam) ([]PlayerTotals, *http.Response, error) {
 	totals := new([]PlayerTotals)
 	apiError := new(APIError)
@@ -340,6 +351,7 @@ func (s *PlayerService) Totals(params *PlayersParam) ([]PlayerTotals, *http.Resp
 }
 
 // WardMap returns wards placed in matches by a specific player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1wardmap%2Fget
 func (s *PlayerService) WardMap(params *PlayersParam) (PlayerWardMap, *http.Response, error) {
 	wardmap := new(PlayerWardMap)
 	apiError := new(APIError)
@@ -349,6 +361,7 @@ func (s *PlayerService) WardMap(params *PlayersParam) (PlayerWardMap, *http.Resp
 }
 
 // WinLoss returns the win/loss count for a specific player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1wl%2Fget
 func (s *PlayerService) WinLoss(params *PlayersParam) (WinLoss, *http.Response, error) {
 	winloss := new(WinLoss)
 	apiError := new(APIError)
@@ -358,6 +371,7 @@ func (s *PlayerService) WinLoss(params *PlayersParam) (WinLoss, *http.Response, 
 }
 
 // WordCloud returns words said/read in matches by a player.
+// https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1wordcloud%2Fget
 func (s *PlayerService) WordCloud(params *PlayersParam) (PlayerWordCloud, *http.Response, error) {
 	wordcloud := new(PlayerWordCloud)
 	apiError := new(APIError)

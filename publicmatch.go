@@ -39,7 +39,8 @@ type PublicMatch struct {
 	DireTeam    string `json:"dire_team"`
 }
 
-// Matches returns information about public matches.
+// Matches returns a collection about public matches.
+// https://docs.opendota.com/#tag/public-matches%2Fpaths%2F~1publicMatches%2Fget
 func (s *PublicMatchService) Matches(params *PublicMatchParam) ([]PublicMatch, *http.Response, error) {
 	publicmatches := new([]PublicMatch)
 	apiError := new(APIError)

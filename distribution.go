@@ -64,6 +64,7 @@ type sum struct {
 
 // Distributions returns a collection of distributions of MMR throughout
 // different regions.
+// https://docs.opendota.com/#tag/distributions%2Fpaths%2F~1distributions%2Fget
 func (s *DistributionService) Distributions() (Distribution, *http.Response, error) {
 	distribution := new(Distribution)
 	apiError := new(APIError)

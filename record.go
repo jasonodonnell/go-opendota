@@ -35,6 +35,7 @@ type Record struct {
 
 // Records returns a collection of top performance stats for a
 // specific field.
+// https://docs.opendota.com/#tag/records%2Fpaths%2F~1records~1%7Bfield%7D%2Fget
 func (s *RecordService) Records(param *RecordParam) ([]Record, *http.Response, error) {
 	record := new([]Record)
 	apiError := new(APIError)
