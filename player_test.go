@@ -63,7 +63,7 @@ func TestPlayerService_Counts(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayersParam{
+	accountID := &PlayerParam{
 		AccountID: 34505203,
 	}
 
@@ -96,7 +96,7 @@ func TestPlayerService_Heroes(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayersParam{
+	accountID := &PlayerParam{
 		AccountID: 34505203,
 	}
 
@@ -124,7 +124,7 @@ func TestPlayerService_Histograms(t *testing.T) {
 		},
 	}
 
-	params := &PlayersParam{
+	params := &PlayerParam{
 		AccountID: 34505203,
 		Field:     "kills",
 	}
@@ -175,7 +175,7 @@ func TestPlayerService_Matches(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayersParam{
+	accountID := &PlayerParam{
 		AccountID: 34505203,
 	}
 
@@ -214,7 +214,7 @@ func TestPlayerService_Peers(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayersParam{
+	accountID := &PlayerParam{
 		AccountID: 34505203,
 	}
 
@@ -231,7 +231,7 @@ func TestPlayerService_Player(t *testing.T) {
 	mux.HandleFunc("/api/players/34505203", func(w http.ResponseWriter, r *http.Request) {
 		assertMethod(t, "GET", r)
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintf(w, `{"tracked_until":"","solo_competitive_rank":"","profile":{"account_id":34505203,"personaname":"$a$uk3","name":"MinD_ContRoL","cheese":0,"steamid":"76561197994770931","avatar":"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/9b/9bb81de39d4a3104fa7e85ce4ed8564082201221.jpg","avatarmedium":"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/9b/9bb81de39d4a3104fa7e85ce4ed8564082201221_medium.jpg","avatarfull":"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/9b/9bb81de39d4a3104fa7e85ce4ed8564082201221_full.jpg","profileurl":"http://steamcommunity.com/id/MinD_ContRoL/","last_login":"","loccountrycode":"BG"},"mmr_estimate":{"estimate":8009},"competitive_rank":""}`)
+		fmt.Fprintf(w, `{"tracked_until":"","solo_competitive_rank":7188,"profile":{"account_id":34505203,"personaname":"$a$uk3","name":"MinD_ContRoL","cheese":0,"steamid":"76561197994770931","avatar":"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/9b/9bb81de39d4a3104fa7e85ce4ed8564082201221.jpg","avatarmedium":"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/9b/9bb81de39d4a3104fa7e85ce4ed8564082201221_medium.jpg","avatarfull":"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/9b/9bb81de39d4a3104fa7e85ce4ed8564082201221_full.jpg","profileurl":"http://steamcommunity.com/id/MinD_ContRoL/","last_login":"","loccountrycode":"BG"},"mmr_estimate":{"estimate":8009},"competitive_rank":5631}`)
 	})
 
 	profile := Profile{
@@ -254,13 +254,13 @@ func TestPlayerService_Player(t *testing.T) {
 
 	expected := Player{
 		TrackedUntil:        "",
-		SoloCompetitiveRank: "",
+		SoloCompetitiveRank: 7188,
 		MmrEstimate:         mmrestimate,
 		Profile:             profile,
-		CompetitiveRank:     "",
+		CompetitiveRank:     5631,
 	}
 
-	accountID := &PlayersParam{
+	accountID := &PlayerParam{
 		AccountID: 34505203,
 	}
 
@@ -313,7 +313,7 @@ func TestPlayerService_Pros(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayersParam{
+	accountID := &PlayerParam{
 		AccountID: 34505203,
 	}
 
@@ -342,7 +342,7 @@ func TestPlayerService_Rankings(t *testing.T) {
 		},
 	}
 
-	params := &PlayersParam{
+	params := &PlayerParam{
 		AccountID: 34505203,
 	}
 
@@ -372,7 +372,7 @@ func TestPlayerService_Ratings(t *testing.T) {
 		},
 	}
 
-	params := &PlayersParam{
+	params := &PlayerParam{
 		AccountID: 111620041,
 	}
 
@@ -422,7 +422,7 @@ func TestPlayerService_RecentMatches(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayersParam{
+	accountID := &PlayerParam{
 		AccountID: 34505203,
 	}
 
@@ -450,7 +450,7 @@ func TestPlayerService_Totals(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayersParam{
+	accountID := &PlayerParam{
 		AccountID: 34505203,
 	}
 
@@ -475,7 +475,7 @@ func TestPlayerService_WinLoss(t *testing.T) {
 		Lose: 1529,
 	}
 
-	accountID := &PlayersParam{
+	accountID := &PlayerParam{
 		AccountID: 34505203,
 	}
 
@@ -504,7 +504,7 @@ func TestPlayerService_WordCloud(t *testing.T) {
 		},
 	}
 
-	params := &PlayersParam{
+	params := &PlayerParam{
 		AccountID: 34505203,
 	}
 
