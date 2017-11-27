@@ -18,8 +18,7 @@ type ReplayService struct {
 	sling *sling.Sling
 }
 
-// ReplayParam allows replays to be queried by MatchIDs.
-type ReplayParam struct {
+type replayParam struct {
 	MatchID []int `url:"match_id"`
 }
 
@@ -34,7 +33,9 @@ type Replay struct {
 
 // Replays returns a collection of match replays.
 // https://docs.opendota.com/#tag/replays%2Fpaths%2F~1replays%2Fget
-func (s *ReplayService) Replays(params *ReplayParam) ([]Replay, *http.Response, error) {
+func (s *ReplayService) Replays(matchID []int) ([]Replay, *http.Response, error) {
+	params := &replayParam{}
+	params.MatchID = matchID
 	replays := new([]Replay)
 	apiError := new(APIError)
 	resp, err := s.sling.New().QueryStruct(params).Receive(replays, apiError)

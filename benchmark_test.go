@@ -66,12 +66,8 @@ func TestBenchmarkService_Benchmarks(t *testing.T) {
 		},
 	}
 
-	param := &BenchmarkParam{
-		HeroID: "36",
-	}
-
 	client := NewClient(httpClient)
-	benchmark, _, err := client.BenchmarkService.Benchmarks(param)
+	benchmark, _, err := client.BenchmarkService.Benchmarks(36)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, benchmark)
 }

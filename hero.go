@@ -19,11 +19,6 @@ type HeroService struct {
 	sling *sling.Sling
 }
 
-// HeroParam is used to speficy a specific hero for queries.
-type HeroParam struct {
-	HeroID int64 `url:"hero_id"`
-}
-
 // Hero is a collection of information about a hero.
 type Hero struct {
 	ID            int      `json:"id"`
@@ -77,10 +72,10 @@ type HeroPlayer struct {
 
 // Durations returns a collection of stats about a specific hero for varying match lengths.
 // https://docs.opendota.com/#tag/heroes%2Fpaths%2F~1heroes~1%7Bhero_id%7D~1durations%2Fget
-func (s *HeroService) Durations(param *HeroParam) ([]HeroDuration, *http.Response, error) {
+func (s *HeroService) Durations(heroID int) ([]HeroDuration, *http.Response, error) {
 	herodurations := new([]HeroDuration)
 	apiError := new(APIError)
-	path := strconv.Itoa(int(param.HeroID)) + "/durations"
+	path := strconv.Itoa(heroID) + "/durations"
 	resp, err := s.sling.New().Get(path).Receive(herodurations, apiError)
 	return *herodurations, resp, relevantError(err, *apiError)
 }
@@ -96,30 +91,30 @@ func (s *HeroService) Heroes() ([]Hero, *http.Response, error) {
 
 // Matches returns a collection of matches played by a specific hero.
 // https://docs.opendota.com/#tag/heroes%2Fpaths%2F~1heroes~1%7Bhero_id%7D~1matches%2Fget
-func (s *HeroService) Matches(param *HeroParam) ([]HeroMatch, *http.Response, error) {
+func (s *HeroService) Matches(heroID int) ([]HeroMatch, *http.Response, error) {
 	heromatches := new([]HeroMatch)
 	apiError := new(APIError)
-	path := strconv.Itoa(int(param.HeroID)) + "/matches"
+	path := strconv.Itoa(heroID) + "/matches"
 	resp, err := s.sling.New().Get(path).Receive(heromatches, apiError)
 	return *heromatches, resp, relevantError(err, *apiError)
 }
 
 // Matchups returns a collection of how a hero compares against all other heroes.
 // https://docs.opendota.com/#tag/heroes%2Fpaths%2F~1heroes~1%7Bhero_id%7D~1matchups%2Fget
-func (s *HeroService) Matchups(param *HeroParam) ([]HeroMatchup, *http.Response, error) {
+func (s *HeroService) Matchups(heroID int) ([]HeroMatchup, *http.Response, error) {
 	heromatchups := new([]HeroMatchup)
 	apiError := new(APIError)
-	path := strconv.Itoa(int(param.HeroID)) + "/matchups"
+	path := strconv.Itoa(heroID) + "/matchups"
 	resp, err := s.sling.New().Get(path).Receive(heromatchups, apiError)
 	return *heromatchups, resp, relevantError(err, *apiError)
 }
 
 // Players returns a collection about players for a specific hero.
 // https://docs.opendota.com/#tag/heroes%2Fpaths%2F~1heroes~1%7Bhero_id%7D~1players%2Fget
-func (s *HeroService) Players(param *HeroParam) ([]HeroPlayer, *http.Response, error) {
+func (s *HeroService) Players(heroID int) ([]HeroPlayer, *http.Response, error) {
 	heroplayers := new([]HeroPlayer)
 	apiError := new(APIError)
-	path := strconv.Itoa(int(param.HeroID)) + "/players"
+	path := strconv.Itoa(heroID) + "/players"
 	resp, err := s.sling.New().Get(path).Receive(heroplayers, apiError)
 	return *heroplayers, resp, relevantError(err, *apiError)
 }

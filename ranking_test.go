@@ -33,12 +33,8 @@ func TestRankingService_Rankings(t *testing.T) {
 		},
 	}
 
-	param := &RankingParam{
-		HeroID: "36",
-	}
-
 	client := NewClient(httpClient)
-	ranking, _, err := client.RankingService.Rankings(param)
+	ranking, _, err := client.RankingService.Rankings(36)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, ranking)
 }

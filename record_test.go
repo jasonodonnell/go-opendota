@@ -27,12 +27,8 @@ func TestRecordService_Records(t *testing.T) {
 		},
 	}
 
-	param := &RecordParam{
-		Field: "kills",
-	}
-
 	client := NewClient(httpClient)
-	records, _, err := client.RecordService.Records(param)
+	records, _, err := client.RecordService.Records("kills")
 	assert.Nil(t, err)
 	assert.Equal(t, expected, records)
 }

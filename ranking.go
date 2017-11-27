@@ -2,6 +2,7 @@ package opendota
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/dghubble/sling"
 )
@@ -18,10 +19,8 @@ type RankingService struct {
 	sling *sling.Sling
 }
 
-// RankingParam is the parameter to search the rankings of
-// a specific hero.
-type RankingParam struct {
-	HeroID string `url:"hero_id"`
+type rankingParam struct {
+	heroID string `url:"hero_id"`
 }
 
 // Ranking is a collection of information about the top
@@ -43,9 +42,11 @@ type ranking struct {
 
 // Rankings returns the top ranking of a hero by players.
 // https://docs.opendota.com/#tag/rankings%2Fpaths%2F~1rankings%2Fget
-func (s *RankingService) Rankings(param *RankingParam) (Ranking, *http.Response, error) {
+func (s *RankingService) Rankings(heroID int) (Ranking, *http.Response, error) {
+	params := &rankingParam{}
+	params.heroID = strconv.Itoa(heroID)
 	rankings := new(Ranking)
 	apiError := new(APIError)
-	resp, err := s.sling.New().QueryStruct(param).Receive(rankings, apiError)
+	resp, err := s.sling.New().QueryStruct(params).Receive(rankings, apiError)
 	return *rankings, resp, relevantError(err, *apiError)
 }

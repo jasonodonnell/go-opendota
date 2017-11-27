@@ -455,12 +455,8 @@ func TestMatchService_Match(t *testing.T) {
 		ReplayURL: "http://replay123.valve.net/570/3559037317_897752925.dem.bz2",
 	}
 
-	matchID := &MatchParam{
-		MatchID: 3559037317,
-	}
-
 	client := NewClient(httpClient)
-	match, _, err := client.MatchService.Match(matchID)
+	match, _, err := client.MatchService.Match(3559037317)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, match)
 }

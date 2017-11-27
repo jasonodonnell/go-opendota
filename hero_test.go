@@ -26,12 +26,8 @@ func TestHeroService_Durations(t *testing.T) {
 		},
 	}
 
-	param := &HeroParam{
-		HeroID: 1,
-	}
-
 	client := NewClient(httpClient)
-	durations, _, err := client.HeroService.Durations(param)
+	durations, _, err := client.HeroService.Durations(1)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, durations)
 }
@@ -90,12 +86,8 @@ func TestHeroService_Matches(t *testing.T) {
 		},
 	}
 
-	param := &HeroParam{
-		HeroID: 1,
-	}
-
 	client := NewClient(httpClient)
-	matches, _, err := client.HeroService.Matches(param)
+	matches, _, err := client.HeroService.Matches(1)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, matches)
 }
@@ -118,12 +110,8 @@ func TestHeroService_Matchups(t *testing.T) {
 		},
 	}
 
-	param := &HeroParam{
-		HeroID: 1,
-	}
-
 	client := NewClient(httpClient)
-	matchups, _, err := client.HeroService.Matchups(param)
+	matchups, _, err := client.HeroService.Matchups(1)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, matchups)
 }
@@ -146,12 +134,8 @@ func TestHeroService_Players(t *testing.T) {
 		},
 	}
 
-	param := &HeroParam{
-		HeroID: 1,
-	}
-
 	client := NewClient(httpClient)
-	players, _, err := client.HeroService.Players(param)
+	players, _, err := client.HeroService.Players(1)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, players)
 }

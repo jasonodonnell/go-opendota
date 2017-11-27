@@ -18,12 +18,6 @@ type RecordService struct {
 	sling *sling.Sling
 }
 
-// RecordParam provides the ability to query records by a
-// field.
-type RecordParam struct {
-	Field string `url:"field"`
-}
-
 // Record is a collection of information about the performance
 // for a stat.
 type Record struct {
@@ -36,9 +30,9 @@ type Record struct {
 // Records returns a collection of top performance stats for a
 // specific field.
 // https://docs.opendota.com/#tag/records%2Fpaths%2F~1records~1%7Bfield%7D%2Fget
-func (s *RecordService) Records(param *RecordParam) ([]Record, *http.Response, error) {
+func (s *RecordService) Records(field string) ([]Record, *http.Response, error) {
 	record := new([]Record)
 	apiError := new(APIError)
-	resp, err := s.sling.New().Get(param.Field).Receive(record, apiError)
+	resp, err := s.sling.New().Get(field).Receive(record, apiError)
 	return *record, resp, relevantError(err, *apiError)
 }

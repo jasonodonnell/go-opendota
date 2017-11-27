@@ -19,11 +19,6 @@ type TeamService struct {
 	sling *sling.Sling
 }
 
-// TeamParam is the parameter for specifying a team.
-type TeamParam struct {
-	TeamID int64 `url:"team_id,omitempty"`
-}
-
 // Team is a collection of stats about a team.
 type Team struct {
 	TeamID        int     `json:"team_id"`
@@ -67,40 +62,40 @@ type TeamPlayers struct {
 
 // Heroes returns a collection of stats about the heroes played by a specific team.
 // https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D~1heroes%2Fget
-func (s *TeamService) Heroes(params *TeamParam) ([]TeamHeroes, *http.Response, error) {
+func (s *TeamService) Heroes(teamID int64) ([]TeamHeroes, *http.Response, error) {
 	heroes := new([]TeamHeroes)
 	apiError := new(APIError)
-	path := strconv.Itoa(int(params.TeamID)) + "/heroes"
+	path := strconv.Itoa(int(teamID)) + "/heroes"
 	resp, err := s.sling.New().Get(path).Receive(heroes, apiError)
 	return *heroes, resp, relevantError(err, *apiError)
 }
 
 // Matches returns a collection of matches for a specific team.
 // https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D~1matches%2Fget
-func (s *TeamService) Matches(params *TeamParam) ([]TeamMatch, *http.Response, error) {
+func (s *TeamService) Matches(teamID int64) ([]TeamMatch, *http.Response, error) {
 	matches := new([]TeamMatch)
 	apiError := new(APIError)
-	path := strconv.Itoa(int(params.TeamID)) + "/matches"
+	path := strconv.Itoa(int(teamID)) + "/matches"
 	resp, err := s.sling.New().Get(path).Receive(matches, apiError)
 	return *matches, resp, relevantError(err, *apiError)
 }
 
 // Players returns a collection of people that played on a specific team.
 // https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D~1players%2Fget
-func (s *TeamService) Players(params *TeamParam) ([]TeamPlayers, *http.Response, error) {
+func (s *TeamService) Players(teamID int64) ([]TeamPlayers, *http.Response, error) {
 	players := new([]TeamPlayers)
 	apiError := new(APIError)
-	path := strconv.Itoa(int(params.TeamID)) + "/players"
+	path := strconv.Itoa(int(teamID)) + "/players"
 	resp, err := s.sling.New().Get(path).Receive(players, apiError)
 	return *players, resp, relevantError(err, *apiError)
 }
 
 // Team returns a collection for a specific team.
 // https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D%2Fget
-func (s *TeamService) Team(params *TeamParam) (Team, *http.Response, error) {
+func (s *TeamService) Team(teamID int64) (Team, *http.Response, error) {
 	team := new(Team)
 	apiError := new(APIError)
-	resp, err := s.sling.New().Get(strconv.Itoa(int(params.TeamID))).Receive(team, apiError)
+	resp, err := s.sling.New().Get(strconv.Itoa(int(teamID))).Receive(team, apiError)
 	return *team, resp, relevantError(err, *apiError)
 }
 

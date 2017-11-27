@@ -22,8 +22,6 @@ type PlayerService struct {
 
 // PlayerParam is the parameter for specifying a player.
 type PlayerParam struct {
-	AccountID     int64    `url:"account_id"`
-	Field         string   `url:"field,omitempty"`
 	Limit         int      `url:"limit,omitempty"`
 	Offset        int      `url:"offset,omitempty"`
 	Win           int      `url:"win,omitempty"`
@@ -240,20 +238,26 @@ type WinLoss struct {
 
 // Counts returns the count of categories for a specific player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1counts%2Fget
-func (s *PlayerService) Counts(params *PlayerParam) (PlayerCounts, *http.Response, error) {
+func (s *PlayerService) Counts(accountID int64, params *PlayerParam) (PlayerCounts, *http.Response, error) {
+	if params == nil {
+		params = &PlayerParam{}
+	}
 	counts := new(PlayerCounts)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/counts", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/counts", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(counts, apiError)
 	return *counts, resp, relevantError(err, *apiError)
 }
 
 // Heroes returns information about heroes played for a specific player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1heroes%2Fget
-func (s *PlayerService) Heroes(params *PlayerParam) ([]PlayerHero, *http.Response, error) {
+func (s *PlayerService) Heroes(accountID int64, params *PlayerParam) ([]PlayerHero, *http.Response, error) {
+	if params == nil {
+		params = &PlayerParam{}
+	}
 	playerheroes := new([]PlayerHero)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/heroes", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/heroes", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(playerheroes, apiError)
 	return *playerheroes, resp, relevantError(err, *apiError)
 }
@@ -261,10 +265,13 @@ func (s *PlayerService) Heroes(params *PlayerParam) ([]PlayerHero, *http.Respons
 // Histograms returns a distribution of matches in a single field for a specific
 // player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1histograms~1%7Bfield%7D%2Fget
-func (s *PlayerService) Histograms(params *PlayerParam) ([]PlayerHistogram, *http.Response, error) {
+func (s *PlayerService) Histograms(accountID int64, field string, params *PlayerParam) ([]PlayerHistogram, *http.Response, error) {
+	if params == nil {
+		params = &PlayerParam{}
+	}
 	histograms := new([]PlayerHistogram)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/histograms/%s", strconv.Itoa(int(params.AccountID)), params.Field)
+	path := fmt.Sprintf("%s/histograms/%s", strconv.Itoa(int(accountID)), field)
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(histograms, apiError)
 	return *histograms, resp, relevantError(err, *apiError)
 }
@@ -272,110 +279,131 @@ func (s *PlayerService) Histograms(params *PlayerParam) ([]PlayerHistogram, *htt
 // Matches returns recent matches played by a specific player, can be
 // queried to tune results.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1matches%2Fget
-func (s *PlayerService) Matches(params *PlayerParam) ([]PlayerMatch, *http.Response, error) {
+func (s *PlayerService) Matches(accountID int64, params *PlayerParam) ([]PlayerMatch, *http.Response, error) {
+	if params == nil {
+		params = &PlayerParam{}
+	}
 	playermatches := new([]PlayerMatch)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/matches", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/matches", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(playermatches, apiError)
 	return *playermatches, resp, relevantError(err, *apiError)
 }
 
 // Peers returns information about games played with other players.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1peers%2Fget
-func (s *PlayerService) Peers(params *PlayerParam) ([]PlayerPeers, *http.Response, error) {
+func (s *PlayerService) Peers(accountID int64, params *PlayerParam) ([]PlayerPeers, *http.Response, error) {
+	if params == nil {
+		params = &PlayerParam{}
+	}
 	peers := new([]PlayerPeers)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/peers", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/peers", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(peers, apiError)
 	return *peers, resp, relevantError(err, *apiError)
 }
 
 // Player returns information about a specific player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D%2Fget
-func (s *PlayerService) Player(params *PlayerParam) (Player, *http.Response, error) {
+func (s *PlayerService) Player(accountID int64) (Player, *http.Response, error) {
 	player := new(Player)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).Receive(player, apiError)
 	return *player, resp, relevantError(err, *apiError)
 }
 
 // Pros returns information about games played with other pro players.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1pros%2Fget
-func (s *PlayerService) Pros(params *PlayerParam) ([]PlayerPros, *http.Response, error) {
+func (s *PlayerService) Pros(accountID int64, params *PlayerParam) ([]PlayerPros, *http.Response, error) {
+	if params == nil {
+		params = &PlayerParam{}
+	}
 	pros := new([]PlayerPros)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/pros", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/pros", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(pros, apiError)
 	return *pros, resp, relevantError(err, *apiError)
 }
 
 // Rankings returns ranking history for a specific player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1rankings%2Fget
-func (s *PlayerService) Rankings(params *PlayerParam) ([]PlayerRankings, *http.Response, error) {
+func (s *PlayerService) Rankings(accountID int64) ([]PlayerRankings, *http.Response, error) {
 	rankings := new([]PlayerRankings)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/rankings", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/rankings", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).Receive(rankings, apiError)
 	return *rankings, resp, relevantError(err, *apiError)
 }
 
 // Ratings returns rating history for a specific player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1ratings%2Fget
-func (s *PlayerService) Ratings(params *PlayerParam) ([]PlayerRatings, *http.Response, error) {
+func (s *PlayerService) Ratings(accountID int64) ([]PlayerRatings, *http.Response, error) {
 	ratings := new([]PlayerRatings)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/ratings", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/ratings", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).Receive(ratings, apiError)
 	return *ratings, resp, relevantError(err, *apiError)
 }
 
 // RecentMatches returns recent matches played by a specific player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1recentMatches%2Fget
-func (s *PlayerService) RecentMatches(params *PlayerParam) ([]PlayerMatch, *http.Response, error) {
+func (s *PlayerService) RecentMatches(accountID int64) ([]PlayerMatch, *http.Response, error) {
 	playermatches := new([]PlayerMatch)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/recentMatches", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/recentMatches", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).Receive(playermatches, apiError)
 	return *playermatches, resp, relevantError(err, *apiError)
 }
 
 // Totals returns the total in stats for a specific player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1totals%2Fget
-func (s *PlayerService) Totals(params *PlayerParam) ([]PlayerTotals, *http.Response, error) {
+func (s *PlayerService) Totals(accountID int64, params *PlayerParam) ([]PlayerTotals, *http.Response, error) {
+	if params == nil {
+		params = &PlayerParam{}
+	}
 	totals := new([]PlayerTotals)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/totals", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/totals", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(totals, apiError)
 	return *totals, resp, relevantError(err, *apiError)
 }
 
 // WardMap returns wards placed in matches by a specific player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1wardmap%2Fget
-func (s *PlayerService) WardMap(params *PlayerParam) (PlayerWardMap, *http.Response, error) {
+func (s *PlayerService) WardMap(accountID int64, params *PlayerParam) (PlayerWardMap, *http.Response, error) {
+	if params == nil {
+		params = &PlayerParam{}
+	}
 	wardmap := new(PlayerWardMap)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/wardmap", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/wardmap", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(wardmap, apiError)
 	return *wardmap, resp, relevantError(err, *apiError)
 }
 
 // WinLoss returns the win/loss count for a specific player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1wl%2Fget
-func (s *PlayerService) WinLoss(params *PlayerParam) (WinLoss, *http.Response, error) {
+func (s *PlayerService) WinLoss(accountID int64, params *PlayerParam) (WinLoss, *http.Response, error) {
+	if params == nil {
+		params = &PlayerParam{}
+	}
 	winloss := new(WinLoss)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/wl", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/wl", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(winloss, apiError)
 	return *winloss, resp, relevantError(err, *apiError)
 }
 
 // WordCloud returns words said/read in matches by a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1wordcloud%2Fget
-func (s *PlayerService) WordCloud(params *PlayerParam) (PlayerWordCloud, *http.Response, error) {
+func (s *PlayerService) WordCloud(accountID int64, params *PlayerParam) (PlayerWordCloud, *http.Response, error) {
+	if params == nil {
+		params = &PlayerParam{}
+	}
 	wordcloud := new(PlayerWordCloud)
 	apiError := new(APIError)
-	path := fmt.Sprintf("%s/wordcloud", strconv.Itoa(int(params.AccountID)))
+	path := fmt.Sprintf("%s/wordcloud", strconv.Itoa(int(accountID)))
 	resp, err := s.sling.New().Get(path).QueryStruct(params).Receive(wordcloud, apiError)
 	return *wordcloud, resp, relevantError(err, *apiError)
 }

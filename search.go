@@ -21,7 +21,7 @@ type SearchService struct {
 // SearchParams are the paramters for querying the
 // search service.
 type SearchParams struct {
-	Query      string  `url:"q"`
+	query      string  `url:"q"`
 	Similarity float64 `url:"similarity,omitempty"`
 }
 
@@ -37,7 +37,11 @@ type Search struct {
 // Search returns an array of players who are similar to the query
 // provided.
 // https://docs.opendota.com/#tag/search%2Fpaths%2F~1search%2Fget
-func (s *SearchService) Search(params *SearchParams) ([]Search, *http.Response, error) {
+func (s *SearchService) Search(query string, params *SearchParams) ([]Search, *http.Response, error) {
+	if params == nil {
+		params = &SearchParams{}
+	}
+	params.query = query
 	search := new([]Search)
 	apiError := new(APIError)
 	resp, err := s.sling.New().QueryStruct(params).Receive(search, apiError)

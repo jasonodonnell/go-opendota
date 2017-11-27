@@ -19,11 +19,6 @@ type MatchService struct {
 	sling *sling.Sling
 }
 
-// MatchParam is the parameter for specifying a match by ID.
-type MatchParam struct {
-	MatchID int64 `url:"match_id"`
-}
-
 // Match is a collection of information about a specific Dota 2
 // match.
 type Match struct {
@@ -339,9 +334,9 @@ type teamfights struct {
 
 // Match returns a collection for a specific match.
 // https://docs.opendota.com/#tag/matches
-func (s *MatchService) Match(params *MatchParam) (Match, *http.Response, error) {
+func (s *MatchService) Match(matchID int64) (Match, *http.Response, error) {
 	match := new(Match)
 	apiError := new(APIError)
-	resp, err := s.sling.New().Get(strconv.Itoa(int(params.MatchID))).Receive(match, apiError)
+	resp, err := s.sling.New().Get(strconv.Itoa(int(matchID))).Receive(match, apiError)
 	return *match, resp, relevantError(err, *apiError)
 }

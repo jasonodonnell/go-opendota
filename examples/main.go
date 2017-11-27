@@ -49,10 +49,25 @@ func main() {
 	// 	fmt.Println(player.Name, player.AccountID)
 	// }
 
-	playerID := &opendota.PlayerParam{AccountID: 111620041}
-	player, _, err := client.PlayerService.Player(playerID)
-	if err != nil {
-		fmt.Println(err)
-	}
+	// OpenDota client
+	//client := opendota.NewClient(httpClient)
+
+	// Get Match Data
+	match, _, _ := client.MatchService.Match(3559037317)
+	fmt.Println(match.DireTeam.Name, "VS", match.RadiantTeam.Name)
+
+	// Get Player Data
+	player, _, _ := client.PlayerService.Player(111620041)
 	fmt.Println(player.Profile.Name, player.SoloCompetitiveRank)
+
+	// Player Param
+	params := &opendota.PlayerParam{
+		Win: 0,
+	}
+
+	// Get Won Matches For Player
+	wins, _, _ := client.PlayerService.Matches(111620041, params)
+	for _, game := range wins {
+		fmt.Println(game.MatchID, game.HeroID)
+	}
 }

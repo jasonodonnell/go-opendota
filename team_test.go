@@ -28,10 +28,7 @@ func TestTeamService_Heroes(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	teamID := &TeamParam{
-		TeamID: 2163,
-	}
-	heroes, _, err := client.TeamService.Heroes(teamID)
+	heroes, _, err := client.TeamService.Heroes(2163)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, heroes)
 }
@@ -60,10 +57,7 @@ func TestTeamService_Matches(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	teamID := &TeamParam{
-		TeamID: 2163,
-	}
-	matches, _, err := client.TeamService.Matches(teamID)
+	matches, _, err := client.TeamService.Matches(2163)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, matches)
 }
@@ -89,10 +83,7 @@ func TestTeamService_Players(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	teamID := &TeamParam{
-		TeamID: 2163,
-	}
-	players, _, err := client.TeamService.Players(teamID)
+	players, _, err := client.TeamService.Players(2163)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, players)
 }
@@ -119,10 +110,7 @@ func TestTeamService_Team(t *testing.T) {
 	}
 
 	client := NewClient(httpClient)
-	teamID := &TeamParam{
-		TeamID: 2163,
-	}
-	team, _, err := client.TeamService.Team(teamID)
+	team, _, err := client.TeamService.Team(2163)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, team)
 }

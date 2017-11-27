@@ -35,12 +35,8 @@ func TestReplayService_Replays(t *testing.T) {
 		},
 	}
 
-	params := &ReplayParam{
-		MatchID: []int{3559037317, 3573137571},
-	}
-
 	client := NewClient(httpClient)
-	replays, _, err := client.ReplayService.Replays(params)
+	replays, _, err := client.ReplayService.Replays([]int{3559037317, 3573137571})
 	assert.Nil(t, err)
 	assert.Equal(t, expected, replays)
 }

@@ -63,12 +63,10 @@ func TestPlayerService_Counts(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayerParam{
-		AccountID: 34505203,
-	}
+	params := &PlayerParam{}
 
 	client := NewClient(httpClient)
-	counts, _, err := client.PlayerService.Counts(accountID)
+	counts, _, err := client.PlayerService.Counts(34505203, params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, counts)
 }
@@ -96,12 +94,10 @@ func TestPlayerService_Heroes(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayerParam{
-		AccountID: 34505203,
-	}
+	params := &PlayerParam{}
 
 	client := NewClient(httpClient)
-	heroes, _, err := client.PlayerService.Heroes(accountID)
+	heroes, _, err := client.PlayerService.Heroes(34505203, params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, heroes)
 }
@@ -124,13 +120,10 @@ func TestPlayerService_Histograms(t *testing.T) {
 		},
 	}
 
-	params := &PlayerParam{
-		AccountID: 34505203,
-		Field:     "kills",
-	}
+	params := &PlayerParam{}
 
 	client := NewClient(httpClient)
-	histograms, _, err := client.PlayerService.Histograms(params)
+	histograms, _, err := client.PlayerService.Histograms(34505203, "kills", params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, histograms)
 }
@@ -175,12 +168,10 @@ func TestPlayerService_Matches(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayerParam{
-		AccountID: 34505203,
-	}
+	params := &PlayerParam{}
 
 	client := NewClient(httpClient)
-	matches, _, err := client.PlayerService.Matches(accountID)
+	matches, _, err := client.PlayerService.Matches(34505203, params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, matches)
 }
@@ -214,12 +205,10 @@ func TestPlayerService_Peers(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayerParam{
-		AccountID: 34505203,
-	}
+	params := &PlayerParam{}
 
 	client := NewClient(httpClient)
-	peers, _, err := client.PlayerService.Peers(accountID)
+	peers, _, err := client.PlayerService.Peers(34505203, params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, peers)
 }
@@ -260,12 +249,8 @@ func TestPlayerService_Player(t *testing.T) {
 		CompetitiveRank:     5631,
 	}
 
-	accountID := &PlayerParam{
-		AccountID: 34505203,
-	}
-
 	client := NewClient(httpClient)
-	player, _, err := client.PlayerService.Player(accountID)
+	player, _, err := client.PlayerService.Player(34505203)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, player)
 }
@@ -313,12 +298,10 @@ func TestPlayerService_Pros(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayerParam{
-		AccountID: 34505203,
-	}
+	params := &PlayerParam{}
 
 	client := NewClient(httpClient)
-	pros, _, err := client.PlayerService.Pros(accountID)
+	pros, _, err := client.PlayerService.Pros(34505203, params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, pros)
 }
@@ -342,12 +325,8 @@ func TestPlayerService_Rankings(t *testing.T) {
 		},
 	}
 
-	params := &PlayerParam{
-		AccountID: 34505203,
-	}
-
 	client := NewClient(httpClient)
-	rankings, _, err := client.PlayerService.Rankings(params)
+	rankings, _, err := client.PlayerService.Rankings(34505203)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, rankings)
 }
@@ -372,12 +351,8 @@ func TestPlayerService_Ratings(t *testing.T) {
 		},
 	}
 
-	params := &PlayerParam{
-		AccountID: 111620041,
-	}
-
 	client := NewClient(httpClient)
-	ratings, _, err := client.PlayerService.Ratings(params)
+	ratings, _, err := client.PlayerService.Ratings(111620041)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, ratings)
 }
@@ -422,12 +397,8 @@ func TestPlayerService_RecentMatches(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayerParam{
-		AccountID: 34505203,
-	}
-
 	client := NewClient(httpClient)
-	recentMatches, _, err := client.PlayerService.RecentMatches(accountID)
+	recentMatches, _, err := client.PlayerService.RecentMatches(34505203)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, recentMatches)
 }
@@ -450,12 +421,10 @@ func TestPlayerService_Totals(t *testing.T) {
 		},
 	}
 
-	accountID := &PlayerParam{
-		AccountID: 34505203,
-	}
+	params := &PlayerParam{}
 
 	client := NewClient(httpClient)
-	totals, _, err := client.PlayerService.Totals(accountID)
+	totals, _, err := client.PlayerService.Totals(34505203, params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, totals)
 }
@@ -475,12 +444,10 @@ func TestPlayerService_WinLoss(t *testing.T) {
 		Lose: 1529,
 	}
 
-	accountID := &PlayerParam{
-		AccountID: 34505203,
-	}
+	params := &PlayerParam{}
 
 	client := NewClient(httpClient)
-	winloss, _, err := client.PlayerService.WinLoss(accountID)
+	winloss, _, err := client.PlayerService.WinLoss(34505203, params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, winloss)
 }
@@ -504,12 +471,10 @@ func TestPlayerService_WordCloud(t *testing.T) {
 		},
 	}
 
-	params := &PlayerParam{
-		AccountID: 34505203,
-	}
+	params := &PlayerParam{}
 
 	client := NewClient(httpClient)
-	wordcloud, _, err := client.PlayerService.WordCloud(params)
+	wordcloud, _, err := client.PlayerService.WordCloud(34505203, params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, wordcloud)
 }

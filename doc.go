@@ -6,19 +6,26 @@ Here are some examples of requests:
 	// OpenDota client
 	client := opendota.NewClient(httpClient)
 
-	// Match ID
-	matchID := &opendota.MatchParam{MatchID: 3559037317}
-
 	// Get Match Data
-	match, res, err := client.MatchService.Match(matchID)
+	match, res, err := client.MatchService.Match(3559037317)
 	fmt.Println(match.DireTeam.Name, "VS", match.RadiantTeam.Name)
 
-	// Player ID
-	playerID := &opendota.PlayerParam{AccountID: 111620041}
-
 	// Get Player Data
-	player, _, _ := client.PlayerService.Player(playerID)
+	player, res, err := client.PlayerService.Player(111620041)
 	fmt.Println(player.Profile.Name, player.SoloCompetitiveRank)
 
+	// Player Param
+	params := &opendota.PlayerParam{
+		Win: 0,
+	}
+
+	// Get Won Matches For Player
+	wins, res, err := client.PlayerService.Matches(111620041, params)
+	for _, game := range wins {
+		fmt.Println(game.MatchID, game.HeroID)
+	}
+
+All required paramters are passed as arguments to functions.  Additional
+arguments can be passed through the param objects.
 */
 package opendota

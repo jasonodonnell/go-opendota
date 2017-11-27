@@ -29,12 +29,11 @@ func TestSearchService_Search(t *testing.T) {
 	}
 
 	params := &SearchParams{
-		Query:      "drlovewizard",
 		Similarity: 0.51,
 	}
 
 	client := NewClient(httpClient)
-	search, _, err := client.SearchService.Search(params)
+	search, _, err := client.SearchService.Search("drlovewizard", params)
 	assert.Nil(t, err)
 	assert.Equal(t, expected, search)
 }

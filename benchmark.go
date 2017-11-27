@@ -2,6 +2,7 @@ package opendota
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/dghubble/sling"
 )
@@ -18,10 +19,8 @@ type BenchmarkService struct {
 	sling *sling.Sling
 }
 
-// BenchmarkParam is used to specify the hero when retrieving
-// benchmarks.
-type BenchmarkParam struct {
-	HeroID string `url:"hero_id"`
+type benchmarkParam struct {
+	heroID string `url:"hero_id"`
 }
 
 // Benchmark is a collection of benchmarks about a hero.
@@ -47,7 +46,9 @@ type benchmarkResult struct {
 
 // Benchmarks returns a collection of benchmarks about a hero.
 // https://docs.opendota.com/#tag/benchmarks%2Fpaths%2F~1benchmarks%2Fget
-func (s *BenchmarkService) Benchmarks(param *BenchmarkParam) (Benchmark, *http.Response, error) {
+func (s *BenchmarkService) Benchmarks(heroID int) (Benchmark, *http.Response, error) {
+	param := &benchmarkParam{}
+	param.heroID = strconv.Itoa(heroID)
 	benchmarks := new(Benchmark)
 	apiError := new(APIError)
 	resp, err := s.sling.New().QueryStruct(param).Receive(benchmarks, apiError)
