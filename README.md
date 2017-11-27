@@ -42,23 +42,27 @@ Get information about a specific match:
 // OpenDota client
 client := opendota.NewClient(httpClient)
 
-// Match ID
-matchID := &opendota.MatchParam{MatchID: 3559037317}
-
 // Get Match Data
-match, res, err := client.MatchService.Match(matchID)
+match, res, err := client.MatchService.Match(3559037317)
 fmt.Println(match.DireTeam.Name, "VS", match.RadiantTeam.Name)
 ```
 
 Get information about a specific player:
 
 ```go
-// Player ID
-playerID := &opendota.PlayerParam{AccountID: 111620041}
-
 // Get Player Data
-player, _, _ := client.PlayerService.Player(playerID)
+player, res, err := client.PlayerService.Player(111620041)
 fmt.Println(player.Profile.Name, player.SoloCompetitiveRank)
+
+// Player Param
+params := &opendota.PlayerParam{
+	Win: 1,
+}
+// Get Won Matches For Player
+wins, res, err := client.PlayerService.Matches(111620041, params)
+for _, game := range wins {
+	fmt.Println(game.MatchID, game.HeroID)
+}
 ```
 
 ## License
