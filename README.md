@@ -1,6 +1,6 @@
 # go-opendota [![Build Status](https://travis-ci.org/jasonodonnell/go-opendota.png)](https://travis-ci.org/jasonodonnell/go-opendota) [![GoDoc](https://godoc.org/github.com/jasonodonnell/go-opendota?status.png)](https://godoc.org/github.com/jasonodonnell/go-opendota)
 
-Go-Opendota is a simple Go package for accessing the [OpenDota API](https://docs.opendota.com/#).  
+Go-OpenDota is a simple Go package for accessing the [OpenDota API](https://docs.opendota.com/#).  
 
 Successful queries return native Go structs.
 
@@ -36,7 +36,7 @@ go get github.com/jasonodonnell/go-opendota/opendota
 
 ## Examples
 
-Get information about a specific match:
+### Match
 
 ```go
 // OpenDota client
@@ -47,7 +47,7 @@ match, res, err := client.MatchService.Match(3559037317)
 fmt.Println(match.DireTeam.Name, "VS", match.RadiantTeam.Name)
 ```
 
-Get information about a specific player:
+### Player
 
 ```go
 // Get Player Data
