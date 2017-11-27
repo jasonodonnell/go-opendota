@@ -27,4 +27,4 @@ go:
  
 script:
   - echo $TRAVIS_GO_VERSION
-  - if [ "$TRAVIS_GO_VERSION" == "1.6" ] || [ "$TRAVIS_GO_VERSION" == "1.7" ] || [ "$TRAVIS_GO_VERSION" == "1.8" ]; then go list ./... | grep -v examples | xargs go test -cover -v; else go test -cover -v ./...; fi
+  - if [ "$TRAVIS_GO_VERSION" == "1.6" ] || [ "$TRAVIS_GO_VERSION" == "1.7" ] || [ "$TRAVIS_GO_VERSION" == "1.8" ]; then go list ./... | xargs go test -cover -v; else go test -cover -v ./...; fi
