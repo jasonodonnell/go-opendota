@@ -12,14 +12,12 @@ func newProPlayerService(sling *sling.Sling) *ProPlayerService {
 	}
 }
 
-// ProPlayerService provides methods for accessing pro
-// endpoints.
+// ProPlayerService provides methods for accessing pro endpoints.
 type ProPlayerService struct {
 	sling *sling.Sling
 }
 
-// ProPlayer is a collectiong about a specific professional
-// dota player.
+// ProPlayer is a collectiong about a professional dota player.
 type ProPlayer struct {
 	AccountID       int    `json:"account_id"`
 	SteamID         string `json:"steamid"`

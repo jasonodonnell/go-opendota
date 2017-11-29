@@ -20,7 +20,7 @@ type PlayerService struct {
 	sling *sling.Sling
 }
 
-// PlayerParam is the parameter for specifying a player.
+// PlayerParam is used for customizing Player queries.
 type PlayerParam struct {
 	Limit         int      `url:"limit,omitempty"`
 	Offset        int      `url:"offset,omitempty"`
@@ -49,7 +49,7 @@ type GameWins struct {
 	Win   int `json:"win"`
 }
 
-// MmrEstimate is an estimate MMR score for a player.
+// MmrEstimate is the estimated MMR score for a player.
 type MmrEstimate struct {
 	Estimate int `json:"estimate"`
 }
@@ -142,8 +142,7 @@ type PlayerPeers struct {
 	AvatarFull   string `json:"avatarfull"`
 }
 
-// PlayerPros is a collection about pros that have played
-// with a specific player.
+// PlayerPros is a collection about pros that have played with a specific player.
 type PlayerPros struct {
 	AccountID       int    `json:"account_id"`
 	Name            string `json:"name"`
@@ -236,7 +235,7 @@ type WinLoss struct {
 	Lose int `json:"lose"`
 }
 
-// Counts returns the count of categories for a specific player.
+// Counts returns the count of categories for a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1counts%2Fget
 func (s *PlayerService) Counts(accountID int64, params *PlayerParam) (PlayerCounts, *http.Response, error) {
 	if params == nil {
@@ -249,7 +248,7 @@ func (s *PlayerService) Counts(accountID int64, params *PlayerParam) (PlayerCoun
 	return *counts, resp, relevantError(err, *apiError)
 }
 
-// Heroes returns information about heroes played for a specific player.
+// Heroes returns information about heroes played for a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1heroes%2Fget
 func (s *PlayerService) Heroes(accountID int64, params *PlayerParam) ([]PlayerHero, *http.Response, error) {
 	if params == nil {
@@ -262,8 +261,7 @@ func (s *PlayerService) Heroes(accountID int64, params *PlayerParam) ([]PlayerHe
 	return *playerheroes, resp, relevantError(err, *apiError)
 }
 
-// Histograms returns a distribution of matches in a single field for a specific
-// player.
+// Histograms returns a distribution of matches in a single field for a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1histograms~1%7Bfield%7D%2Fget
 func (s *PlayerService) Histograms(accountID int64, field string, params *PlayerParam) ([]PlayerHistogram, *http.Response, error) {
 	if params == nil {
@@ -276,8 +274,7 @@ func (s *PlayerService) Histograms(accountID int64, field string, params *Player
 	return *histograms, resp, relevantError(err, *apiError)
 }
 
-// Matches returns recent matches played by a specific player, can be
-// queried to tune results.
+// Matches returns recent matches played by a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1matches%2Fget
 func (s *PlayerService) Matches(accountID int64, params *PlayerParam) ([]PlayerMatch, *http.Response, error) {
 	if params == nil {
@@ -303,7 +300,7 @@ func (s *PlayerService) Peers(accountID int64, params *PlayerParam) ([]PlayerPee
 	return *peers, resp, relevantError(err, *apiError)
 }
 
-// Player returns information about a specific player.
+// Player returns information about a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D%2Fget
 func (s *PlayerService) Player(accountID int64) (Player, *http.Response, error) {
 	player := new(Player)
@@ -326,7 +323,7 @@ func (s *PlayerService) Pros(accountID int64, params *PlayerParam) ([]PlayerPros
 	return *pros, resp, relevantError(err, *apiError)
 }
 
-// Rankings returns ranking history for a specific player.
+// Rankings returns ranking history for a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1rankings%2Fget
 func (s *PlayerService) Rankings(accountID int64) ([]PlayerRankings, *http.Response, error) {
 	rankings := new([]PlayerRankings)
@@ -336,7 +333,7 @@ func (s *PlayerService) Rankings(accountID int64) ([]PlayerRankings, *http.Respo
 	return *rankings, resp, relevantError(err, *apiError)
 }
 
-// Ratings returns rating history for a specific player.
+// Ratings returns rating history for a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1ratings%2Fget
 func (s *PlayerService) Ratings(accountID int64) ([]PlayerRatings, *http.Response, error) {
 	ratings := new([]PlayerRatings)
@@ -346,7 +343,7 @@ func (s *PlayerService) Ratings(accountID int64) ([]PlayerRatings, *http.Respons
 	return *ratings, resp, relevantError(err, *apiError)
 }
 
-// RecentMatches returns recent matches played by a specific player.
+// RecentMatches returns recent matches played by a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1recentMatches%2Fget
 func (s *PlayerService) RecentMatches(accountID int64) ([]PlayerMatch, *http.Response, error) {
 	playermatches := new([]PlayerMatch)
@@ -356,7 +353,7 @@ func (s *PlayerService) RecentMatches(accountID int64) ([]PlayerMatch, *http.Res
 	return *playermatches, resp, relevantError(err, *apiError)
 }
 
-// Totals returns the total in stats for a specific player.
+// Totals returns totals in stats for a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1totals%2Fget
 func (s *PlayerService) Totals(accountID int64, params *PlayerParam) ([]PlayerTotals, *http.Response, error) {
 	if params == nil {
@@ -369,7 +366,7 @@ func (s *PlayerService) Totals(accountID int64, params *PlayerParam) ([]PlayerTo
 	return *totals, resp, relevantError(err, *apiError)
 }
 
-// WardMap returns wards placed in matches by a specific player.
+// WardMap returns wards placed in matches by a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1wardmap%2Fget
 func (s *PlayerService) WardMap(accountID int64, params *PlayerParam) (PlayerWardMap, *http.Response, error) {
 	if params == nil {
@@ -382,7 +379,7 @@ func (s *PlayerService) WardMap(accountID int64, params *PlayerParam) (PlayerWar
 	return *wardmap, resp, relevantError(err, *apiError)
 }
 
-// WinLoss returns the win/loss count for a specific player.
+// WinLoss returns the win/loss count for a player.
 // https://docs.opendota.com/#tag/players%2Fpaths%2F~1players~1%7Baccount_id%7D~1wl%2Fget
 func (s *PlayerService) WinLoss(accountID int64, params *PlayerParam) (WinLoss, *http.Response, error) {
 	if params == nil {

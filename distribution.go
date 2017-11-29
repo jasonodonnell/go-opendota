@@ -62,8 +62,7 @@ type sum struct {
 	Count int `json:"count"`
 }
 
-// Distributions returns a collection of distributions of MMR throughout
-// different regions.
+// Distributions returns a collection of distributions of MMR for different regions.
 // https://docs.opendota.com/#tag/distributions%2Fpaths%2F~1distributions%2Fget
 func (s *DistributionService) Distributions() (Distribution, *http.Response, error) {
 	distribution := new(Distribution)

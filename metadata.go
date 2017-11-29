@@ -12,12 +12,12 @@ func newMetadataService(sling *sling.Sling) *MetadataService {
 	}
 }
 
-// MetadataService provides methods for the site metadata.
+// MetadataService provides methods for the OpenDota site metadata.
 type MetadataService struct {
 	sling *sling.Sling
 }
 
-// Metadata describes information about the site
+// Metadata describes information about the OpenDota site.
 type Metadata struct {
 	Banner string `json:"banner"`
 	Cheese cheese `json:"cheese"`
@@ -28,7 +28,7 @@ type cheese struct {
 	Goal   string `json:"goal"`
 }
 
-// Metadata returns a collection of metadata about the site.
+// Metadata returns a collection of metadata about the OpenDota site.
 // https://docs.opendota.com/#tag/metadata%2Fpaths%2F~1metadata%2Fget
 func (s *MetadataService) Metadata() (Metadata, *http.Response, error) {
 	metadata := new(Metadata)

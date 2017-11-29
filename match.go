@@ -13,8 +13,8 @@ func newMatchService(sling *sling.Sling) *MatchService {
 	}
 }
 
-// MatchService provides methods for accessing teams
-// endpoints.
+// MatchService provides methods for accessing informatoin about
+// teams.
 type MatchService struct {
 	sling *sling.Sling
 }

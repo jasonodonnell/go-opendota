@@ -60,7 +60,7 @@ type TeamPlayers struct {
 	IsCurrentTeamMember bool   `json:"is_current_team_member"`
 }
 
-// Heroes returns a collection of stats about the heroes played by a specific team.
+// Heroes returns a collection of stats about the heroes played by a team.
 // https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D~1heroes%2Fget
 func (s *TeamService) Heroes(teamID int64) ([]TeamHeroes, *http.Response, error) {
 	heroes := new([]TeamHeroes)
@@ -70,7 +70,7 @@ func (s *TeamService) Heroes(teamID int64) ([]TeamHeroes, *http.Response, error)
 	return *heroes, resp, relevantError(err, *apiError)
 }
 
-// Matches returns a collection of matches for a specific team.
+// Matches returns a collection of matches for a team.
 // https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D~1matches%2Fget
 func (s *TeamService) Matches(teamID int64) ([]TeamMatch, *http.Response, error) {
 	matches := new([]TeamMatch)
@@ -80,7 +80,7 @@ func (s *TeamService) Matches(teamID int64) ([]TeamMatch, *http.Response, error)
 	return *matches, resp, relevantError(err, *apiError)
 }
 
-// Players returns a collection of people that played on a specific team.
+// Players returns a collection of people that played on a team.
 // https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D~1players%2Fget
 func (s *TeamService) Players(teamID int64) ([]TeamPlayers, *http.Response, error) {
 	players := new([]TeamPlayers)
@@ -90,7 +90,7 @@ func (s *TeamService) Players(teamID int64) ([]TeamPlayers, *http.Response, erro
 	return *players, resp, relevantError(err, *apiError)
 }
 
-// Team returns a collection for a specific team.
+// Team returns a collection for a team.
 // https://docs.opendota.com/#tag/teams%2Fpaths%2F~1teams~1%7Bteam_id%7D%2Fget
 func (s *TeamService) Team(teamID int64) (Team, *http.Response, error) {
 	team := new(Team)

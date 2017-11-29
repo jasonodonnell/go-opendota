@@ -54,7 +54,7 @@ type livePlayers struct {
 	LockedUntil int    `json:"locked_until,omitempty"`
 }
 
-// Live returns a collection of the top currently live games.
+// Live returns a collection of the top live games.
 // https://docs.opendota.com/#tag/live%2Fpaths%2F~1live%2Fget
 func (s *LiveService) Live() ([]LiveGame, *http.Response, error) {
 	livegames := new([]LiveGame)

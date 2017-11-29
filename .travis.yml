@@ -13,7 +13,6 @@ install:
 
 before_script:
   - /tmp/go/bin/gofmt -w .
-  # If `gofmt` yielded any changes, this will fail with an error message
   - git diff
   - git add .
   - git diff-index --cached --exit-code HEAD
