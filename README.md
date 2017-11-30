@@ -50,6 +50,9 @@ fmt.Println(match.DireTeam.Name, "VS", match.RadiantTeam.Name)
 ### Player
 
 ```go
+// OpenDota client
+client := opendota.NewClient(httpClient)
+
 // Get Player Data
 player, res, err := client.PlayerService.Player(111620041)
 fmt.Println(player.Profile.Name, player.SoloCompetitiveRank)
@@ -68,3 +71,7 @@ for _, game := range wins {
 ## License
 
 [MIT License](LICENSE)
+
+## Logo
+
+Thanks to [Maria Ninfa](http://marianinfa.mx/) for the Gopher design!
