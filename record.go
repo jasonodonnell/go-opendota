@@ -12,13 +12,12 @@ func newRecordService(sling *sling.Sling) *RecordService {
 	}
 }
 
-// RecordService provides methods for accessing information
-// about records for a stat.
+// RecordService provides a method for accessing records for a field.
 type RecordService struct {
 	sling *sling.Sling
 }
 
-// Record is a collection of information about records for a stat.
+// Record represents a record for a field.
 type Record struct {
 	MatchID   string `json:"match_id"`
 	StartTime string `json:"start_time"`
@@ -26,7 +25,7 @@ type Record struct {
 	Score     string `json:"score"`
 }
 
-// Records returns a collection of record stats for a field.
+// Records takes a field and returns the records for that field.
 // https://docs.opendota.com/#tag/records%2Fpaths%2F~1records~1%7Bfield%7D%2Fget
 func (s *RecordService) Records(field string) ([]Record, *http.Response, error) {
 	record := new([]Record)

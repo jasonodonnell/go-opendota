@@ -13,8 +13,8 @@ func newRankingService(sling *sling.Sling) *RankingService {
 	}
 }
 
-// RankingService provides methods for accessing the ranking of
-// heroes by players.
+// RankingService provides a method for accessing ranking of
+// heroes for a player.
 type RankingService struct {
 	sling *sling.Sling
 }
@@ -23,8 +23,7 @@ type rankingParam struct {
 	heroID string `url:"hero_id"`
 }
 
-// Ranking is a collection of information about the top
-// players of a specific hero.
+// Ranking represents the top player rankings for a hero.
 type Ranking struct {
 	HeroID   int       `json:"hero_id"`
 	Rankings []ranking `json:"rankings"`
@@ -40,7 +39,7 @@ type ranking struct {
 	SoloCompetitiveRank int     `json:"solo_competitive_rank"`
 }
 
-// Rankings returns the top ranking of a hero by players.
+// Rankings takes a Hero ID and returns the top player rankings for a hero.
 // https://docs.opendota.com/#tag/rankings%2Fpaths%2F~1rankings%2Fget
 func (s *RankingService) Rankings(heroID int) (Ranking, *http.Response, error) {
 	params := &rankingParam{}

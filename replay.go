@@ -12,8 +12,7 @@ func newReplayService(sling *sling.Sling) *ReplayService {
 	}
 }
 
-// ReplayService provides methods for accesing information about
-// match replays.
+// ReplayService provides a method for accesing replay data.
 type ReplayService struct {
 	sling *sling.Sling
 }
@@ -22,7 +21,7 @@ type replayParam struct {
 	MatchID []int `url:"match_id"`
 }
 
-// Replay is a collection of information about a specific replay.
+// Replay represents a Dota 2 replay.
 type Replay struct {
 	MatchID    int64 `json:"match_id"`
 	Cluster    int   `json:"cluster"`
@@ -31,7 +30,8 @@ type Replay struct {
 	SeriesType int   `json:"series_type"`
 }
 
-// Replays returns a collection of match replays.
+// Replays takes an array of  Match IDs and returns replays for those
+// matches.
 // https://docs.opendota.com/#tag/replays%2Fpaths%2F~1replays%2Fget
 func (s *ReplayService) Replays(matchID []int) ([]Replay, *http.Response, error) {
 	params := &replayParam{}

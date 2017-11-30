@@ -12,12 +12,13 @@ func newProMatchService(sling *sling.Sling) *ProMatchService {
 	}
 }
 
-// ProMatchService provides methods for accessing pro matches.
+// ProMatchService provides a method for accessing professional
+// matches.
 type ProMatchService struct {
 	sling *sling.Sling
 }
 
-// ProMatch is a collection of stats about a pro match.
+// ProMatch represents a professional match in Dota 2.
 type ProMatch struct {
 	MatchID       int64  `json:"match_id"`
 	Duration      int    `json:"duration"`
@@ -35,7 +36,7 @@ type ProMatch struct {
 	RadiantWin    bool   `json:"radiant_win"`
 }
 
-// Matches returns a collection about pro matches.
+// Matches returns a collection of professional matches.
 // https://docs.opendota.com/#tag/pro-matches%2Fpaths%2F~1proMatches%2Fget
 func (s *ProMatchService) Matches() ([]ProMatch, *http.Response, error) {
 	promatches := new([]ProMatch)

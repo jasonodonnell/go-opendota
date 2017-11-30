@@ -46,12 +46,8 @@ func TestExplorerService_Explorer(t *testing.T) {
 		RowAsArray: false,
 	}
 
-	query := &ExplorerParam{
-		SQL: "SELECT%20*%20FROM%20public.heroes",
-	}
-
 	client := NewClient(httpClient)
-	queryresult, _, err := client.ExplorerService.Explore(query)
+	queryresult, _, err := client.ExplorerService.Explore("SELECT%20*%20FROM%20public.heroes")
 	assert.Nil(t, err)
 	assert.Equal(t, expected, queryresult)
 }

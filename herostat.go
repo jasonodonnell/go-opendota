@@ -12,13 +12,12 @@ func newHeroStatService(sling *sling.Sling) *HeroStatService {
 	}
 }
 
-// HeroStatService provides methods for accessing information
-// about hero stats.
+// HeroStatService provides a method for accessing hero stats.
 type HeroStatService struct {
 	sling *sling.Sling
 }
 
-// HeroStat is a collection of information about a hero.
+// HeroStat represents a collection of statistics about a hero.
 type HeroStat struct {
 	ID                int      `json:"id"`
 	Name              string   `json:"name"`

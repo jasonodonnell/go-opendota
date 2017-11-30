@@ -13,14 +13,12 @@ func newMatchService(sling *sling.Sling) *MatchService {
 	}
 }
 
-// MatchService provides methods for accessing informatoin about
-// teams.
+// MatchService provides a method for accessing information about matches.
 type MatchService struct {
 	sling *sling.Sling
 }
 
-// Match is a collection of information about a specific Dota 2
-// match.
+// Match represents the data about a match.
 type Match struct {
 	MatchID               int64          `json:"match_id"`
 	BarracksStatusDire    int            `json:"barracks_status_dire"`
@@ -332,7 +330,7 @@ type teamfights struct {
 	Players   []teamfightplayers `json:"players"`
 }
 
-// Match returns a collection for a specific match.
+// Match takes a Match ID and returns a collection about match.
 // https://docs.opendota.com/#tag/matches
 func (s *MatchService) Match(matchID int64) (Match, *http.Response, error) {
 	match := new(Match)

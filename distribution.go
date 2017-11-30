@@ -12,14 +12,14 @@ func newDistributionService(sling *sling.Sling) *DistributionService {
 	}
 }
 
-// DistributionService provides methods for the distributions
-// of MMR data.
+// DistributionService provides a method for accesing
+// distribution data for Matchmaking Ranking (MMR).
 type DistributionService struct {
 	sling *sling.Sling
 }
 
-// Distribution is a collection of information about MMR per
-// region.
+// Distribution holds distributions of Matchmaking Ranking (MMR)
+// data for each region.
 type Distribution struct {
 	Mmr        mmr        `json:"mmr"`
 	CountryMmr countryMmr `json:"country_mmr"`
@@ -62,7 +62,8 @@ type sum struct {
 	Count int `json:"count"`
 }
 
-// Distributions returns a collection of distributions of MMR for different regions.
+// Distributions returns a collection of Matchmaking Ranking (MMR) distributions
+// for each region.
 // https://docs.opendota.com/#tag/distributions%2Fpaths%2F~1distributions%2Fget
 func (s *DistributionService) Distributions() (Distribution, *http.Response, error) {
 	distribution := new(Distribution)

@@ -60,7 +60,7 @@ func TestStatusService_Status(t *testing.T) {
 		LoadTimes: map[string]int{
 			"50": 28,
 		},
-		Health: health{
+		Health: Health{
 			PostgresUsage: usage{
 				Metric:    142788255916,
 				Threshold: 200000000000,

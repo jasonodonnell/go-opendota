@@ -12,13 +12,12 @@ func newLiveService(sling *sling.Sling) *LiveService {
 	}
 }
 
-// LiveService provides methods for accessing information
-// about live games.
+// LiveService provides a method for accessing live games.
 type LiveService struct {
 	sling *sling.Sling
 }
 
-// LiveGame is a collection of information about current live games.
+// LiveGame represents a live game.
 type LiveGame struct {
 	ActivateTime   int           `json:"activate_time"`
 	DeactivateTime int           `json:"deactivate_time"`

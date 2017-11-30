@@ -12,13 +12,12 @@ func newStatusService(sling *sling.Sling) *StatusService {
 	}
 }
 
-// StatusService provides methods for getting stats
-// about the OpenDota API.
+// StatusService provides a method for accessing OpenDota API stats.
 type StatusService struct {
 	sling *sling.Sling
 }
 
-// Status is a collection of stats about the OpenDota API.
+// Status represents the stats for the OpenDota API.
 type Status struct {
 	UserPlayers             int              `json:"user_players"`
 	TrackedPlayers          int              `json:"tracked_players"`
@@ -37,7 +36,7 @@ type Status struct {
 	LastAdded               []matchStatus    `json:"last_added"`
 	LastParsed              []matchStatus    `json:"last_parsed"`
 	LoadTimes               map[string]int   `json:"load_times"`
-	Health                  health           `json:"health"`
+	Health                  Health           `json:"health"`
 }
 
 type hostnameCounts struct {
@@ -51,8 +50,7 @@ type matchStatus struct {
 	StartTime int   `json:"start_time"`
 }
 
-// Status returns information about the current status of
-// the OpenDota API.
+// Status returns the current status of the OpenDota API.
 // https://docs.opendota.com/#tag/status%2Fpaths%2F~1status%2Fget
 func (s *StatusService) Status() (Status, *http.Response, error) {
 	status := new(Status)

@@ -12,12 +12,13 @@ func newProPlayerService(sling *sling.Sling) *ProPlayerService {
 	}
 }
 
-// ProPlayerService provides methods for accessing pro endpoints.
+// ProPlayerService provides a method for accessing professional player
+// information.
 type ProPlayerService struct {
 	sling *sling.Sling
 }
 
-// ProPlayer is a collectiong about a professional dota player.
+// ProPlayer represents a professional player in Dota 2.
 type ProPlayer struct {
 	AccountID       int    `json:"account_id"`
 	SteamID         string `json:"steamid"`
@@ -43,7 +44,7 @@ type ProPlayer struct {
 	LockedUntil     int    `json:"locked_until"`
 }
 
-// Players returns a collection about pro players.
+// Players returns a collection about professional players.
 // https://docs.opendota.com/#tag/pro-players%2Fpaths%2F~1proPlayers%2Fget
 func (s *ProPlayerService) Players() ([]ProPlayer, *http.Response, error) {
 	proplayers := new([]ProPlayer)

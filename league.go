@@ -12,13 +12,13 @@ func newLeagueService(sling *sling.Sling) *LeagueService {
 	}
 }
 
-// LeagueService provides methods for accesing information
+// LeagueService provides a method for accessing information
 // about leagues.
 type LeagueService struct {
 	sling *sling.Sling
 }
 
-// League is a collection of information about a league.
+// League represents a league in Dota 2.
 type League struct {
 	LeagueID int    `json:"leagueid"`
 	Ticket   string `json:"ticket"`
@@ -27,7 +27,7 @@ type League struct {
 	Name     string `json:"name"`
 }
 
-// Leagues returns a collection of information about all leagues.
+// Leagues returns a collection of all leagues in Dota 2.
 // https://docs.opendota.com/#tag/leagues%2Fpaths%2F~1leagues%2Fget
 func (s *LeagueService) Leagues() ([]League, *http.Response, error) {
 	leagues := new([]League)

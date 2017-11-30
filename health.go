@@ -12,17 +12,14 @@ func newHealthService(sling *sling.Sling) *HealthService {
 	}
 }
 
-// HealthService provides methods for getting health stats
+// HealthService provides a method for accessing health stats
 // about the OpenDota API.
 type HealthService struct {
 	sling *sling.Sling
 }
 
-// Health is a collection of health stats about the OpenDota API
-// stack.
-type Health health
-
-type health struct {
+// Health represents health stats for the OpenDota API.
+type Health struct {
 	PostgresUsage  usage      `json:"postgresUsage"`
 	RedisUsage     redisUsage `json:"redisUsage"`
 	ParseDelay     usage      `json:"parseDelay"`
@@ -44,8 +41,7 @@ type usage struct {
 	Timestamp int   `json:"timestamp"`
 }
 
-// Health returns information about the current health of
-// the OpenDota API stack.
+// Health returns health stats for the OpenDota API.
 // https://docs.opendota.com/#tag/health%2Fpaths%2F~1health%2Fget
 func (s *HealthService) Health() (Health, *http.Response, error) {
 	health := new(Health)

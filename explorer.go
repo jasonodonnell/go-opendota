@@ -12,21 +12,18 @@ func newExplorerService(sling *sling.Sling) *ExplorerService {
 	}
 }
 
-// ExplorerService provides methods for exploring OpenDota's
-// PostgreSQL database.
+// ExplorerService provides a method for exploring
+// OpenDota's PostgreSQL database.
 type ExplorerService struct {
 	sling *sling.Sling
 }
 
-// ExplorerParam is the parameter for specifying the sql query
-// to run against the PostgreSQL database.  It should be encoded
-// for use in URLs
-type ExplorerParam struct {
+type explorerParam struct {
 	SQL string `url:"sql"`
 }
 
-// QueryResult is a collection returned by a sql query
-// against the PostgreSQL database.
+// QueryResult represents the results returned by OpenDota's
+// PostgreSQL database.
 type QueryResult struct {
 	Command    string                   `json:"command"`
 	RowCount   int                      `json:"rowCount"`
@@ -47,9 +44,11 @@ type field struct {
 	Format           string `json:"format"`
 }
 
-// Explore returns a collection for a specific SQL query.
+// Explore takes a SQL query as an argument and returns query results.
 // https://docs.opendota.com/#tag/explorer%2Fpaths%2F~1explorer%2Fget
-func (s *ExplorerService) Explore(param *ExplorerParam) (QueryResult, *http.Response, error) {
+func (s *ExplorerService) Explore(query string) (QueryResult, *http.Response, error) {
+	param := &explorerParam{}
+	param.SQL = query
 	queryresult := new(QueryResult)
 	apiError := new(APIError)
 	resp, err := s.sling.New().QueryStruct(param).Receive(queryresult, apiError)

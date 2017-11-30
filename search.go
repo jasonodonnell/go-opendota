@@ -12,20 +12,20 @@ func newSearchService(sling *sling.Sling) *SearchService {
 	}
 }
 
-// SearchService provides methods for searching players by
-// personaname.  Default similarity is 0.51.
+// SearchService provides a method for searching players by
+// personaname.
 type SearchService struct {
 	sling *sling.Sling
 }
 
-// SearchParams are the paramters for querying the
-// search service.
+// SearchParams represents optional query parameters for the Search method.
+// Default similarity is 0.51.
 type SearchParams struct {
 	query      string  `url:"q"`
 	Similarity float64 `url:"similarity,omitempty"`
 }
 
-// Search is a collection about a player.
+// Search represents a player for a given personaname.
 type Search struct {
 	AccountID     int     `json:"account_id"`
 	AvatarFull    string  `json:"avatarfull"`
@@ -34,8 +34,8 @@ type Search struct {
 	Similarity    float64 `json:"similarity"`
 }
 
-// Search returns an array of players who are similar to the query
-// provided.
+// Search takes a query string and optional params and returns an array
+// of players who are similar to the query provided.
 // https://docs.opendota.com/#tag/search%2Fpaths%2F~1search%2Fget
 func (s *SearchService) Search(query string, params *SearchParams) ([]Search, *http.Response, error) {
 	if params == nil {

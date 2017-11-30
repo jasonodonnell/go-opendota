@@ -12,20 +12,20 @@ func newSchemaService(sling *sling.Sling) *SchemaService {
 	}
 }
 
-// SchemaService provides methods for accessing information
-// about the database schema.
+// SchemaService provides a method for accessing the OpenDota
+// database schema.
 type SchemaService struct {
 	sling *sling.Sling
 }
 
-// Schema is a collection of information about the database schema.
+// Schema represents the database schema for OpenDota.
 type Schema struct {
 	TableName  string `json:"table_name"`
 	ColumnName string `json:"column_name"`
 	DataType   string `json:"data_type"`
 }
 
-// Schema returns a collection about the database schema.
+// Schema returns the OpenDota database schema.
 // https://docs.opendota.com/#tag/schema%2Fpaths%2F~1schema%2Fget
 func (s *SchemaService) Schema() ([]Schema, *http.Response, error) {
 	schema := new([]Schema)

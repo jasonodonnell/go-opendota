@@ -13,8 +13,8 @@ func newBenchmarkService(sling *sling.Sling) *BenchmarkService {
 	}
 }
 
-// BenchmarkService provides methods for retrieving
-// information about benchmarks of a hero.
+// BenchmarkService provides a method for benchmark
+// statistics in OpenDota.
 type BenchmarkService struct {
 	sling *sling.Sling
 }
@@ -23,7 +23,7 @@ type benchmarkParam struct {
 	heroID string `url:"hero_id"`
 }
 
-// Benchmark is a collection of benchmarks for a hero.
+// Benchmark holds a collection of benchmarks for a hero.
 type Benchmark struct {
 	HeroID int             `json:"hero_id"`
 	Result benchmarkResult `json:"result"`
@@ -44,7 +44,8 @@ type benchmarkResult struct {
 	TowerDamage       []benchmark `json:"tower_damage"`
 }
 
-// Benchmarks returns a collection of benchmarks for a hero.
+// Benchmarks takes a Hero ID and returns the corresponding benchmarks
+// for that hero.
 // https://docs.opendota.com/#tag/benchmarks%2Fpaths%2F~1benchmarks%2Fget
 func (s *BenchmarkService) Benchmarks(heroID int) (Benchmark, *http.Response, error) {
 	param := &benchmarkParam{}

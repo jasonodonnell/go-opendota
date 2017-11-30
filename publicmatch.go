@@ -12,19 +12,19 @@ func newPublicMatchService(sling *sling.Sling) *PublicMatchService {
 	}
 }
 
-// PublicMatchService provides methods for accessing public matches.
+// PublicMatchService provides a method for accessing public matches.
 type PublicMatchService struct {
 	sling *sling.Sling
 }
 
-// PublicMatchParam are the parameters for customizing queries.
+// PublicMatchParam can be used to customize a public match query.
 type PublicMatchParam struct {
 	MmrAscending    int   `url:"mmr_ascending,omitempty"`
 	MmrDescending   int   `url:"mmr_descending,omitempty"`
 	LessThanMatchID int64 `url:"less_than_match_id,omitempty"`
 }
 
-// PublicMatch is a collection about public matches.
+// PublicMatch represents a public match in Dota 2.
 type PublicMatch struct {
 	MatchID     int64  `json:"match_id"`
 	MatchSeqNum int64  `json:"match_seq_num"`
@@ -39,7 +39,7 @@ type PublicMatch struct {
 	DireTeam    string `json:"dire_team"`
 }
 
-// Matches returns a collection about public matches.
+// Matches takes optional params and returns public match data.
 // https://docs.opendota.com/#tag/public-matches%2Fpaths%2F~1publicMatches%2Fget
 func (s *PublicMatchService) Matches(params *PublicMatchParam) ([]PublicMatch, *http.Response, error) {
 	publicmatches := new([]PublicMatch)
