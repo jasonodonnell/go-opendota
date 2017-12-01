@@ -19,7 +19,7 @@ func TestMetadataService_Metadata(t *testing.T) {
 	})
 
 	expected := Metadata{
-		Cheese: cheese{
+		Cheese: Cheese{
 			Cheese: "130",
 			Goal:   "100",
 		},

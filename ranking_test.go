@@ -18,10 +18,10 @@ func TestRankingService_Rankings(t *testing.T) {
 		fmt.Fprintf(w, `{"hero_id":36,"rankings":[{"account_id":40586005,"score":1171.07373076237,"personaname":"wwd","name":"WWD","avatar":"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fb/fbb125a490522eac46c427e5cd2f6c1a161bab68.jpg","last_login":"2015-09-21T20:02:09.044Z","solo_competitive_rank":7532}]}`)
 	})
 
-	expected := Ranking{
+	expected := HeroRanking{
 		HeroID: 36,
-		Rankings: []ranking{
-			ranking{
+		Rankings: []Ranking{
+			Ranking{
 				AccountID:           40586005,
 				Score:               1171.07373076237,
 				Personaname:         "wwd",

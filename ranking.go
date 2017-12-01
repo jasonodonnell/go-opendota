@@ -24,12 +24,12 @@ type rankingParam struct {
 }
 
 // Ranking represents the top player rankings for a hero.
-type Ranking struct {
+type HeroRanking struct {
 	HeroID   int       `json:"hero_id"`
-	Rankings []ranking `json:"rankings"`
+	Rankings []Ranking `json:"rankings"`
 }
 
-type ranking struct {
+type Ranking struct {
 	AccountID           int     `json:"account_id"`
 	Score               float64 `json:"score"`
 	Personaname         string  `json:"personaname"`
@@ -41,10 +41,10 @@ type ranking struct {
 
 // Rankings takes a Hero ID and returns the top player rankings for a hero.
 // https://docs.opendota.com/#tag/rankings%2Fpaths%2F~1rankings%2Fget
-func (s *RankingService) Rankings(heroID int) (Ranking, *http.Response, error) {
+func (s *RankingService) Rankings(heroID int) (HeroRanking, *http.Response, error) {
 	params := &rankingParam{}
 	params.heroID = strconv.Itoa(heroID)
-	rankings := new(Ranking)
+	rankings := new(HeroRanking)
 	apiError := new(APIError)
 	resp, err := s.sling.New().QueryStruct(params).Receive(rankings, apiError)
 	return *rankings, resp, relevantError(err, *apiError)

@@ -31,27 +31,27 @@ func TestStatusService_Status(t *testing.T) {
 		FhQueue:                 0,
 		GcQueue:                 0,
 		MmrQueue:                0,
-		Retriever: []hostnameCounts{
-			hostnameCounts{
+		Retriever: []HostnameCounts{
+			HostnameCounts{
 				Hostname: "retriever9",
 				Count:    "1",
 			},
 		},
-		APIPaths: []hostnameCounts{
-			hostnameCounts{
+		APIPaths: []HostnameCounts{
+			HostnameCounts{
 				Hostname: "benchmarks",
 				Count:    "1",
 			},
 		},
-		LastAdded: []matchStatus{
-			matchStatus{
+		LastAdded: []MatchStatus{
+			MatchStatus{
 				MatchID:   3572944537,
 				Duration:  2460,
 				StartTime: 1511187728,
 			},
 		},
-		LastParsed: []matchStatus{
-			matchStatus{
+		LastParsed: []MatchStatus{
+			MatchStatus{
 				MatchID:   3572868667,
 				Duration:  3892,
 				StartTime: 1511185271,

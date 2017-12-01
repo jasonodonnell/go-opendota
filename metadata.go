@@ -20,10 +20,10 @@ type MetadataService struct {
 // Metadata represents site metadata for OpenDota.
 type Metadata struct {
 	Banner string `json:"banner"`
-	Cheese cheese `json:"cheese"`
+	Cheese Cheese `json:"cheese"`
 }
 
-type cheese struct {
+type Cheese struct {
 	Cheese string `json:"cheese"`
 	Goal   string `json:"goal"`
 }

@@ -31,20 +31,20 @@ type Status struct {
 	FhQueue                 int              `json:"fhQueue"`
 	GcQueue                 int              `json:"gcQueue"`
 	MmrQueue                int              `json:"mmrQueue"`
-	Retriever               []hostnameCounts `json:"retriever"`
-	APIPaths                []hostnameCounts `json:"api_paths"`
-	LastAdded               []matchStatus    `json:"last_added"`
-	LastParsed              []matchStatus    `json:"last_parsed"`
+	Retriever               []HostnameCounts `json:"retriever"`
+	APIPaths                []HostnameCounts `json:"api_paths"`
+	LastAdded               []MatchStatus    `json:"last_added"`
+	LastParsed              []MatchStatus    `json:"last_parsed"`
 	LoadTimes               map[string]int   `json:"load_times"`
 	Health                  Health           `json:"health"`
 }
 
-type hostnameCounts struct {
+type HostnameCounts struct {
 	Hostname string `json:"hostname"`
 	Count    string `json:"count"`
 }
 
-type matchStatus struct {
+type MatchStatus struct {
 	MatchID   int64 `json:"match_id"`
 	Duration  int   `json:"duration"`
 	StartTime int   `json:"start_time"`
