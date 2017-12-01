@@ -19,19 +19,19 @@ func TestDistributionService_Distributions(t *testing.T) {
 	})
 
 	expected := Distribution{
-		Mmr: mmr{
+		Mmr: Mmr{
 			Command:  "SELECT",
 			RowCount: 98,
-			Rows: []mmrRow{
-				mmrRow{
+			Rows: []MmrRow{
+				MmrRow{
 					Bin:           0,
 					BinName:       0,
 					Count:         9786,
 					CumulativeSum: 9786,
 				},
 			},
-			Fields: []field{
-				field{
+			Fields: []Field{
+				Field{
 					Name:             "bin",
 					TableID:          0,
 					ColumnID:         0,
@@ -42,23 +42,23 @@ func TestDistributionService_Distributions(t *testing.T) {
 				},
 			},
 			RowAsArray: false,
-			Sum: sum{
+			Sum: Sum{
 				Count: 2444278,
 			},
 		},
-		CountryMmr: countryMmr{
+		CountryMmr: CountryMmr{
 			Command:  "SELECT",
 			RowCount: 255,
-			Rows: []countryMmrRow{
-				countryMmrRow{
+			Rows: []CountryMmrRow{
+				CountryMmrRow{
 					Loccountrycode: "AN",
 					Count:          1,
 					Avg:            "4113",
 					Common:         "AN",
 				},
 			},
-			Fields: []field{
-				field{
+			Fields: []Field{
+				Field{
 					Name:             "loccountrycode",
 					TableID:          16405,
 					ColumnID:         12,

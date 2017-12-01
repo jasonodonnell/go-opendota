@@ -20,45 +20,45 @@ func TestBenchmarkService_Benchmarks(t *testing.T) {
 
 	expected := Benchmark{
 		HeroID: 36,
-		Result: benchmarkResult{
-			GoldPerMin: []benchmark{
-				benchmark{
+		Result: BenchmarkResult{
+			GoldPerMin: []BenchmarkPercentile{
+				BenchmarkPercentile{
 					Percentile: 0.1,
 					Value:      268,
 				},
 			},
-			XpPerMin: []benchmark{
-				benchmark{
+			XpPerMin: []BenchmarkPercentile{
+				BenchmarkPercentile{
 					Percentile: 0.1,
 					Value:      334,
 				},
 			},
-			KillsPerMin: []benchmark{
-				benchmark{
+			KillsPerMin: []BenchmarkPercentile{
+				BenchmarkPercentile{
 					Percentile: 0.1,
 					Value:      0.07518796992481203,
 				},
 			},
-			LastHitsPerMin: []benchmark{
-				benchmark{
+			LastHitsPerMin: []BenchmarkPercentile{
+				BenchmarkPercentile{
 					Percentile: 0.1,
 					Value:      1.4967177242888403,
 				},
 			},
-			HeroDamagePerMin: []benchmark{
-				benchmark{
+			HeroDamagePerMin: []BenchmarkPercentile{
+				BenchmarkPercentile{
 					Percentile: 0.1,
 					Value:      260.321608040201,
 				},
 			},
-			HeroHealingPerMin: []benchmark{
-				benchmark{
+			HeroHealingPerMin: []BenchmarkPercentile{
+				BenchmarkPercentile{
 					Percentile: 0.1,
 					Value:      25.52536231884058,
 				},
 			},
-			TowerDamage: []benchmark{
-				benchmark{
+			TowerDamage: []BenchmarkPercentile{
+				BenchmarkPercentile{
 					Percentile: 0.1,
 					Value:      12,
 				},

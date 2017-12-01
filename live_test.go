@@ -36,8 +36,8 @@ func TestLiveService_Live(t *testing.T) {
 			RadiantLead:    -10,
 			RadiantScore:   3,
 			DireScore:      5,
-			Players: []livePlayers{
-				livePlayers{
+			Players: []LivePlayers{
+				LivePlayers{
 					AccountID:   111473138,
 					HeroID:      112,
 					Name:        "Panda",

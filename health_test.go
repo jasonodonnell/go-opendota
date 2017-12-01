@@ -19,32 +19,32 @@ func TestHealthService_Health(t *testing.T) {
 	})
 
 	expected := Health{
-		PostgresUsage: usage{
+		PostgresUsage: Usage{
 			Metric:    142794834092,
 			Threshold: 200000000000,
 			Timestamp: 1511193048,
 		},
-		RedisUsage: redisUsage{
+		RedisUsage: RedisUsage{
 			Metric:    "1605460248",
 			Threshold: 2500000000,
 			Timestamp: 1511193044,
 		},
-		ParseDelay: usage{
+		ParseDelay: Usage{
 			Metric:    31678,
 			Threshold: 2000,
 			Timestamp: 1511193044,
 		},
-		CassandraUsage: usage{
+		CassandraUsage: Usage{
 			Metric:    6808540713048,
 			Threshold: 8000000000000,
 			Timestamp: 1511193049,
 		},
-		SeqNumDelay: usage{
+		SeqNumDelay: Usage{
 			Metric:    99,
 			Threshold: 10000,
 			Timestamp: 1511193049,
 		},
-		SteamAPI: usage{
+		SteamAPI: Usage{
 			Metric:    0,
 			Threshold: 1,
 			Timestamp: 1511193051,

@@ -35,11 +35,11 @@ type LiveGame struct {
 	RadiantLead    int           `json:"radiant_lead"`
 	RadiantScore   int           `json:"radiant_score"`
 	DireScore      int           `json:"dire_score"`
-	Players        []livePlayers `json:"players"`
+	Players        []LivePlayers `json:"players"`
 	BuildingState  int           `json:"building_state"`
 }
 
-type livePlayers struct {
+type LivePlayers struct {
 	AccountID   int    `json:"account_id"`
 	HeroID      int    `json:"hero_id"`
 	Name        string `json:"name,omitempty"`

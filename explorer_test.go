@@ -32,8 +32,8 @@ func TestExplorerService_Explorer(t *testing.T) {
 				"legs":           float64(2),
 			},
 		},
-		Fields: []field{
-			field{
+		Fields: []Field{
+			Field{
 				Name:             "id",
 				TableID:          929536173,
 				ColumnID:         1,

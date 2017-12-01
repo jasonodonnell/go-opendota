@@ -29,12 +29,12 @@ type QueryResult struct {
 	RowCount   int                      `json:"rowCount"`
 	Oid        int                      `json:"oid"`
 	Rows       []map[string]interface{} `json:"rows"`
-	Fields     []field                  `json:"fields"`
+	Fields     []Field                  `json:"fields"`
 	RowAsArray bool                     `json:"rowAsArray"`
 	Err        interface{}              `json:"err"`
 }
 
-type field struct {
+type Field struct {
 	Name             string `json:"name"`
 	TableID          int    `json:"tableID"`
 	ColumnID         int    `json:"columnID"`

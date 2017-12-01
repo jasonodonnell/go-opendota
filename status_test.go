@@ -61,32 +61,32 @@ func TestStatusService_Status(t *testing.T) {
 			"50": 28,
 		},
 		Health: Health{
-			PostgresUsage: usage{
+			PostgresUsage: Usage{
 				Metric:    142788255916,
 				Threshold: 200000000000,
 				Timestamp: 1511190988,
 			},
-			RedisUsage: redisUsage{
+			RedisUsage: RedisUsage{
 				Metric:    "1568683016",
 				Threshold: 2500000000,
 				Timestamp: 1511190984,
 			},
-			ParseDelay: usage{
+			ParseDelay: Usage{
 				Metric:    28866,
 				Threshold: 2000,
 				Timestamp: 1511190990,
 			},
-			CassandraUsage: usage{
+			CassandraUsage: Usage{
 				Metric:    6881122290934,
 				Threshold: 8000000000000,
 				Timestamp: 1511190987,
 			},
-			SeqNumDelay: usage{
+			SeqNumDelay: Usage{
 				Metric:    -4794,
 				Threshold: 10000,
 				Timestamp: 1511190989,
 			},
-			SteamAPI: usage{
+			SteamAPI: Usage{
 				Metric:    0,
 				Threshold: 1,
 				Timestamp: 1511190988,

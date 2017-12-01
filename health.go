@@ -20,22 +20,22 @@ type HealthService struct {
 
 // Health represents health stats for the OpenDota API.
 type Health struct {
-	PostgresUsage  usage      `json:"postgresUsage"`
-	RedisUsage     redisUsage `json:"redisUsage"`
-	ParseDelay     usage      `json:"parseDelay"`
-	CassandraUsage usage      `json:"cassandraUsage"`
-	SeqNumDelay    usage      `json:"seqNumDelay"`
-	SteamAPI       usage      `json:"steamApi"`
+	PostgresUsage  Usage      `json:"postgresUsage"`
+	RedisUsage     RedisUsage `json:"redisUsage"`
+	ParseDelay     Usage      `json:"parseDelay"`
+	CassandraUsage Usage      `json:"cassandraUsage"`
+	SeqNumDelay    Usage      `json:"seqNumDelay"`
+	SteamAPI       Usage      `json:"steamApi"`
 }
 
 // Requires special struct due to a bug in OpenDota.
-type redisUsage struct {
+type RedisUsage struct {
 	Metric    string `json:"metric"`
 	Threshold int64  `json:"threshold"`
 	Timestamp int    `json:"timestamp"`
 }
 
-type usage struct {
+type Usage struct {
 	Metric    int64 `json:"metric"`
 	Threshold int64 `json:"threshold"`
 	Timestamp int   `json:"timestamp"`

@@ -22,8 +22,8 @@ func TestMatchService_Match(t *testing.T) {
 		MatchID:               3559037317,
 		BarracksStatusDire:    48,
 		BarracksStatusRadiant: 63,
-		Chat: []chat{
-			chat{
+		Chat: []Chat{
+			Chat{
 				Time:       -41,
 				Type:       "chat",
 				Unit:       "k y le",
@@ -46,15 +46,15 @@ func TestMatchService_Match(t *testing.T) {
 		LobbyType:      1,
 		MatchSeqNum:    3095917221,
 		NegativeVotes:  12,
-		Objectives: []objective{
-			objective{
+		Objectives: []Objective{
+		    Objective{
 				Time: 31,
 				Type: "CHAT_MESSAGE_COURIER_LOST",
 				Team: 2,
 			},
 		},
-		PicksBans: []pickbans{
-			pickbans{
+		PicksBans: []PickBans{
+			PickBans{
 				IsPick:  false,
 				HeroID:  60,
 				Team:    1,
@@ -73,14 +73,14 @@ func TestMatchService_Match(t *testing.T) {
 			0,
 		},
 		StartTime: 1510535111,
-		Teamfights: []teamfights{
-			teamfights{
+		Teamfights: []Teamfights{
+			Teamfights{
 				Start:     266,
 				End:       306,
 				LastDeath: 291,
 				Deaths:    3,
-				Players: []teamfightplayers{
-					teamfightplayers{
+				Players: []TeamfightPlayers{
+					TeamfightPlayers{
 						AbilityUses: map[string]int{
 							"puck_illusory_orb":   2,
 							"puck_ethereal_jaunt": 1,
@@ -107,27 +107,27 @@ func TestMatchService_Match(t *testing.T) {
 		ReplaySalt:         897752925,
 		SeriesID:           177752,
 		SeriesType:         1,
-		League: league{
+		League: MatchLeague{
 			LeagueID: 5627,
 			Ticket:   "econ/leagues/subscriptions_dreamleague_season_8",
 			Banner:   "econ/leagues/subscriptions_dreamleague_season_8_ingame",
 			Tier:     "premium",
 			Name:     "DreamLeague season 8",
 		},
-		RadiantTeam: matchteam{
+		RadiantTeam: MatchTeam{
 			TeamID:  39,
 			Name:    "Evil Geniuses",
 			Tag:     "EG",
 			LogoURL: "http://cloud-3.steamusercontent.com/ugc/142255738559146189/495FE7DC43BFAE03C5237446AB526888CA81827E/",
 		},
-		DireTeam: matchteam{
+		DireTeam: MatchTeam{
 			TeamID:  3,
 			Name:    "compLexity Gaming",
 			Tag:     "coL",
 			LogoURL: "http://cloud-3.steamusercontent.com/ugc/398960342836468051/26C1C5F6C3082FF2A1B706435F7DC0FCF5F5D27F/",
 		},
-		Players: []matchplayer{
-			matchplayer{
+		Players: []MatchPlayer{
+			MatchPlayer{
 				MatchID:    3559037317,
 				PlayerSlot: 0,
 				AbilityUpgradesArr: []int{
@@ -144,8 +144,8 @@ func TestMatchService_Match(t *testing.T) {
 				Backpack0: 41,
 				Backpack1: 46,
 				Backpack2: 0,
-				BuybackLog: []buybacklog{
-					buybacklog{
+				BuybackLog: []BuybackLog{
+					BuybackLog{
 						Time:       2101,
 						Slot:       0,
 						Type:       "buyback_log",
@@ -203,8 +203,8 @@ func TestMatchService_Match(t *testing.T) {
 					"npc_dota_hero_skeleton_king": 1,
 				},
 				Kills: 3,
-				KillsLog: []log{
-					log{
+				KillsLog: []Log{
+					Log{
 						Time: 1218,
 						Key:  "npc_dota_hero_jakiro",
 					},
@@ -223,7 +223,7 @@ func TestMatchService_Match(t *testing.T) {
 				LifeState: map[string]int{
 					"0": 2291,
 				},
-				MaxHeroHit: maxherohit{
+				MaxHeroHit: MaxHeroHit{
 					Type:       "max_hero_hit",
 					Time:       1895,
 					Max:        true,
@@ -239,8 +239,8 @@ func TestMatchService_Match(t *testing.T) {
 						"86": 1,
 					},
 				},
-				ObsLeftLog: []obslog{
-					obslog{
+				ObsLeftLog: []ObsLog{
+					ObsLog{
 						Time:       319,
 						Type:       "obs_left_log",
 						Key:        "[160, 86]",
@@ -253,8 +253,8 @@ func TestMatchService_Match(t *testing.T) {
 						PlayerSlot: 0,
 					},
 				},
-				ObsLog: []obslog{
-					obslog{
+				ObsLog: []ObsLog{
+					ObsLog{
 						Time:       -47,
 						Type:       "obs_log",
 						Key:        "[160, 86]",
@@ -275,8 +275,8 @@ func TestMatchService_Match(t *testing.T) {
 				Purchase: map[string]int{
 					"ultimate_scepter": 1,
 				},
-				PurchaseLog: []log{
-					log{
+				PurchaseLog: []Log{
+					Log{
 						Time: -89,
 						Key:  "circlet",
 					},
@@ -287,8 +287,8 @@ func TestMatchService_Match(t *testing.T) {
 				Runes: map[string]int{
 					"1": 1,
 				},
-				RunesLog: []runeslog{
-					runeslog{
+				RunesLog: []RunesLog{
+					RunesLog{
 						Time: 659,
 						Key:  5,
 					},
@@ -298,8 +298,8 @@ func TestMatchService_Match(t *testing.T) {
 						"122": 1,
 					},
 				},
-				SenLeftLog: []obslog{
-					obslog{
+				SenLeftLog: []ObsLog{
+					ObsLog{
 						Time:       1580,
 						Type:       "sen_left_log",
 						Key:        "[108, 122]",
@@ -312,8 +312,8 @@ func TestMatchService_Match(t *testing.T) {
 						PlayerSlot: 0,
 					},
 				},
-				SenLog: []obslog{
-					obslog{
+				SenLog: []ObsLog{
+					ObsLog{
 						Time:       1334,
 						Type:       "sen_log",
 						Key:        "[108, 122]",
@@ -395,8 +395,8 @@ func TestMatchService_Match(t *testing.T) {
 				ActionsPerMin:       171,
 				LifeStateDead:       86,
 				SoloCompetitiveRank: 7188,
-				Cosmetics: []cosmetics{
-					cosmetics{
+				Cosmetics: []Cosmetics{
+					Cosmetics{
 						ItemID:          6671,
 						Name:            "Merry Wanderer's Brush",
 						Prefab:          "wearable",
@@ -410,32 +410,32 @@ func TestMatchService_Match(t *testing.T) {
 						UsedByHeroes:    "npc_dota_hero_puck",
 					},
 				},
-				Benchmarks: benchmarks{
-					GoldPerMin: rawpct{
+				Benchmarks: Benchmarks{
+					GoldPerMin: RawPCT{
 						Raw: 462,
 						Pct: 0.6323529411764706,
 					},
-					XpPerMin: rawpct{
+					XpPerMin: RawPCT{
 						Raw: 557,
 						Pct: 0.4411764705882353,
 					},
-					KillsPerMin: rawpct{
+					KillsPerMin: RawPCT{
 						Raw: 0.08068130883012102,
 						Pct: 0.17647058823529413,
 					},
-					LastHitsPerMin: rawpct{
+					LastHitsPerMin: RawPCT{
 						Raw: 5.970416853428955,
 						Pct: 0.9558823529411765,
 					},
-					HeroDamagePerMin: rawpct{
+					HeroDamagePerMin: RawPCT{
 						Raw: 409.69968623935455,
 						Pct: 0.2647058823529412,
 					},
-					HeroHealingPerMin: rawpct{
+					HeroHealingPerMin: RawPCT{
 						Raw: 0,
 						Pct: 1,
 					},
-					TowerDamage: rawpct{
+					TowerDamage: RawPCT{
 						Raw: 1355,
 						Pct: 0.6323529411764706,
 					},
