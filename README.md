@@ -5,29 +5,29 @@ Go-OpenDota is a simple Go package for accessing the [OpenDota API](https://docs
 
 Successful queries return native Go structs.
 
-## Services
+### Services
 
-- [x] Benchmarks
-- [x] Distributions
-- [x] Explorer
-- [x] Health
-- [x] Hero Stats
-- [x] Heroes
-- [x] Leagues
-- [x] Live
-- [x] Matches
-- [x] Metadata
-- [x] Players
-- [x] Pro Matches
-- [x] Pro Players
-- [x] Public Matches
-- [x] Rankings 
-- [x] Records 
-- [x] Replays
-- [x] Schema
-- [x] Search
-- [x] Status
-- [x] Teams 
+* Benchmarks
+* Distributions
+* Explorer
+* Health
+* Hero Stats
+* Heroes
+* Leagues
+* Live
+* Matches
+* Metadata
+* Players
+* Pro Matches
+* Pro Players
+* Public Matches
+* Rankings 
+* Records 
+* Replays
+* Schema
+* Search
+* Status
+* Teams 
 
 ## Install
 
@@ -73,6 +73,6 @@ for _, game := range wins {
 
 [MIT License](LICENSE)
 
-## Logo
+## Gopher 
 
-Thanks to [Maria Ninfa](http://marianinfa.mx/) for the Gopher design!
+Thanks to [Maria Ninfa](http://marianinfa.mx/) for the Gopher!
