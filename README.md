@@ -1,4 +1,4 @@
-# go-opendota [![Build Status](https://travis-ci.org/jasonodonnell/go-opendota.svg?branch=master)](https://travis-ci.org/jasonodonnell/go-opendota) [![GoDoc](https://godoc.org/github.com/jasonodonnell/go-opendota?status.png)](https://godoc.org/github.com/jasonodonnell/go-opendota)
+# go-opendota [![Build Status](https://travis-ci.org/jasonodonnell/go-opendota.svg?branch=master)](https://travis-ci.org/jasonodonnell/go-opendota) [![Go Report Card](https://goreportcard.com/badge/github.com/jasonodonnell/go-opendota)](https://goreportcard.com/report/github.com/jasonodonnell/go-opendota) [![GoDoc](https://godoc.org/github.com/jasonodonnell/go-opendota?status.png)](https://godoc.org/github.com/jasonodonnell/go-opendota)
 <img align="right" src="https://i.imgur.com/3uHHUCD.png">
 
 Go-OpenDota is a simple Go package for accessing the [OpenDota API](https://docs.opendota.com/#).  
