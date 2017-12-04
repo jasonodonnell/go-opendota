@@ -23,7 +23,7 @@ type rankingParam struct {
 	heroID string `url:"hero_id"`
 }
 
-// Ranking represents the top player rankings for a hero.
+// HeroRanking represents the top player rankings for a hero.
 type HeroRanking struct {
 	HeroID   int       `json:"hero_id"`
 	Rankings []Ranking `json:"rankings"`

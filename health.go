@@ -28,7 +28,7 @@ type Health struct {
 	SteamAPI       Usage      `json:"steamApi"`
 }
 
-// Requires special struct due to a bug in OpenDota.
+// RedisUsage requires special struct due to a bug in OpenDota.
 type RedisUsage struct {
 	Metric    string `json:"metric"`
 	Threshold int64  `json:"threshold"`
