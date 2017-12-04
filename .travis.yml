@@ -3,10 +3,9 @@ language: go
 
 os:
   - linux
-  - osx
 
 install:
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then wget -O go.tar.gz https://storage.googleapis.com/golang/go1.9.darwin-amd64.tar.gz; else wget -O go.tar.gz https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz; fi
+  - wget -O go.tar.gz https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
   - tar -C /tmp -xvf go.tar.gz go/bin/gofmt
   - rm go.tar.gz
   - go get -v -t ./
