@@ -23,7 +23,7 @@ func TestDistributionService_Distributions(t *testing.T) {
 			Command:  "SELECT",
 			RowCount: 98,
 			Rows: []MmrRow{
-				MmrRow{
+				{
 					Bin:           0,
 					BinName:       0,
 					Count:         9786,
@@ -31,7 +31,7 @@ func TestDistributionService_Distributions(t *testing.T) {
 				},
 			},
 			Fields: []Field{
-				Field{
+				{
 					Name:             "bin",
 					TableID:          0,
 					ColumnID:         0,
@@ -50,7 +50,7 @@ func TestDistributionService_Distributions(t *testing.T) {
 			Command:  "SELECT",
 			RowCount: 255,
 			Rows: []CountryMmrRow{
-				CountryMmrRow{
+				{
 					Loccountrycode: "AN",
 					Count:          1,
 					Avg:            "4113",
@@ -58,7 +58,7 @@ func TestDistributionService_Distributions(t *testing.T) {
 				},
 			},
 			Fields: []Field{
-				Field{
+				{
 					Name:             "loccountrycode",
 					TableID:          16405,
 					ColumnID:         12,

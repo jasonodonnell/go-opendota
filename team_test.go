@@ -19,7 +19,7 @@ func TestTeamService_Heroes(t *testing.T) {
 	})
 
 	expected := []TeamHeroes{
-		TeamHeroes{
+		{
 			HeroID:        86,
 			LocalizedName: "Rubick",
 			GamesPlayed:   169,
@@ -44,7 +44,7 @@ func TestTeamService_Matches(t *testing.T) {
 	})
 
 	expected := []TeamMatch{
-		TeamMatch{
+		{
 			MatchID:    3528450522,
 			RadiantWin: true,
 			Radiant:    true,
@@ -73,7 +73,7 @@ func TestTeamService_Players(t *testing.T) {
 	})
 
 	expected := []TeamPlayers{
-		TeamPlayers{
+		{
 			AccountID:           30237211,
 			Name:                "BuLba",
 			GamesPlayed:         545,
@@ -126,7 +126,7 @@ func TestTeamService_Teams(t *testing.T) {
 	})
 
 	expected := []Team{
-		Team{
+		{
 			TeamID:        2163,
 			Rating:        1628.74,
 			Wins:          582,

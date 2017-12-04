@@ -19,7 +19,7 @@ func TestSearchService_Search(t *testing.T) {
 	})
 
 	expected := []Search{
-		Search{
+		{
 			AccountID:     74335542,
 			AvatarFull:    "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/94/94c6b24d3cae823063c4e06b73016256a89fd13a_full.jpg",
 			Personaname:   "Dr. LoveWizard",

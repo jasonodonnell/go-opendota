@@ -19,7 +19,7 @@ func TestRecordService_Records(t *testing.T) {
 	})
 
 	expected := []Record{
-		Record{
+		{
 			MatchID:   "3567354666",
 			StartTime: "1510938727",
 			HeroID:    "34",

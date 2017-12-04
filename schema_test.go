@@ -19,12 +19,12 @@ func TestSchemaService_Schema(t *testing.T) {
 	})
 
 	expected := []Schema{
-		Schema{
+		{
 			TableName:  "team_rating",
 			ColumnName: "team_id",
 			DataType:   "bigint",
 		},
-		Schema{
+		{
 			TableName:  "team_rating",
 			ColumnName: "rating",
 			DataType:   "real",

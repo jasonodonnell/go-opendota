@@ -82,7 +82,7 @@ func TestPlayerService_Heroes(t *testing.T) {
 	})
 
 	expected := []PlayerHero{
-		PlayerHero{
+		{
 			HeroID:       "11",
 			LastPlayed:   1453737676,
 			Games:        166,
@@ -113,7 +113,7 @@ func TestPlayerService_Histograms(t *testing.T) {
 	})
 
 	expected := []PlayerHistogram{
-		PlayerHistogram{
+		{
 			X:     0,
 			Games: 389,
 			Win:   143,
@@ -139,7 +139,7 @@ func TestPlayerService_Matches(t *testing.T) {
 	})
 
 	expected := []PlayerMatch{
-		PlayerMatch{
+		{
 			MatchID:      3552339511,
 			PlayerSlot:   129,
 			RadiantWin:   true,
@@ -187,7 +187,7 @@ func TestPlayerService_Peers(t *testing.T) {
 	})
 
 	expected := []PlayerPeers{
-		PlayerPeers{
+		{
 			AccountID:    72312627,
 			LastPlayed:   1510246501,
 			Win:          394,
@@ -266,7 +266,7 @@ func TestPlayerService_Pros(t *testing.T) {
 	})
 
 	expected := []PlayerPros{
-		PlayerPros{
+		{
 			AccountID:       34505203,
 			Name:            "MinD_ContRoL",
 			CountryCode:     "",
@@ -317,7 +317,7 @@ func TestPlayerService_Rankings(t *testing.T) {
 	})
 
 	expected := []PlayerRankings{
-		PlayerRankings{
+		{
 			HeroID:      53,
 			Score:       439.08488536972,
 			PercentRank: 1,
@@ -342,7 +342,7 @@ func TestPlayerService_Ratings(t *testing.T) {
 	})
 
 	expected := []PlayerRatings{
-		PlayerRatings{
+		{
 			AccountID:           111620041,
 			MatchID:             2067247580,
 			SoloCompetitiveRank: 7812,
@@ -368,7 +368,7 @@ func TestPlayerService_RecentMatches(t *testing.T) {
 	})
 
 	expected := []PlayerMatch{
-		PlayerMatch{
+		{
 			MatchID:      3552339511,
 			PlayerSlot:   129,
 			RadiantWin:   true,
@@ -414,7 +414,7 @@ func TestPlayerService_Totals(t *testing.T) {
 	})
 
 	expected := []PlayerTotals{
-		PlayerTotals{
+		{
 			Field: "kills",
 			N:     3590,
 			Sum:   27722,

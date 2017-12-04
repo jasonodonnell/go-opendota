@@ -21,7 +21,7 @@ func TestRankingService_Rankings(t *testing.T) {
 	expected := HeroRanking{
 		HeroID: 36,
 		Rankings: []Ranking{
-			Ranking{
+			{
 				AccountID:           40586005,
 				Score:               1171.07373076237,
 				Personaname:         "wwd",

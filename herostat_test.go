@@ -19,7 +19,7 @@ func TestHeroStatService_HeroStats(t *testing.T) {
 	})
 
 	expected := []HeroStat{
-		HeroStat{
+		{
 			ID:                1,
 			Name:              "npc_dota_hero_antimage",
 			LocalizedName:     "Anti-Mage",

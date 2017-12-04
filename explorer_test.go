@@ -22,7 +22,7 @@ func TestExplorerService_Explorer(t *testing.T) {
 		Command:  "SELECT",
 		RowCount: 115,
 		Rows: []map[string]interface{}{
-			map[string]interface{}{
+			{
 				"id":             float64(44),
 				"name":           "npc_dota_hero_phantom_assassin",
 				"localized_name": "Phantom Assassin",
@@ -33,7 +33,7 @@ func TestExplorerService_Explorer(t *testing.T) {
 			},
 		},
 		Fields: []Field{
-			Field{
+			{
 				Name:             "id",
 				TableID:          929536173,
 				ColumnID:         1,

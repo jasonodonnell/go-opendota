@@ -19,7 +19,7 @@ func TestProMatchService_Matches(t *testing.T) {
 	})
 
 	expected := []ProMatch{
-		ProMatch{
+		{
 			MatchID:       3565732649,
 			Duration:      2388,
 			StartTime:     1510866000,

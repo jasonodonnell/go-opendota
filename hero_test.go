@@ -19,7 +19,7 @@ func TestHeroService_Durations(t *testing.T) {
 	})
 
 	expected := []HeroDuration{
-		HeroDuration{
+		{
 			DurationBin: 5700,
 			GamesPlayed: 1,
 			Wins:        0,
@@ -43,7 +43,7 @@ func TestHeroService_Heroes(t *testing.T) {
 	})
 
 	expected := []Hero{
-		Hero{
+		{
 			ID:            1,
 			Name:          "npc_dota_hero_antimage",
 			LocalizedName: "Anti-Mage",
@@ -71,7 +71,7 @@ func TestHeroService_Matches(t *testing.T) {
 	})
 
 	expected := []HeroMatch{
-		HeroMatch{
+		{
 			MatchID:    3572814592,
 			StartTime:  1511183518,
 			Duration:   1562,
@@ -103,7 +103,7 @@ func TestHeroService_Matchups(t *testing.T) {
 	})
 
 	expected := []HeroMatchup{
-		HeroMatchup{
+		{
 			HeroID:      55,
 			GamesPlayed: 95,
 			Wins:        54,
@@ -127,7 +127,7 @@ func TestHeroService_Players(t *testing.T) {
 	})
 
 	expected := []HeroPlayer{
-		HeroPlayer{
+		{
 			AccountID:   21289303,
 			GamesPlayed: 115,
 			Wins:        72,

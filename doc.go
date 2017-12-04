@@ -25,7 +25,7 @@ Here are some examples of requests:
 		fmt.Println(game.MatchID, game.HeroID)
 	}
 
-All required paramters are passed as arguments to functions.  Additional
-arguments can be passed through the param objects.
+All required parameters are passed as arguments to functions.  Additional
+arguments can be passed via the param objects.
 */
 package opendota

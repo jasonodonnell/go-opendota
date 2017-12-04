@@ -19,7 +19,7 @@ func TestProPlayerService_Players(t *testing.T) {
 	})
 
 	expected := []ProPlayer{
-		ProPlayer{
+		{
 			AccountID:       34505203,
 			SteamID:         "76561197994770931",
 			Avatar:          "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/9b/9bb81de39d4a3104fa7e85ce4ed8564082201221.jpg",

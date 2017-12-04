@@ -19,7 +19,7 @@ func TestLiveService_Live(t *testing.T) {
 	})
 
 	expected := []LiveGame{
-		LiveGame{
+		{
 			ActivateTime:   1511274112,
 			DeactivateTime: 0,
 			ServerSteamID:  "90112032772868097",
@@ -37,7 +37,7 @@ func TestLiveService_Live(t *testing.T) {
 			RadiantScore:   3,
 			DireScore:      5,
 			Players: []LivePlayers{
-				LivePlayers{
+				{
 					AccountID:   111473138,
 					HeroID:      112,
 					Name:        "Panda",

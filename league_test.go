@@ -19,7 +19,7 @@ func TestLeagueService_Leagues(t *testing.T) {
 	})
 
 	expected := []League{
-		League{
+		{
 			LeagueID: 2019,
 			Ticket:   "econ/leagues/subscriptions_ggleagues2ticket",
 			Banner:   "econ/leagues/subscriptions_ggleagues2ticket_ingame",

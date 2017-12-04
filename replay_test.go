@@ -19,14 +19,14 @@ func TestReplayService_Replays(t *testing.T) {
 	})
 
 	expected := []Replay{
-		Replay{
+		{
 			MatchID:    3559037317,
 			Cluster:    123,
 			ReplaySalt: 897752925,
 			SeriesID:   177752,
 			SeriesType: 1,
 		},
-		Replay{
+		{
 			MatchID:    3573137571,
 			Cluster:    133,
 			ReplaySalt: 1678969045,

@@ -19,7 +19,7 @@ func TestPublicMatchService_Matches(t *testing.T) {
 	})
 
 	expected := []PublicMatch{
-		PublicMatch{
+		{
 			MatchID:     3567797504,
 			MatchSeqNum: 3103150349,
 			RadiantWin:  false,

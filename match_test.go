@@ -23,7 +23,7 @@ func TestMatchService_Match(t *testing.T) {
 		BarracksStatusDire:    48,
 		BarracksStatusRadiant: 63,
 		Chat: []Chat{
-			Chat{
+			{
 				Time:       -41,
 				Type:       "chat",
 				Unit:       "k y le",
@@ -47,14 +47,14 @@ func TestMatchService_Match(t *testing.T) {
 		MatchSeqNum:    3095917221,
 		NegativeVotes:  12,
 		Objectives: []Objective{
-			Objective{
+			{
 				Time: 31,
 				Type: "CHAT_MESSAGE_COURIER_LOST",
 				Team: 2,
 			},
 		},
 		PicksBans: []PickBans{
-			PickBans{
+			{
 				IsPick:  false,
 				HeroID:  60,
 				Team:    1,
@@ -74,13 +74,13 @@ func TestMatchService_Match(t *testing.T) {
 		},
 		StartTime: 1510535111,
 		Teamfights: []Teamfights{
-			Teamfights{
+			{
 				Start:     266,
 				End:       306,
 				LastDeath: 291,
 				Deaths:    3,
 				Players: []TeamfightPlayers{
-					TeamfightPlayers{
+					{
 						AbilityUses: map[string]int{
 							"puck_illusory_orb":   2,
 							"puck_ethereal_jaunt": 1,
@@ -127,7 +127,7 @@ func TestMatchService_Match(t *testing.T) {
 			LogoURL: "http://cloud-3.steamusercontent.com/ugc/398960342836468051/26C1C5F6C3082FF2A1B706435F7DC0FCF5F5D27F/",
 		},
 		Players: []MatchPlayer{
-			MatchPlayer{
+			{
 				MatchID:    3559037317,
 				PlayerSlot: 0,
 				AbilityUpgradesArr: []int{
@@ -145,7 +145,7 @@ func TestMatchService_Match(t *testing.T) {
 				Backpack1: 46,
 				Backpack2: 0,
 				BuybackLog: []BuybackLog{
-					BuybackLog{
+					{
 						Time:       2101,
 						Slot:       0,
 						Type:       "buyback_log",
@@ -204,7 +204,7 @@ func TestMatchService_Match(t *testing.T) {
 				},
 				Kills: 3,
 				KillsLog: []Log{
-					Log{
+					{
 						Time: 1218,
 						Key:  "npc_dota_hero_jakiro",
 					},
@@ -240,7 +240,7 @@ func TestMatchService_Match(t *testing.T) {
 					},
 				},
 				ObsLeftLog: []ObsLog{
-					ObsLog{
+					{
 						Time:       319,
 						Type:       "obs_left_log",
 						Key:        "[160, 86]",
@@ -254,7 +254,7 @@ func TestMatchService_Match(t *testing.T) {
 					},
 				},
 				ObsLog: []ObsLog{
-					ObsLog{
+					{
 						Time:       -47,
 						Type:       "obs_log",
 						Key:        "[160, 86]",
@@ -276,7 +276,7 @@ func TestMatchService_Match(t *testing.T) {
 					"ultimate_scepter": 1,
 				},
 				PurchaseLog: []Log{
-					Log{
+					{
 						Time: -89,
 						Key:  "circlet",
 					},
@@ -288,7 +288,7 @@ func TestMatchService_Match(t *testing.T) {
 					"1": 1,
 				},
 				RunesLog: []RunesLog{
-					RunesLog{
+					{
 						Time: 659,
 						Key:  5,
 					},
@@ -299,7 +299,7 @@ func TestMatchService_Match(t *testing.T) {
 					},
 				},
 				SenLeftLog: []ObsLog{
-					ObsLog{
+					{
 						Time:       1580,
 						Type:       "sen_left_log",
 						Key:        "[108, 122]",
@@ -313,7 +313,7 @@ func TestMatchService_Match(t *testing.T) {
 					},
 				},
 				SenLog: []ObsLog{
-					ObsLog{
+					{
 						Time:       1334,
 						Type:       "sen_log",
 						Key:        "[108, 122]",
@@ -396,7 +396,7 @@ func TestMatchService_Match(t *testing.T) {
 				LifeStateDead:       86,
 				SoloCompetitiveRank: 7188,
 				Cosmetics: []Cosmetics{
-					Cosmetics{
+					{
 						ItemID:          6671,
 						Name:            "Merry Wanderer's Brush",
 						Prefab:          "wearable",
