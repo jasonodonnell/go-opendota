@@ -52,7 +52,7 @@ type Match struct {
 	ReplaySalt            int            `json:"replay_salt"`
 	SeriesID              int            `json:"series_id"`
 	SeriesType            int            `json:"series_type"`
-	League                MatchLeague         `json:"league"`
+	League                MatchLeague    `json:"league"`
 	RadiantTeam           MatchTeam      `json:"radiant_team"`
 	DireTeam              MatchTeam      `json:"dire_team"`
 	Players               []MatchPlayer  `json:"players"`

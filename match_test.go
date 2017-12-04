@@ -47,7 +47,7 @@ func TestMatchService_Match(t *testing.T) {
 		MatchSeqNum:    3095917221,
 		NegativeVotes:  12,
 		Objectives: []Objective{
-		    Objective{
+			Objective{
 				Time: 31,
 				Type: "CHAT_MESSAGE_COURIER_LOST",
 				Team: 2,
