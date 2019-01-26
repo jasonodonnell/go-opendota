@@ -37,6 +37,7 @@ type LiveGame struct {
 	DireScore      int           `json:"dire_score"`
 	Players        []LivePlayers `json:"players"`
 	BuildingState  int           `json:"building_state"`
+    MatchID        int64         `json:"match_id"`
 }
 
 type LivePlayers struct {
