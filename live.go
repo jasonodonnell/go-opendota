@@ -21,7 +21,7 @@ type LiveService struct {
 type LiveGame struct {
 	ActivateTime   int           `json:"activate_time"`
 	DeactivateTime int           `json:"deactivate_time"`
-	ServerSteamID  string        `json:"server_steam_id"`
+	ServerSteamID  int           `json:"server_steam_id"`
 	LobbyID        string        `json:"lobby_id"`
 	LeagueID       int           `json:"league_id"`
 	LobbyType      int           `json:"lobby_type"`
