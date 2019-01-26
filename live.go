@@ -39,9 +39,9 @@ type LiveGame struct {
 	BuildingState   int           `json:"building_state"`
 	MatchID         int64         `json:"match_id"`
 	RadiantTeamName string        `json:"team_name_radiant"`
-	RadiantTeamID   int64         `json:"team_id_radiant"`
+	RadiantTeamID   int           `json:"team_id_radiant"`
 	DireTeamName    string        `json:"team_name_dire"`
-	DireTeamID      int64         `json:"team_id_dire"`
+	DireTeamID      int           `json:"team_id_dire"`
 }
 
 type LivePlayers struct {
