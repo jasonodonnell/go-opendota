@@ -19,8 +19,8 @@ type LiveService struct {
 
 // LiveGame represents a live game.
 type LiveGame struct {
-	ActivateTime    int           `json:"activate_time"`
-	DeactivateTime  int           `json:"deactivate_time"`
+	ActivateTime    int64         `json:"activate_time"`
+	DeactivateTime  int64         `json:"deactivate_time"`
 	ServerSteamID   int64         `json:"server_steam_id"`
 	LobbyID         int64         `json:"lobby_id"`
 	LeagueID        int           `json:"league_id"`
