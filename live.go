@@ -19,25 +19,27 @@ type LiveService struct {
 
 // LiveGame represents a live game.
 type LiveGame struct {
-	ActivateTime   int           `json:"activate_time"`
-	DeactivateTime int           `json:"deactivate_time"`
-	ServerSteamID  int64         `json:"server_steam_id"`
-	LobbyID        int64         `json:"lobby_id"`
-	LeagueID       int           `json:"league_id"`
-	LobbyType      int           `json:"lobby_type"`
-	GameTime       int           `json:"game_time"`
-	Delay          int           `json:"delay"`
-	Spectators     int           `json:"spectators"`
-	GameMode       int           `json:"game_mode"`
-	AverageMmr     int           `json:"average_mmr"`
-	SortScore      int           `json:"sort_score"`
-	LastUpdateTime int           `json:"last_update_time"`
-	RadiantLead    int           `json:"radiant_lead"`
-	RadiantScore   int           `json:"radiant_score"`
-	DireScore      int           `json:"dire_score"`
-	Players        []LivePlayers `json:"players"`
-	BuildingState  int           `json:"building_state"`
-    MatchID        int64         `json:"match_id"`
+	ActivateTime    int           `json:"activate_time"`
+	DeactivateTime  int           `json:"deactivate_time"`
+	ServerSteamID   int64         `json:"server_steam_id"`
+	LobbyID         int64         `json:"lobby_id"`
+	LeagueID        int           `json:"league_id"`
+	LobbyType       int           `json:"lobby_type"`
+	GameTime        int           `json:"game_time"`
+	Delay           int           `json:"delay"`
+	Spectators      int           `json:"spectators"`
+	GameMode        int           `json:"game_mode"`
+	AverageMmr      int           `json:"average_mmr"`
+	SortScore       int           `json:"sort_score"`
+	LastUpdateTime  int           `json:"last_update_time"`
+	RadiantLead     int           `json:"radiant_lead"`
+	RadiantScore    int           `json:"radiant_score"`
+	DireScore       int           `json:"dire_score"`
+	Players         []LivePlayers `json:"players"`
+	BuildingState   int           `json:"building_state"`
+	MatchID         int64         `json:"match_id"`
+	RadiantTeamName string        `json:"team_name_radiant"`
+	DireTeamName    string        `json:"team_name_dire"`
 }
 
 type LivePlayers struct {
