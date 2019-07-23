@@ -60,6 +60,7 @@ type Player struct {
 	MmrEstimate         MmrEstimate `json:"mmr_estimate"`
 	Profile             Profile     `json:"profile"`
 	CompetitiveRank     int         `json:"competitive_rank,omitempty"`
+	RankTier            int         `json:"rank_tier"`
 }
 
 // PlayerCounts represents the counts of wins for a player for various
