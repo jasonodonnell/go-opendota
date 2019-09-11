@@ -31,7 +31,7 @@ type HeroStat struct {
 	BaseHealthRegen float64  `json:"base_health_regen"`
 	BaseMana        int      `json:"base_mana"`
 	BaseManaRegen   float64  `json:"base_mana_regen"`
-	BaseArmor       int      `json:"base_armor"`
+	BaseArmor       float64  `json:"base_armor"`
 	BaseMr          int      `json:"base_mr"`
 	BaseAttackMin   int      `json:"base_attack_min"`
 	BaseAttackMax   int      `json:"base_attack_max"`
