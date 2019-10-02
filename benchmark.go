@@ -20,7 +20,7 @@ type BenchmarkService struct {
 }
 
 type benchmarkParam struct {
-	heroID string `url:"hero_id"`
+	HeroID string `url:"hero_id"`
 }
 
 // Benchmark holds a collection of benchmarks for a hero.
@@ -49,7 +49,7 @@ type BenchmarkResult struct {
 // https://docs.opendota.com/#tag/benchmarks%2Fpaths%2F~1benchmarks%2Fget
 func (s *BenchmarkService) Benchmarks(heroID int) (Benchmark, *http.Response, error) {
 	param := &benchmarkParam{}
-	param.heroID = strconv.Itoa(heroID)
+	param.HeroID = strconv.Itoa(heroID)
 	benchmarks := new(Benchmark)
 	apiError := new(APIError)
 	resp, err := s.sling.New().QueryStruct(param).Receive(benchmarks, apiError)
